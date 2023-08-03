@@ -1,0 +1,15 @@
+@use "strip-unit" as su;
+@use "sass:math";
+
+/* ========================================
+  Get Line Hight Function
+  @param {Number} $font-size - Font size with px
+  @param {Number} $line-feed - Line feed with no-unit
+  @return {Number} $line-height - Line hight
+  ex: get-line-height(16); -> 1.5
+======================================== */
+
+@function letter-spacing($spacing: 0) {
+    $letter-spacing: math.div(su.strip-unit($spacing), 1000) * 1rem;
+    @return $letter-spacing;
+}

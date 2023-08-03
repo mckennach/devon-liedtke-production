@@ -1,0 +1,23 @@
+@mixin object-fit($pos: 50% 50%, $fit: cover, $position: absolute) {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    object-fit: $fit;
+    object-position: $pos;
+    position: $position;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+/**
+* List Zero
+*
+* Removing styles from a list.
+*/
+
+@mixin list-zero {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

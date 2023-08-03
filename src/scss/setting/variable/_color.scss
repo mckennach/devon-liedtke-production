@@ -1,10 +1,19 @@
 /* ========================================
   Color Variables
 ======================================== */
+
+
+
 // Canvas Color Variables
 // --------------------------------------------------
-$color-canvas-primary: #fff !default;
-$color-canvas-inverted: #333 !default;
+
+$color-canvas-primary: #F3F3EF !default;
+$color-canvas-inverted: #434139 !default;
+
+// Border Color Variables
+// --------------------------------------------------
+$color-border-primary: #181817 !default;
+$color-border-inverted: #ECECE7 !default;
 
 // Brand Color Variables
 // --------------------------------------------------
@@ -14,8 +23,8 @@ $color-brand-tertiary: #ff6b00 !default;
 
 // Text Color Variables
 // --------------------------------------------------
-$color-text-primary: #333 !default;
-$color-text-secondary: #ccc !default;
+$color-text-primary: #181817 !default;
+$color-text-secondary: #F3F3EF !default;
 $color-text-tertiary: #ff6b00 !default;
 $color-text-inverted: #fff !default;
 $color-text-link: #ff6b00 !default;

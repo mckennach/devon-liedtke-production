@@ -1,0 +1,147 @@
+<aside class="side-navigation container">
+  <nav class="side-navigation__navigation">
+    <ul class="side-navigation__menu has-submenu list-menu" role="list">
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          {%- if link.links != blank -%}
+            <details id="Details-side-navigation-menu-item-{{ forloop.index }}">
+              <summary id="HeaderDrawer-{{ link.handle }}" class="side-navigation__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} side-navigation__menu-item--active{% endif %}">
+                {{ link.title | escape }}
+              </summary>
+              <div
+                id="link-{{ link.handle | escape }}"
+                class="side-navigation__submenu has-submenu gradient motion-reduce"
+                tabindex="-1">
+                <div class="side-navigation__inner-submenu">
+                  <ul
+                    class="side-navigation__menu list-menu"
+                    role="list"
+                    tabindex="-1">
+                    {%- for childlink in link.links -%}
+                      <li>
+                        {%- if childlink.links == blank -%}
+                          <a
+                            id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                            href="{{ childlink.url }}"
+                            class="side-navigation__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} side-navigation__menu-item--active{% endif %}"
+                            {% if childlink.current %}
+                            aria-current="page"
+                            {% endif %}>
+                            {{ childlink.title | escape }}
+                          </a>
+                        {%- else -%}
+                          <details id="Details-side-navigation-{{ link.handle }}-{{ childlink.handle }}">
+                            <summary id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}" class="side-navigation__menu-item link link--text list-menu__item focus-inset">
+                              {{ childlink.title | escape }}
+
+                            </summary>
+                            <div id="childlink-{{ childlink.handle | escape }}" class="side-navigation__submenu has-submenu gradient motion-reduce">
+                              <button class="side-navigation__close-button link link--text focus-inset" aria-expanded="true">
+                                {% render 'icon-arrow' %}
+                                {{ childlink.title | escape }}
+                              </button>
+                              <ul
+                                class="side-navigation__menu list-menu"
+                                role="list"
+                                tabindex="-1">
+                                {%- for grandchildlink in childlink.links -%}
+                                  <li>
+                                    <a
+                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                      href="{{ grandchildlink.url }}"
+                                      class="side-navigation__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} side-navigation__menu-item--active{% endif %}"
+                                      {% if grandchildlink.current %}
+                                      aria-current="page"
+                                      {% endif %}>
+                                      {{ grandchildlink.title | escape }}
+                                    </a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          </details>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+            </details>
+          {%- else -%}
+
+
+            <a
+              id="HeaderDrawer-{{ link.handle }}"
+              href="{{ link.url }}"
+              class="side-navigation__menu-item list-menu__item link link--text focus-inset{% if link.current %} side-navigation__menu-item--active{% endif %}"
+              {% if link.current %}
+              aria-current="page"
+              {% endif %}>
+              {{ link.title | escape }}
+              {%- if link.handle == 'cart' and cart != empty -%}
+
+                {%- if cart.item_count < 100 -%}
+                  <span aria-hidden="true">( {{ cart.item_count }} )</span>
+                {%- endif -%}
+                <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+
+              {%- endif -%}
+            </a>
+            {%- if link.handle == 'search' -%}
+              {% render 'search-form', input_id: 'Search-In-Modal' %}
+            {%- endif -%}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</aside>
+
+{% schema %}
+  {
+    "name": "Side Navigation",
+    "class": "section-navigation",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "menu",
+        "default": "main-menu",
+        "label": "t:sections.header.settings.menu.label"
+      }, {
+        "type": "select",
+        "id": "sticky_header_type",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:sections.header.settings.sticky_header_type.options__1.label"
+          }, {
+            "value": "on-scroll-up",
+            "label": "t:sections.header.settings.sticky_header_type.options__2.label"
+          }, {
+            "value": "always",
+            "label": "t:sections.header.settings.sticky_header_type.options__3.label"
+          }
+        ],
+        "default": "on-scroll-up",
+        "label": "Sticky Navigation"
+      }, {
+        "type": "header",
+        "content": "Link Bottom Margin"
+      }, {
+        "type": "range",
+        "id": "margin_bottom",
+        "min": 0,
+        "max": 100,
+        "step": 4,
+        "unit": "px",
+        "label": "t:sections.header.settings.margin_bottom.label",
+        "default": 0
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      }
+    ]
+  }
+{% endschema %}

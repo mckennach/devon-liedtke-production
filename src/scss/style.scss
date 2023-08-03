@@ -5,8 +5,22 @@
 // =========================================
 @use "./foundation/base";
 
+
 // =========================================
 // Utility
 // =========================================
 @use "./utility/screen-reader";
 @use "./utility/text-align";
+
+// =========================================
+// Components
+// =========================================
+@use "./components/card";
+@use "./components/price";
+
+// =========================================
+// Sections
+// =========================================
+@use "./sections/navigation/header";
+@use "./sections/navigation/side-navigation";
+@use "./sections/video";

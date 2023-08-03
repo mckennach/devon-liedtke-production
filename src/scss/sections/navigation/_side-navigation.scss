@@ -1,0 +1,12 @@
+@use "../../setting" as *;
+
+.side-navigation {
+    &__navigation {
+        position: fixed;
+    }
+
+    &__menu {
+        @include list-zero;
+    }
+}
+
