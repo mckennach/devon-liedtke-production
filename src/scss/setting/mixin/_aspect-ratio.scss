@@ -7,30 +7,30 @@
   ex: @include aspect-ratio.aspect-ratio(16, 9);
 ======================================== */
 
-@mixin aspect-ratio($width, $height) {
-  @if not unitless($width) or not unitless($height) {
-    @error "Argument shouldn't have unit!";
-  }
-
+@mixin aspect-ratio($width, $height, $pos: 50% 50%, $fit: cover, $position: absolute, $img: true) {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: calc($height / $width) * 100%;
   position: relative;
 
-  &::before {
-    content: "";
-    float: left;
-    padding-top: math.div($height, $width) * 100%;
-  }
-
-  &::after {
-    content: "";
-    clear: both;
-    display: block;
-  }
-
-  & > :first-child {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+  img {
+    bottom: 0;
     height: 100%;
+    left: 0;
+    object-fit: $fit;
+    object-position: $pos;
+    position: $position;
+    right: 0;
+    top: 0;
+    width: 100%;
   }
+}
+
+@mixin aspect-ratio-container($width, $height) {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: calc($height / $width) * 100%;
+  position: relative;
 }

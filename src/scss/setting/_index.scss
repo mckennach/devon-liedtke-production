@@ -9,13 +9,19 @@
 @forward "mixin/media-query";
 @forward "mixin/triangle";
 @forward "mixin/underline";
-@forward "mixin/visibility-hidden";
+@forward "mixin/flex";
+@forward "mixin/tools";
+
+
+
+
 
 // =========================================
 // Function
 // =========================================
 @forward "function/get-line-height";
 @forward "function/get-rem";
+@forward "function/get-letter-spacing";
 @forward "function/get-vw";
 @forward "function/strip-unit";
 
