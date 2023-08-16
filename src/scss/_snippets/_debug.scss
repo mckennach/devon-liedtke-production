@@ -1,0 +1,40 @@
+.debug__wrapper {
+  background: #1d1e26;
+  padding: rem(40) 0;
+  position: relative;
+  z-index: 500;
+
+  &.fixed {
+    bottom: 0;
+    position: fixed;
+    
+  }
+}
+
+.debug__container {
+  @include container;
+}
+
+.debug__header {
+  margin-bottom: rem(20);
+}
+
+.debug__title {
+  @include font-size(16);
+  color: #9580ff;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.debug__message {
+  @include font-smoothing;
+  @include font-size(14);
+  background: #282a36;
+  border-radius: 0.375rem;
+  box-shadow: inset 0 30px 60px -12px rgb(50 50 93 / 25%), inset 0 18px 36px -18px rgb(0 0 0 / 30%);
+  color: #fff;
+  line-height: 1.2;
+  margin: 0;
+  padding: 0 rem(40) rem(40);
+}

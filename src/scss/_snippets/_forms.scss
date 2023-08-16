@@ -1,0 +1,45 @@
+
+
+
+
+
+.field {
+	@include flexbox($direction: column);
+	// padding: rem(40) 0 0;
+	margin-bottom: rem(55);
+	
+	label {
+		margin-bottom: rem(20);
+	}
+	&__with-textarea label {
+		margin-bottom: rem(60);
+	}
+}
+
+
+
+input, textarea {
+	outline: 0;
+	box-shadow: none;
+}
+
+
+
+
+
+/* --------------------------------------------------------------------------
+Validation
+----------------------------------------------------------------------------- */
+
+
+.label-hidden {
+	border: 0!important;
+	clip: rect(0,0,0,0)!important;
+	height: 1px!important;
+	margin: -1px!important;
+	overflow: hidden!important;
+	padding: 0!important;
+	position: absolute!important;
+	white-space: nowrap!important;
+	width: 1px!important;
+}

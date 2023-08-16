@@ -1,0 +1,53 @@
+.featured-blog {
+    padding: rem(90) 0 0;
+    position: relative;
+    &__title-container {
+        border-bottom: 1px solid rgb(var(--color-foreground));
+
+    }
+
+    &__title {
+        position: relative;
+            top: 5px;
+    }
+
+
+
+    &__tag-container {
+        text-align: right;
+        position: relative;
+        top: 2rem;
+        @include breakpoint(tablet) {
+            text-align: left;
+        }
+    }
+
+    &__article-container {
+        padding: rem(200) 0 rem(220);
+        position: relative;
+        &::after {
+                content: '';
+                position: absolute;
+                right: 8.5%;
+                height: 100%;
+                top: 0;
+                width: 1px;
+                background-color: rgb(var(--color-foreground));
+            }
+    }
+
+    &__posts {
+        @include list-zero;
+        @include flexbox($justifyContent: flex-end, $gap: rem(30), $wrap: wrap);
+        margin-right: 15%;
+        // @include breakpoint()
+    }
+
+    &__post {
+        width: 100%;
+        max-width: rem(280);
+    }
+
+
+
+}

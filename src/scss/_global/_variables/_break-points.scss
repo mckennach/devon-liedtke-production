@@ -1,0 +1,24 @@
+/* Layers */
+$layers: (
+    default: 0,
+    primary: 1,
+    secondary: 2,
+    debug: 15,
+    modal: 15,
+    header: 10,
+    project-detail: 11,
+);
+
+/* Breakpoints */
+$breakpoint-full: 1200;
+$breakpoint-desktop: 1024;
+$breakpoint-tablet: 768;
+$breakpoint-phone: 480;
+$breakpoints: (
+    full: 1200,
+    desktop: 1024,
+    tablet: 768,
+    phone: 480,
+    smart-phone: 360,
+    phone-min: 0,
+);

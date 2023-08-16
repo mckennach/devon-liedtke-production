@@ -1,0 +1,48 @@
+.featured-collection {
+    padding-bottom: rem(100);
+
+    &__heading {
+        margin-bottom: rem(80);
+    }
+
+    &__collection-list {
+        @include flexbox($wrap: wrap, $gap: rem(40) );
+    }
+
+    &__product-group {
+        width: 100%;
+        @include flexbox($wrap: wrap, $gap: 1%);
+        &:nth-of-type(even) {
+            @include breakpoint(tabletup) {
+                flex-direction: row-reverse;
+            }
+        }
+    }
+
+    &__product-group &__item {
+        @include make-col(4);
+   
+        @include breakpoint(tablet) {
+            max-width: 85%;
+        }
+        &:nth-of-type(even) {
+            max-width: 20%;
+            @include breakpoint(tablet) {
+                max-width: 55%;
+                margin-right: 0;
+                margin-left: auto;
+            }
+        }
+    }
+
+    &__img-container {
+        @include aspect-ratio(550, 708);
+    }
+
+    
+
+
+  
+    
+    
+}

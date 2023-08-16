@@ -1,0 +1,34 @@
+// NAVIGATION
+@import '_navigation/header';
+@import '_navigation/side-navigation';
+@import '_navigation/footer';
+
+// SECTIONS
+@import '_main-sections/home-hero';
+@import '_main-sections/video';
+@import '_main-sections/featured-collection';
+@import '_main-sections/featured-blog';
+@import '_main-sections/contact-form';
+@import '_main-sections/press';
+@import '_main-sections/image-with-text';
+
+// COLLECTIONS
+@import '_collections/collection-page';
+@import '_collections/shop-the-look';
+@import '_collections/video';
+
+// PRODUCTS
+@import '_product/product-detail';
+@import '_product/quantity';
+
+// BLOGS
+@import '_blog/main-blog';
+@import '_blog/article';
+
+
+// CARTS
+@import '_cart/cart';
+@import '_cart/cart-drawer';
+@import '_cart/cart-item';
+@import '_cart/totals';
+@import '_cart/tax-note';

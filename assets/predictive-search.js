@@ -68,8 +68,9 @@ class PredictiveSearch extends SearchForm {
   }
 
   onFocus() {
+    
     const currentSearchTerm = this.getQuery();
-
+  
     if (!currentSearchTerm.length) return;
 
     if (this.searchTerm !== currentSearchTerm) {

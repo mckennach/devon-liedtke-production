@@ -1,0 +1,14 @@
+
+.swiper-autoheight, .swiper-autoheight .swiper-slide {
+    height: auto !important;
+}
+
+.swiper-pagination-bullet {
+    background: none;
+    border: 1px solid black;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background: $black;
+}

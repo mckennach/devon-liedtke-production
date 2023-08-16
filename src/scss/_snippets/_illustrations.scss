@@ -1,0 +1,50 @@
+.component--illustration {
+    position: absolute;
+
+    @include layer(default);
+
+    &.position-top-left {
+        left: 0;
+        top: 0;
+
+        img {
+            margin-left: 0;
+            margin-right: auto;
+
+        }
+    }
+
+     &.position-top-right {
+        right: 0;
+        top: 0;
+
+        img {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    }
+
+    &.position-bottom-left {
+        bottom: 0;
+        left: 0;
+
+        img {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+
+     &.position-bottom-right {
+        bottom: 0;
+        right: 0;
+
+        img {
+            margin-left: auto;
+            margin-right: 0;
+        }
+    }
+
+    img {
+        max-width: rem(350);
+    }
+}

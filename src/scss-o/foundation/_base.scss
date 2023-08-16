@@ -13,7 +13,7 @@
   -webkit-font-smoothing: antialiased;
   font-size: rem(13px);
   line-height: line-height(16px);
-  letter-spacing: letter-spacing(25);
+  letter-spacing: letter-spacing(25px);
   background-color: $color-canvas-primary;
   color: $color-text-primary;
 
@@ -71,7 +71,7 @@
   /* 2 */
   border-style: solid;
   /* 2 */
-  border-color: var(--color-borer-primary);
+  border-color: var(--color-border-primary);
   /* 2 */
 }
 
@@ -96,7 +96,7 @@ html {
 
 html,
 body {
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 body {
@@ -106,9 +106,10 @@ body {
 
 [container],
 .container {
-  max-width: var(--page-width);
-  width: 96%;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  
+  margin: 0 rem(20);
 
 }
 
@@ -470,10 +471,12 @@ video {
 Ensure the default browser behavior of the `hidden` attribute.
 */
 
-[hidden] {
-  display: none;
+.hidden,
+[hidden],
+.hide,
+[hide] {
+  @include hide;
 }
-
 
 /* base-details-summary */
 summary {
@@ -549,9 +552,7 @@ html.no-js .no-js-hidden {
   list-style: none;
 }
 
-.hidden {
-  display: none !important;
-}
+
 
 .visually-hidden {
   position: absolute !important;

@@ -1,0 +1,39 @@
+.search {
+    &__input {
+        background-color: unset !important;
+        @include type-style(primary);
+        @include input-placeholder {
+            color: rgb(var(--color-foreground));
+        }
+        border-bottom: 1px solid rgba(var(--color-foreground), 0);
+        &:focus, &:focus-visible, &:hover, &:active {
+            border-bottom: 1px solid rgba(var(--color-foreground), 1);
+            &:before {
+                content: 'Search Here';
+            }
+        }
+    }
+
+    &__button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    &__input:focus + &__button, &__input:focus-visible + &__button, &__input:hover + &__button,
+        &__input:active + &__button {
+        opacity: 1;
+    }
+}
+
+.search-modal {
+    &__form .field {
+        margin-bottom: 0;
+        position: relative;
+    }
+}
+
+.predictive-search {
+    display: none !important;
+}

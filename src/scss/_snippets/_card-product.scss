@@ -1,0 +1,32 @@
+.card-product {
+    margin-bottom: rem(45);
+
+    &__img-container {
+        margin-bottom: rem(15);
+        opacity: 1;
+        transition: all .45s  ease-in-out;
+        &.portrait {
+            @include aspect-ratio(550, 710);
+        }
+        &.landscape {
+            @include aspect-ratio(550, 441);
+        }
+    }
+
+    &:hover &__img-container {
+        opacity: .75;
+        transition: all .45s ease-in-out;
+    }
+
+    &__txt-container {
+        @include pseudo-underline($width: 0, $color: rgb(var(--color-foreground)));
+    }
+
+    &__txt-inner-container {
+        @include flexbox($justifyContent: space-between);
+    }
+
+    &:hover &__txt-container {
+        @include pseudo-underline($width: 100%, $color: rgb(var(--color-foreground)));
+    }
+}

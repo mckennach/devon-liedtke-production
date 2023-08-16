@@ -4,7 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="">
+    <meta
+      name="theme-color"
+      content="">
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -14,12 +16,12 @@
         href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
-    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
+    {% comment %} {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link
-        rel="preconnect"
-        href="https://fonts.shopifycdn.com"
-        crossorigin>
-    {%- endunless -%}
+      rel="preconnect"
+      href="https://fonts.shopifycdn.com"
+      crossorigin>
+    {%- endunless -%} {% endcomment %}
 
     <title>
       {{ page_title }}
@@ -53,27 +55,13 @@
       assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
     %}
 
+    {% render 'theme-fonts' %}
+    {% render 'theme-color-schemes' %}
+
 
     {% comment %} {{ 'base.css' | asset_url | stylesheet_tag }} {% endcomment %}
     {{ 'style.css' | asset_url | stylesheet_tag }}
 
-    {%- unless settings.type_body_font.system? -%}
-      <link
-        rel="preload"
-        as="font"
-        href="{{ settings.type_body_font | font_url }}"
-        type="font/woff2"
-        crossorigin>
-    {%- endunless -%}
-    {%- unless settings.type_header_font.system? -%}
-
-      <link
-        rel="preload"
-        as="font"
-        href="{{ settings.type_header_font | font_url }}"
-        type="font/woff2"
-        crossorigin>
-    {%- endunless -%}
 
     {%- if settings.predictive_search_enabled -%}
       <link
@@ -90,18 +78,27 @@
       }
     </script>
     <script src="{{ 'main.js' | asset_url }}" defer></script>
+    <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
+
 
   </head>
 
-  <body class="{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+  <body
+    id="theme-{{ template | replace: '.', '-' }}"
+    class="{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} "
+    data-theme=color-background-1>
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
 
+
     {%- if settings.cart_type == 'drawer' -%}
       {%- render 'cart-drawer' -%}
     {%- endif -%}
+
 
     {% sections 'header-group' %}
 
@@ -112,6 +109,8 @@
       tabindex="-1">
       {{ content_for_layout }}
     </main>
+
+    {% sections 'footer-group' %}
 
 
     <ul hidden>
@@ -154,5 +153,6 @@
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
   </body>
 </html>

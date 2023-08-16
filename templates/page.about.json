@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "2d339acf-6c35-4681-b1ec-9a8c388cff0e": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--20412558770458__2d339acf-6c35-4681-b1ec-9a8c388cff0e-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Interior designer, avid stylist, and creative director of her namesake brand, Devon Liedtke is known for her fresh take on collected minimalism. Devon’s creative ventures have spanned interior projects, content creation for her own outlet and fellow brands, and a curated shop. <br\/><br\/>Upon moving to Barcelona, the Texas-native was taken by the slower-paced, intentional lifestyle she was met with. She sought to create a collection of thoughtful finishing touches for the home that mirrored and allowed others to experience this way of life. <br\/><\/p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "template--20412558770458__2d339acf-6c35-4681-b1ec-9a8c388cff0e-text-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/about.jpg",
+        "desktop_image_width": "large",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "right",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "ba62ce82-78cb-440c-a59c-66d020166409": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--20412558770458__ba62ce82-78cb-440c-a59c-66d020166409-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Devon controlled the vision from start to finish, reimagining everyday objects into pieces that fill a void, suit a minimal aesthetic, and evolve from place to place. The collection of homewares and decorative accessories is limited to remain purposeful with the goal of bringing multi-generational craft and one-off artisanal pieces to the forefront of the home.<br\/><\/p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "template--20412558770458__ba62ce82-78cb-440c-a59c-66d020166409-text-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/intro.jpg",
+        "desktop_image_width": "large",
+        "layout": "image_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "right",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "73c1c0d1-7fd7-4ae5-bee7-f321a342efaf": {
+      "type": "image-with-text",
+      "blocks": {
+        "template--20412558770458__73c1c0d1-7fd7-4ae5-bee7-f321a342efaf-text-1": {
+          "type": "text",
+          "settings": {
+            "text": "<p>While abroad, Devon continues to search for the beauty around her, and shares what she discovers and creates along the way. Devon has been featured as a design and lifestyle expert, and her work widely published by ELLE Decor, Architectural Digest and Veranda, among others.<\/p>",
+            "text_style": "subtitle"
+          }
+        }
+      },
+      "block_order": [
+        "template--20412558770458__73c1c0d1-7fd7-4ae5-bee7-f321a342efaf-text-1"
+      ],
+      "settings": {
+        "image": "shopify:\/\/shop_images\/about-new.jpg",
+        "desktop_image_width": "medium",
+        "layout": "text_first",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "right",
+        "color_scheme": "",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "3caf00f0-e5a5-4912-934f-dd1be4b19dc6": {
+      "type": "press",
+      "blocks": {
+        "46e24770-860e-4649-859a-451269e821a2": {
+          "type": "press_entry",
+          "settings": {
+            "title": "PRESS ENTRY 01",
+            "link": "shopify:\/\/pages\/about",
+            "featured_image": "shopify:\/\/shop_images\/Image_40.jpg"
+          }
+        },
+        "40fac9d1-a506-47c6-88f9-cca5a0bc5e65": {
+          "type": "press_entry",
+          "settings": {
+            "title": "PRESS ENTRY 02",
+            "link": "shopify:\/\/pages\/about",
+            "featured_image": "shopify:\/\/shop_images\/Image_113.jpg"
+          }
+        },
+        "4f7db0c7-27d5-42bc-81be-fc832ecf0cd5": {
+          "type": "press_entry",
+          "settings": {
+            "title": "PRESS ENTRY 03",
+            "link": "shopify:\/\/pages\/about",
+            "featured_image": "shopify:\/\/shop_images\/Rectangle_35.jpg"
+          }
+        },
+        "1c838d1a-219e-4c28-bbc1-932e6dd8630d": {
+          "type": "press_entry",
+          "settings": {
+            "title": "PRESS ENTRY 04",
+            "link": "#",
+            "featured_image": "shopify:\/\/shop_images\/contact-vid.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "46e24770-860e-4649-859a-451269e821a2",
+        "40fac9d1-a506-47c6-88f9-cca5a0bc5e65",
+        "4f7db0c7-27d5-42bc-81be-fc832ecf0cd5",
+        "1c838d1a-219e-4c28-bbc1-932e6dd8630d"
+      ],
+      "settings": {
+        "title": "Press",
+        "color_scheme": "background-1"
+      }
+    }
+  },
+  "order": [
+    "2d339acf-6c35-4681-b1ec-9a8c388cff0e",
+    "ba62ce82-78cb-440c-a59c-66d020166409",
+    "73c1c0d1-7fd7-4ae5-bee7-f321a342efaf",
+    "3caf00f0-e5a5-4912-934f-dd1be4b19dc6"
+  ]
+}

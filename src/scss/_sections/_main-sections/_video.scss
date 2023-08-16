@@ -1,0 +1,220 @@
+.video-section {
+
+    padding: rem(100) 0;
+
+    &__container {
+        @include breakpoint(tablet) {
+            width: 100%;
+            padding: 0;
+        }
+    }
+
+    &__media {
+        --ratio-percent: 56.25%;
+        @include breakpoint(tablet) {
+            --ratio-percent: 135% !important;
+        }
+        position: relative;
+        padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
+    }
+
+    &__media.global-media-settings--full-width {
+        padding-bottom: var(--ratio-percent);
+    }
+
+    &__media.deferred-media {
+        box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius) rgba(var(--color-shadow), var(--media-shadow-opacity));
+    }
+
+    &__media.deferred-media:after {
+        content: none;
+    }
+
+    &__poster.deferred-media__poster:focus {
+        outline-offset: 0.3rem;
+    }
+
+    &__media iframe {
+        background-color: rgba(var(--color-foreground), 0.03);
+        border: 0;
+    }
+
+    &__poster,
+    &__media iframe,
+    &__media video {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__media video {
+        background: #000000;
+    }
+
+    &__media.media-fit-cover video {
+        object-fit: cover;
+    }
+
+    &__txt-container {
+        max-width: 100%;
+        @include flexbox($wrap: wrap, $justifyContent: space-between, $gap: 2%);
+        @include breakpoint(tablet) {
+            @include flexbox($wrap: wrap, $justifyContent: space-between, $gap: 2%, $direction: column);
+            max-width: 96%;
+            margin: auto;
+           
+        }
+    }
+
+
+    &__label {
+        
+        @include flexbox($shrink: 1, $alignItems: baseline, $gap: 2%, $wrap: wrap);
+        
+        flex: 1;
+        p {
+            max-width: rem(303);
+            margin-bottom: rem(15);
+        }
+
+        p em {
+            @include type-style(secondary);
+            @include breakpoint(tablet) {
+                display: block;
+                margin-left: 18%;
+            }
+        }
+    }
+
+    &__link {
+        @include flexbox($shrink: 1, $alignItems: baseline);
+    }
+}
+
+/* Needed for gradient continuity with or without animation so that transparent PNG images come up as we would expect */
+.scroll-trigger:where(.gradient.video-section__media) {
+    background: transparent;
+}
+
+.deferred-media {
+    overflow: hidden;
+    margin-bottom: rem(15);
+    &__poster {
+        display: block;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        border-radius: calc(var(--border-radius) - var(--border-width));
+        img {
+            width: auto;
+            max-width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__poster:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 var(--media-border-width) rgba(var(--color-foreground), var(--media-border-opacity)),
+            0 0 0 calc(var(--media-border-width) + 0.3rem) rgb(var(--color-background)),
+            0 0 0 calc(var(--media-border-width) + 0.5rem) rgba(var(--color-foreground), 0.5);
+        border-radius: calc(var(--media-radius) - var(--media-border-width));
+    }
+
+    &__poster:focus {
+        outline: none;
+        box-shadow: 0 0 0 var(--media-border-width) rgba(var(--color-foreground), var(--media-border-opacity)),
+            0 0 0 calc(var(--media-border-width) + 0.3rem) rgb(var(--color-background)),
+            0 0 0 calc(var(--media-border-width) + 0.5rem) rgba(var(--color-foreground), 0.5);
+        border-radius: calc(var(--media-radius) - var(--media-border-width));
+    } 
+
+    &__poster:focus:not(:focus-visible) {
+        outline: 0;
+        box-shadow: none;
+    } 
+
+    &:not([loaded]) template {
+        z-index: -1;
+    }
+
+    &__poster:focus:not(:focus-visible) {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    &__poster-button {
+        background-color: var(--play-btn-background);
+        border: 0.1rem solid rgba(var(--color-foreground), 0.1);
+        border-radius: 50%;
+        color: rgb(var(--color-foreground));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 6.2rem;
+        width: 6.2rem;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        transition: transform var(--duration-short) ease,
+            color var(--duration-short) ease;
+        z-index: 1;
+    }
+
+    /* outline styling for Windows High Contrast Mode */
+    @media (forced-colors: active) {
+        &__poster:focus {
+            outline: transparent solid 1px;
+        }
+    }
+
+    &__poster-button:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    &__poster-button .icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &__poster-button .icon-play {
+        margin-left: 0.2rem;
+    }
+}
+
+
+
+.media>.deferred-media__poster {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.deferred-media[loaded]>.deferred-media__poster {
+    display: none;
+}
+
+
+.global-media-settings--full-width .deferred-media__poster,
+.global-media-settings--full-width .deferred-media__poster:is(:focus, :focus-visible) {
+    border-radius: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

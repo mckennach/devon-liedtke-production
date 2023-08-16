@@ -1,0 +1,10 @@
+.totals {
+    @include flexbox($justifyContent: space-between);
+    // @include pseudo-underline($width: 100, $display: flex);
+    border-bottom: solid 1px;
+    padding-bottom: rem(8);
+    &__subtotal, &__subtotal-value {
+        @include type-style(secondary);
+        text-transform: uppercase;
+    }
+}

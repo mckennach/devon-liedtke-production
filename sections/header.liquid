@@ -1,28 +1,29 @@
-<header role="banner">
-  <div class="container">
+<header role="banner" class="header {% if template == 'blog' or template == 'article' %} secondary {% else %} main {% endif %}">
+  <div class="header__container container">
     <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
       {%- if settings.logo != blank -%}
-        <div class="header__heading-logo-wrapper">
-          {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
-          {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
-          {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
-          {% capture widths %}
-            {{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
-          {{ settings.logo | image_url: width: 600 | image_tag:
-           class: 'header__heading-logo motion-reduce',
-           widths: widths,
-           height: logo_height,
-           width: settings.logo_width,
-           alt: logo_alt,
-           sizes: sizes,
-           preload: true }}
+        <div class="header__heading-logo-wrapper ">
+          {%- if template == 'blog' or template == 'article' -%}
+            {% render 'icon-logo-submark' with id: 'header' %}
+          {%- else -%}
+            <div class="tablet-hide">
+              {% render 'icon-logo' with id: 'header' %}
+            </div>
+            <div class="tabletup-hide">
+              {% render 'icon-logo-mobile' with id: 'header' %}
+            </div>
+          {%- endif -%}
         </div>
       {%- else -%}
         <span class="h2">{{ shop.name }}</span>
       {%- endif -%}
     </a>
+
+    {% render 'hamburger' %}
+
   </div>
 </header>
+
 
 {% schema %}
   {
@@ -34,7 +35,15 @@
         "id": "menu",
         "default": "main-menu",
         "label": "t:sections.header.settings.menu.label"
-      }, {
+      },
+      {
+        "type": "image_picker",
+        "id": "secondary_logo",
+        "label": "Secondary Logo",
+        "info": "Will replace logo on Edit (Blog) Pages"
+
+      },
+      {
         "type": "select",
         "id": "sticky_header_type",
         "options": [
@@ -51,7 +60,8 @@
         ],
         "default": "on-scroll-up",
         "label": "Sticky Navigation"
-      }, {
+      },
+      {
         "type": "header",
         "content": "Link Bottom Margin"
       }, {

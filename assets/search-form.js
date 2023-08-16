@@ -3,8 +3,10 @@ class SearchForm extends HTMLElement {
     super();
     this.input = this.querySelector('input[type="search"]');
     this.resetButton = this.querySelector('button[type="reset"]');
-
+    console.log(this.input);
     if (this.input) {
+      this.input.addEventListener('focus', this.onFocus.bind(this));
+      this.input.addEventListener('focusout', this.onFocusOut.bind(this));
       this.input.form.addEventListener('reset', this.onFormReset.bind(this));
       this.input.addEventListener(
         'input',
@@ -12,7 +14,31 @@ class SearchForm extends HTMLElement {
           this.onChange(event);
         }, 300).bind(this),
       );
+      
+      
     }
+  }
+
+    onFocus() {
+      console.log(this.getAttribute('placeholder'));
+    // const currentSearchTerm = this.getQuery();
+  
+    // if (!currentSearchTerm.length) return;
+
+    // if (this.searchTerm !== currentSearchTerm) {
+    //   // Search term was changed from other search input, treat it as a user change
+    //   this.onChange();
+    // } else if (this.getAttribute('results') === 'true') {
+    //   this.open();
+    // } else {
+    //   this.getSearchResults(this.searchTerm);
+    // }
+  }
+
+  onFocusOut() {
+    // setTimeout(() => {
+    //   if (!this.contains(document.activeElement)) this.close();
+    // });
   }
 
   toggleResetButton() {

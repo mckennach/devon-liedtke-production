@@ -1,0 +1,108 @@
+<div class="home-hero">
+  <div class="home-hero__container container" data-scheme="{{ section.settings.color_scheme }}">
+    <div class="home-hero__grid">
+      {%- if section.settings.featured_collection -%}
+        {% liquid
+          assign collection = section.settings.featured_collection
+          assign collection_img = collection.image
+        %}
+        <div class="home-hero__grid-item home-hero__left-item">
+
+          <figure class="home-hero__featured-collection">
+            <div
+              class="home-hero__collection-img-container scroll-trigger animate--slide-in"
+              data-cascade
+              style="--animation-order: 1;">
+              <img
+                srcset="{{ collection_img.src | image_url: width: 1500 }}"
+                src="{{ collection_img.src | image_url: width: 533 }}"
+                alt="{{ collection_img.src.alt | escape }}"
+                class="motion-reduce"
+                loading="lazy"
+                width="{{ collection_img.width }}"
+                height="{{ collection_img.height }}">
+            </div>
+            <figcaption
+              class="scroll-trigger animate--slide-in"
+              data-cascade
+              style="--animation-order: 2;">
+              <a href="{{ collection.url }}" class="underlined-link">Shop the Collection</a>
+            </figcaption>
+          </figure>
+
+        </div>
+      {%- endif -%}
+      {%- if section.settings.featured_img -%}
+        <div class="home-hero__grid-item home-hero__right-item">
+          <figure class="home-hero__featured-figure">
+            <div class="home-hero__featured-img-container">
+              <div
+                class="home-hero__img-container scroll-trigger animate--slide-in"
+                data-cascade
+                style="--animation-order: 3;">
+                <img
+                  srcset="{{ section.settings.featured_img.src | image_url: width: 1500 }}"
+                  src="{{ section.settings.featured_img.src | image_url: width: 533 }}"
+                  alt="{{ section.settings.featured_img.src.alt | escape }}"
+                  class="motion-reduce"
+                  loading="lazy"
+                  width="{{ section.settings.featured_img.width }}"
+                  height="{{ section.settings.featured_img.height }}">
+              </div>
+            </div>
+
+            {%- if section.settings.featured_img_caption -%}
+              <figcaption
+                class="home-hero__section-caption scroll-trigger animate--slide-in"
+                data-cascade
+                style="--animation-order: 4;">
+                <p>{{ section.settings.featured_img_caption }}</p>
+
+              </figcaption>
+            {%- endif -%}
+          </figure>
+
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Home Hero",
+    "tag": "section",
+    "class": "section",
+    "enabled_on": {
+      "templates": ["index"]
+    },
+    "settings": [
+      {
+        "type": "collection",
+        "id": "featured_collection",
+        "label": "Featured Collection"
+      }, {
+        "type": "image_picker",
+        "id": "featured_img",
+        "label": "Featured Image",
+        "info": "Will display with text beneath"
+      }, {
+        "type": "inline_richtext",
+        "id": "featured_img_caption",
+        "label": "Image Caption",
+        "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+      }, {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "background-1"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home Hero"
+      }
+    ]
+  }
+{% endschema %}

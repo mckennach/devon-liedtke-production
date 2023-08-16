@@ -1,0 +1,125 @@
+ @function rem($pxsize, $root: 16) {
+    @return calc($pxsize / $root) * 1rem;
+}
+  
+  @function strip-unit($number) {
+    @if type-of($number) == 'number' and not unitless($number) {
+      @return $number / ($number * 0 + 1);
+    }
+  
+    @return $number;
+  }
+  
+
+// @function rem($pxsize, $root: 16) {
+//     // $rem-size: calc($pxsize / $root) * 1rem;
+
+//     @return calc($pxsize / $root) * 1rem;
+
+//     // @return calc($size / $root) * 1rem;
+
+// }
+  
+  @function assign-elements($elements, $pseudo: null) {
+    $list: ();
+  
+    @each $element in $elements {
+      $element: if($pseudo, $element + ':' + $pseudo, $element);
+      $list: append($list, $element, comma);
+    }
+  
+    @return $list;
+  }
+  
+  /**
+  * Breakpoints
+  *
+  * Map helper for the $theme map in _includes/_variables.
+  */
+  
+  @function breakpoints($breakpoint) {
+    @return map-get($breakpoints, $breakpoint);
+  }
+  
+  /**
+  * Layers
+  *
+  * Map helper for the $layers map in _includes/_variables.
+  */
+  
+  @function layer($layer) {
+    @return map-get($layers, $layer);
+  }
+  
+  /**
+  * Theme
+  *
+  * Map helper for the $theme map in _includes/_variables.
+  */
+  
+  @function theme($color) {
+    @return map-get($theme, $color);
+  }
+  
+  /**
+  * Base
+  *
+  * Map helper for the $base map in _includes/_variables.
+  */
+  
+  @function base($key) {
+    @return map-get($base, $key);
+  }
+  
+  /**
+  * Type
+  *
+  * Map helper for the $type map in _includes/_variables.
+  */
+  
+  @function type($style) {
+    @return map-get($type, $style);
+  }
+
+
+
+  
+    /* ========================================
+    Get Line Hight Function
+    @param {Number} $font-size - Font size with px
+    @param {Number} $line-feed - Line feed with no-unit
+    @return {Number} $line-height - Line hight
+    ex: get-line-height(16); -> 1.5
+  ======================================== */
+  
+    @function letter-spacing($spacing: 0) {
+      $letter-spacing: math.div(strip-unit($spacing), 1000) * 1rem;
+      @return $letter-spacing;
+    }
+
+        @function line-height($font-size: 16px, $line-feed: 24) {
+          @if unit($font-size) !="px" {
+            @error "First argument should be px unit!";
+          }
+    
+          @if not unitless($line-feed) {
+            @error "Second argument shouldn't have unit!";
+          }
+    
+          $line-height: math.div($line-feed, strip-unit($font-size));
+    
+          @return $line-height;
+        }
+
+      @function get-vw($px, $viewport: 375px) {
+        @if unit($px) !="px" or unit($viewport) !="px" {
+          @error 'Argument should be px unit!';
+        }
+
+        $vw: math.div(strip-unit($px), strip-unit($viewport)) * 100vw;
+
+        @return $vw;
+      }
+
+  
+  

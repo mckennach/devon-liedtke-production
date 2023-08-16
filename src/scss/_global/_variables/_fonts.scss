@@ -1,0 +1,82 @@
+/* Fonts */
+$fonts: (
+    title: ('Unica 77 LL', 'sans-serif'),
+    primary: ('Unica 77 LL', 'sans-serif'),
+    secondary: ('Nitti Basic Light', ' sans-serif'),
+    secondary-light: ('Nitti Basic Light', 'sans-serif'),
+    italic-heading: ('Nitti Basic', 'sans-serif'),
+    body: ('Unica 77 LL', 'sans-serif'),
+    tertiary: ('Nitti Basic', 'sans-serif'),
+    medium: ('Nitti Basic', 'sans-serif'),
+    icons: ''
+);
+
+
+
+/* Base Settings */
+$base: (
+    font: map-get($fonts, body),
+    font-size: 16,
+    border-radius: 4,
+    site-width: 1360,
+    transition-duration: 300ms,
+    transition-timing-function: ease-in-out,
+    header-mobile: rem(76)
+);
+
+
+/* Typography */
+$type: (
+    // Size, Line Height, Spacing, Style, Weight, Transform, Color
+
+    nav: (16, 0, letter-spacing(-.5px), body, normal, normal, black),
+    small-caps: (15, rem(14), letter-spacing(2px), body, normal, uppercase, black),
+    italic-heading: (35, rem(-15), letter-spacing(26px), italic-heading, initial, normal, $black),
+    heading: (18, rem(24), 0, primary, normal, uppercase),
+    blockquote: (20, rem(35), letter-spacing(-10), secondary, normal, normal),
+    // h2: (15, rem(28), 1, title, normal, uppercase, black),
+    cart: (10, rem(12), letter-spacing(25px), title, normal, normal),
+    primary: (13, rem(20), letter-spacing(25px), primary, normal, normal),
+    secondary: (13, rem(18), letter-spacing(25px), secondary, 100, normal),
+    article-text: (13, rem(25), letter-spacing(-10px), secondary, 100, normal),
+    form: (18, rem(20), letter-spacing(-10px), secondary-light, 100, normal),
+    article-title: (32, rem(39), 0, primary, normal, normal, var(--color-text-primary)),
+    press-text: (47, rem(43), letter-spacing(-60px), secondary, normal, lowercase),
+    button: (14, rem(30), 2, medium, normal, uppercase),
+    citation: (13, rem(17), 0, body, 400, normal),
+    review-desc: (15, rem(22), 0, body, 400, normal),
+    title: (20, rem(24), 0, title, normal, uppercase),
+    label : (10, rem(15), 1.26, title, 400, uppercase, theme(darker)),
+    filter-item : (12, rem(18), 1.26, title, 400, uppercase, theme(darker)),
+    placeholder: (15, rem(20), 0, tertiary, 300, normal, rgba(theme(darker), 0.3)),
+    caption: (15, rem(20), 0, tertiary, 300, normal, theme(darker)),
+    content-title: (20, rem(26), 0, tertiary, 300, normal, theme(darker)),
+    description : (12, rem(18), 0, tertiary, 300, none, theme(darker)),
+    body : (20, rem(25), 0, body, 300, none, theme(darker)),
+    // list-item : (18, rem(25), 0, tertiary, 300, none, theme(darker)),
+);
+
+/**
+* Form Elements
+*
+* Form element groups to support the quick application of styles to base and pseudo states.
+*/
+$text-inputs-list: 'input[type="color"]', 'input[type="date"]',
+    'input[type="datetime"]', 'input[type="datetime-local"]',
+    'input[type="email"]', 'input[type="month"]', 'input[type="number"]',
+    'input[type="password"]', 'input[type="search"]', 'input[type="tel"]',
+    'input[type="text"]:not(.chosen-focus-input)', 'input[type="time"]',
+    'input[type="url"]', 'input[type="week"]', 'textarea';
+$all-text-inputs: assign-elements($text-inputs-list);
+$all-text-inputs-active: assign-elements($text-inputs-list, active);
+$all-text-inputs-focus: assign-elements($text-inputs-list, focus);
+$all-text-inputs-hover: assign-elements($text-inputs-list, hover);
+
+/**
+* Text Elements
+*
+* Text element groups to support the quick application of styles.
+*/
+$text-elements-list: 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'ul', 'li', 'span',
+    'strong', 'em', 'blockquote', 'cite';
+$all-text-elements: assign-inputs($text-elements-list);

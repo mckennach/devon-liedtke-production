@@ -1,0 +1,247 @@
+/**
+* Font
+*
+* Setting or changing a font.
+* Defaults to the primary font set in the $fonts map in _includes/_variables.
+*/
+
+
+
+
+
+@mixin font($font: primary, $weight: 400, $style: normal, $transform: none) {
+    font-family: map-get($fonts, $font);
+    font-style: $style;
+    font-weight: $weight;
+    text-transform: $transform;
+}
+
+/**
+* Font Smoothing
+*
+* Anti-aliasing support for fonts.
+*/
+
+@mixin font-smoothing() {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+* Font Sizing
+*
+* Supports font sizing in rems with a pixel fallback value.
+* Defaults to the font-size value set in the $base map in _includes/_variables.
+*/
+
+@mixin font-size($size: font-size) {
+    // sass-lint:disable no-duplicate-properties
+    $default: base($size);
+
+    @if $default {
+        font-size: $default + px;
+        font-size: rem($default);
+    } @else {
+        font-size: $size + px;
+        font-size: rem($size);
+    }
+}
+
+/**
+* Type Styling
+*
+* Supports commonnly used text styling.
+* References values from the $type map in _includes/_variables.
+*/
+
+@mixin type-style($name) {
+    $style: type($name);
+
+    @include font-smoothing;
+    @if type-of($style) == 'list' {
+        font-size: rem(nth($style, 1));
+
+        @if length($style) > 1 {
+            line-height: nth($style, 2);
+        }
+
+        @if length($style) > 2 {
+            letter-spacing: nth($style, 3);
+        }
+
+        @if length($style) > 3 {
+            @include font(nth($style, 4));
+        }
+
+        @if length($style) > 4 {
+            font-weight: nth($style, 5);
+        }
+
+        @if length($style) > 5 {
+            text-transform: nth($style, 6);
+        }
+
+        @if length($style) > 6 {
+            color: nth($style, 7);
+        }
+
+  
+            
+        
+    } @else {
+        @include font-size($style);
+    }
+}
+
+
+@mixin font-main($name) {
+    $style: font-type($name);
+    @if type-of($style) == 'list' {
+        @include font(nth($style, 1));
+    }
+}
+
+
+@mixin fluid-font($min-width: 320px, $max-width: 768px, $min-font-size, $max-font-size) {
+    $unit1: unit($min-width);
+    $unit2: unit($max-width);
+    $unit3: unit($min-font-size);
+    $unit4: unit($max-font-size);
+
+    @if $unit1 == $unit2 and $unit1 == $unit3 and $unit1 == $unit4 {
+        & {
+            font-size: $min-font-size;
+            line-height: $min-font-size * 1.618;
+
+            @media screen and (min-width: $min-width) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)}));
+                line-height: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * 1.618 * ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)}));
+            }
+
+            @media screen and (min-width: $max-width) {
+                font-size: $max-font-size;
+                line-height: $max-font-size * 1.618;
+            }
+        }
+    }
+}
+
+
+// @mixin letter-spacing($spacing) {
+//     letter-spacing: calc((strip-unit($spacing) / 1000) * 1em);
+// }
+
+@mixin headings-color($color) {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+        color: $color;
+    }
+}
+
+@mixin uppercase() {
+    text-transform: uppercase;
+}
+
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+@mixin custom-bullets($color: $black, $top: 13px, $radius: 1ch, $size: 5px) {
+    position: relative;
+
+    &::before {
+        background: $black;
+        border-radius: $radius;
+        content: "";
+        height: $size;
+        left: -3%;
+        position: absolute;
+        top: $top;
+        width: $size;
+    }
+}
+
+
+
+@mixin pseudo-underline($color: $black, $thickness: 1px, $bottom: -6px, $width: 0%, $display: block, $speed: .35s) {
+    display: $display;
+    position: relative;
+
+    &::before {
+        background: $color;
+
+        /* adjust this to move up and down. you may have to adjust the line height of the paragraph if you move it down a lot. */
+        bottom: $bottom;
+        content: '';
+        height: $thickness;
+        left: 0;
+
+        /****** 
+      optional values below 
+      ******/
+
+        /* center - (optional) use with adjusting width   */
+        margin: 0 auto;
+        position: absolute;
+
+        // right: 0;
+
+        /* optional animation */
+        transition: all $speed ease-in-out;
+        width: $width;
+        
+    }
+
+}
+
+@mixin input-placeholder {
+    &.placeholder {
+        @content;
+    }
+
+    &:placeholder {
+        @content;
+    }
+
+    &::placeholder {
+        @content;
+    }
+
+}
+
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin nav {
+    @include type-style(nav);
+}
+
+
+@mixin heading {
+    @include type-style(heading);
+}
+
+@mixin press {
+    @include type-style(press-text);
+}
+
+
+

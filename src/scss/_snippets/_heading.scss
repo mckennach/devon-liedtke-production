@@ -1,0 +1,43 @@
+.heading {
+    padding: rem(20) 0;
+    border-top: 1px solid;
+
+    &.top {
+        border-top: none;
+        border-bottom: 1px solid;
+    }
+
+    &__container {
+        @include flexbox($justifyContent: space-between, $wrap: wrap);
+        @include breakpoint(tablet) {
+
+        }
+    }
+    &__title {
+        @include heading;
+    }
+
+    &__filter-container {
+        @include breakpoint(tablet) {
+            width: 100%;
+            margin-top: rem(40);
+            padding: rem(15) 0;
+            border-top: 1px solid;
+            border-bottom: 1px solid;
+        }
+    }
+
+    &__filter-list {
+        @include list-zero;
+        @include flexbox($gap: rem(20));
+    }
+
+    &__filter-item {
+        cursor: pointer;
+        @include pseudo-underline($width: 0);
+        &:hover, &:active, &:focus, &.active {
+            @include pseudo-underline($width: 100%);
+        }
+    }
+    
+}

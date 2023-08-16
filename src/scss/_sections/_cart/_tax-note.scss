@@ -1,0 +1,14 @@
+.tax-note {
+    @include type-style(secondary);
+    display: inline-flex;
+
+    &::before {
+        content: '(';
+        margin-right: rem(8);
+    }
+
+    &::after {
+        content: ')';
+        margin-left: rem(8);
+    }
+}

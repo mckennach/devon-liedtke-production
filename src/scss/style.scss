@@ -1,26 +1,39 @@
-@charset "utf-8";
-
-// =========================================
-// Foundation
-// =========================================
-@use "./foundation/base";
+@import 'global';
 
 
-// =========================================
-// Utility
-// =========================================
-@use "./utility/screen-reader";
-@use "./utility/text-align";
 
-// =========================================
-// Components
-// =========================================
-@use "./components/card";
-@use "./components/price";
 
-// =========================================
-// Sections
-// =========================================
-@use "./sections/navigation/header";
-@use "./sections/navigation/side-navigation";
-@use "./sections/video";
+
+/* --------------------------------------------------------------------------
+  Snippets
+----------------------------------------------------------------------------- */
+@import '_snippets/hamburger';
+@import '_snippets/forms';
+@import '_snippets/debug';
+@import '_snippets/buttons';
+@import '_snippets/video';
+@import '_snippets/search';
+
+@import '_snippets/illustrations';
+@import '_snippets/swiper';
+
+@import '_snippets/contact';
+@import '_snippets/price';
+
+@import '_snippets/slider';
+@import '_snippets/rating';
+@import '_snippets/loading-overlay';
+@import '_snippets/heading';
+
+// CARDS
+@import '_snippets/card';
+@import '_snippets/card-article';
+@import '_snippets/card-product';
+
+
+
+/* --------------------------------------------------------------------------
+  Sections
+----------------------------------------------------------------------------- */
+@import '_sections/index';
+

@@ -1,0 +1,102 @@
+@mixin flexbox($display: flex,
+    $direction: row,
+    $placeContent: null,
+    $placeItems: null,
+    $wrap: nowrap,
+    $shrink: 0,
+    $grow: 0,
+    $alignContent: null,
+    $justifyContent: null,
+    $alignItems: null,
+    $justifyItems: null,
+    $gap: null,
+    $row-gap: null,
+    $column-gap: null) {
+    display: $display;
+    flex-flow: $direction $wrap;
+    flex-grow: $grow;
+    flex-shrink: $shrink;
+    gap: $gap;
+    
+    @if $row-gap and $column-gap {
+        gap: $row-gap $column-gap
+    } @else if $row-gap {
+        gap: $gap $column-gap
+    } @else if $column-gap {
+        gap: $gap $column-gap
+    } @else {
+        gap: $gap;
+    }
+
+    @if not $placeContent {
+        @if $alignContent {
+            align-content: $alignContent;
+        }
+
+        @if $justifyContent {
+            justify-content: $justifyContent;
+        }
+    } @else {
+        place-content: $placeContent;
+    }
+
+    @if not $placeItems {
+        @if $alignItems {
+            align-items: $alignItems;
+        }
+
+        @if $justifyItems {
+            justify-items: $justifyItems;
+        }
+    } @else {
+        place-items: $placeItems;
+    }
+}
+
+
+
+
+@mixin make-container-fixed() {
+    @include make-container;
+    @include make-container-max-widths;
+}
+
+@mixin make-col-auto() {
+    max-width: 100%;
+
+    @include breakpoint(tabletup) {
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        flex-basis: 0;
+        flex-grow: 1;
+        -ms-flex-positive: 1;
+        -ms-flex-preferred-size: 0;
+    }
+}
+
+@mixin make-col-eq() {
+    max-width: 100%;
+
+    @include breakpoint(tabletup) {
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1;
+        flex: 1 1 0;
+        max-width: 100%;
+    }
+}
+
+@mixin make-col-fit() {
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    flex: 0 0 auto;
+    max-width: 100%;
+    width: auto;
+}
+
+@mixin make-col($rows: 3, $gap: 0) {
+    flex: 0 0 calc(100 / $rows) * 1%;
+    
+    @include breakpoint(tablet) {
+        flex: 0 0 100%;
+    }
+}

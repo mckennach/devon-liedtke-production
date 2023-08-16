@@ -1,0 +1,22 @@
+.collection-page {
+    margin-bottom: rem(100);
+    &__header-container {
+        margin-bottom: rem(50);
+    }
+
+    &__video {
+        max-width: 55%;
+        width: rem(1000);
+        padding: rem(100) 0;
+    
+        &.odd {
+            margin-right: 0;
+            margin-left: auto;
+        }
+    
+        &.even {
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+}

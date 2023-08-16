@@ -1,0 +1,20 @@
+@use "sass:list";
+@use 'sass:math';
+@import '~/node_modules/normalize.css/normalize.css';
+@import 'swiper/css/bundle';
+
+
+/* --------------------------------------------------------------------------
+  Global
+----------------------------------------------------------------------------- */
+
+@import '_global/fonts';
+@import '_global/functions';
+@import '_global/variables';
+@import '_global/animations';
+@import '_global/mixins';
+@import '_global/root';
+@import '_global/layout';
+@import '_global/base';
+@import '_global/typography';
+

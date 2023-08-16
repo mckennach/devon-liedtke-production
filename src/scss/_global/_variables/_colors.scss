@@ -1,0 +1,97 @@
+/* --------------------------------------------------------------------------
+Colors
+----------------------------------------------------------------------------- */
+
+
+/* ========================================
+  Color Variables
+======================================== */
+
+
+
+// Canvas Color Variables
+// --------------------------------------------------
+
+$color-canvas-primary: #F3F3EF !default;
+$color-canvas-inverted: #434139 !default;
+$color-canvas-tertiary: #D5D3C6 !default;
+
+// Border Color Variables
+// --------------------------------------------------
+$color-border-primary: #181817 !default;
+$color-border-inverted: #ECECE7 !default;
+$color-border-tertiary: #181817 !default;
+
+// Brand Color Variables
+// --------------------------------------------------
+$color-brand-primary: #ffa800 !default;
+$color-brand-secondary: #ffc635 !default;
+$color-brand-tertiary: #ff6b00 !default;
+
+// Text Color Variables
+// --------------------------------------------------
+$color-text-primary: #181817 !default;
+$color-text-secondary: #F3F3EF !default;
+$color-text-tertiary: #181817 !default;
+$color-text-inverted: #fff !default;
+$color-text-link: #ff6b00 !default;
+$color-text-success: #00b533 !default;
+$color-text-warn: #ffb700 !default;
+$color-text-danger: #ff2600 !default;
+
+// UI Color Variables
+// --------------------------------------------------
+$color-ui-primary: #ff6b00 !default;
+$color-ui-secondary: #ffc635 !default;
+$color-ui-tertiary: #ffc635 !default;
+$color-ui-success: #00b533 !default;
+$color-ui-warn: #ffb700 !default;
+$color-ui-danger: #ff2600 !default;
+
+
+/* 👋🏻  Add any colors used in the design */
+$black: #000;
+$darker: #292929;
+$white: #fff;
+$iguana: #A4AD7E;
+$off-white: #F7F8F9;
+$cream: #FCFAF3;
+
+/* Color Definitions */
+$color-success: #5fb760;
+$color-success-bg: #dff0d8;
+$color-info: #60c0dc;
+$color-info-bg: #d9edf7;
+$color-warning: #eeac57;
+$color-warning-bg: #fcf8e3;
+$color-danger: #d75452;
+$color-danger-bg: #f2dede;
+$color-highlight: #fcf8e3;
+$color-code-text: #c7254e;
+$color-code-background: #f9f2f4;
+
+/* Social Colors */
+$profiles: (
+    facebook: #3b5998,
+    googleplus: #dd4b39,
+    instagram: #517fa4,
+    pinterest: #cb2027,
+    twitter: #00aced,
+    vimeo: #aad450,
+    youtube: #b00,
+    linkedin: #0077b5,
+);
+
+/* Color Theme */
+$theme: (
+    black: #000,
+    white: $white,
+    darker: #292929,
+    dark: #383838,
+    light: #ae9c89,
+    lighter: #f1efe4,
+    pale: #fdfdf7,
+    secondary: #5d3919,
+    primary: #b94a12,
+    inactiveBullet: #777,
+);

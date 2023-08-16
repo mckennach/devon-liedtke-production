@@ -6,6 +6,8 @@ function getFocusableElements(container) {
   );
 }
 
+
+
 document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   summary.setAttribute('role', 'button');
   summary.setAttribute(
@@ -652,6 +654,7 @@ class ModalDialog extends HTMLElement {
     window.pauseAllMedia();
   }
 }
+
 customElements.define('modal-dialog', ModalDialog);
 
 class ModalOpener extends HTMLElement {
@@ -667,6 +670,7 @@ class ModalOpener extends HTMLElement {
     });
   }
 }
+
 customElements.define('modal-opener', ModalOpener);
 
 class DeferredMedia extends HTMLElement {
@@ -674,11 +678,19 @@ class DeferredMedia extends HTMLElement {
     super();
     const poster = this.querySelector('[id^="Deferred-Poster-"]');
     if (!poster) return;
+    const { autoplay } = poster.dataset;
+    
     poster.addEventListener('click', this.loadContent.bind(this));
+    // if(autoplay == 'true') {
+    //   setTimeout(() => {
+    //     poster.click();
+    //   }, 500);
+    // } 
   }
 
   loadContent(focus = true) {
     window.pauseAllMedia();
+
     if (!this.getAttribute('loaded')) {
       const content = document.createElement('div');
       content.appendChild(
@@ -692,10 +704,12 @@ class DeferredMedia extends HTMLElement {
         content.querySelector('video, model-viewer, iframe'),
       );
       if (focus) deferredElement.focus();
+ 
       if (
         deferredElement.nodeName == 'VIDEO' &&
         deferredElement.getAttribute('autoplay')
       ) {
+
         // force autoplay for safari
         deferredElement.play();
       }
@@ -1096,15 +1110,15 @@ class VariantSelects extends HTMLElement {
     if (!this.currentVariant) return;
     if (!this.currentVariant.featured_media) return;
 
-    const mediaGalleries = document.querySelectorAll(
-      `[id^="MediaGallery-${this.dataset.section}"]`,
-    );
-    mediaGalleries.forEach((mediaGallery) =>
-      mediaGallery.setActiveMedia(
-        `${this.dataset.section}-${this.currentVariant.featured_media.id}`,
-        true,
-      ),
-    );
+    // const mediaGalleries = document.querySelectorAll(
+    //   `[id^="MediaGallery-${this.dataset.section}"]`,
+    // );
+    // mediaGalleries.forEach((mediaGallery) =>
+    //   mediaGallery.setActiveMedia(
+    //     `${this.dataset.section}-${this.currentVariant.featured_media.id}`,
+    //     true,
+    //   ),
+    // );
 
     const modalContent = document.querySelector(
       `#ProductModal-${this.dataset.section} .product-media-modal__content`,

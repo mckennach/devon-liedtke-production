@@ -1,0 +1,53 @@
+.article-card {
+    // max-width: rem(350);
+    &__img-container {
+        opacity: 1;
+        @include aspect-ratio(350, 402);
+        margin-bottom: rem(15);
+        transition: all .35s ease-in-out;
+    }
+
+    &:hover &__img-container {
+        opacity: .75;
+        transition: all .35s ease-in-out;
+
+    }
+
+    &__heading {
+        @include flexbox($justifyContent: space-between, $alignContent: center);
+        position: relative;
+        // left: rem(20);
+        padding-left: rem(18);
+        margin-bottom: rem(15);
+        @include breakpoint(tablet) {
+            left: 0;
+            padding-left: 2rem;
+        }
+    }
+
+    &__date {
+        @include type-style(secondary);
+        font-size: rem(14);
+        line-height: rem(18);
+        letter-spacing: letter-spacing(-80px);
+        
+    }
+
+    &__title {
+        @include type-style(secondary);
+        position: relative;
+        max-width: rem(300);
+        &.primary-font {
+            @include type-style(primary);
+            text-transform: uppercase;
+            margin-bottom: rem(15);
+        }
+       
+    }
+
+    &__excerpt {
+        position: relative;
+        max-width: rem(300);
+        @include type-style(secondary);
+    }
+}

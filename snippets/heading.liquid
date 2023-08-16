@@ -1,0 +1,75 @@
+{%- comment -%}
+  Renders facets (filtering and sorting)
+
+  Accepts:
+  - title: {String} Title
+  - title_tag: {String} Title Tag
+  - class: {String} Class name
+  - animations_reveal_on_scroll: {Boolean} Add animations
+  - filters: {Array} List of filter items
+  - enable_filter: {Boolean} turn on fitler
+
+  Usage:
+  In your liquid template file, copy the following line
+  {% render 'heading' with title: title, title_tag: "", class: "", animations_reveal_on_scroll, %}
+{%- endcomment -%}
+{% liquid
+   assign extra_class = wrapper_class | default: '' 
+%}
+<div
+  class="heading {{ extra_class }} {{ class | escape }}__heading {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+  <div
+    class="heading__container {{ class | escape}}__heading-container"
+    container>
+    <div
+      class="heading__title-container {{ class | escape}}__title-container">
+      {%- unless title_tag == blank -%}
+        <{{title_tag}}
+          class="heading__title {{ class | escape }}_title">{{ title }}</{{title_tag}}>
+      {%- else -%}
+        <h2
+          class="heading__title {{ class | escape }}_title">{{ title }}</h2>
+      {%- endunless -%}
+    </div>
+
+    {%- if enable_filter -%}
+      <div
+        class="heading__filter-container {{ class | escape }}__filter-container">
+        <ul
+          class="heading__filter-list {{ class | escape }}__filter-list">
+          {%- for filter in filters -%}
+
+            <li
+              id="Filter-{{ filter.id }}-{{ forloop.index }}"
+              class="heading__filter-item {{ class | escape }}__filter-item
+                                                                                                                                              {% if collection.url == filter.url %} active{% endif %}">
+              <a
+                href="{{ filter.url }}">
+                {{ filter.title }} ( {{ filter.products.count }} )
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        {% comment %} {%- for filter in filters -%}
+          <ul>
+          {%- for value in filter.values -%}
+          {%- unless value.count == 0 -%}
+          <li
+          id="Filter-{{ filter.param_name | escape }}-{{ forloop.index }}"
+          class="{% if value.active %}active{% endif %}"
+          data-name="{{ value.param_name }}"
+          data-value="{{ value.value }}">
+          <a
+          href="{{ results_url }}">
+          {{ value.label }} ( {{ value.count }} )
+          </a>
+          </li>
+          {%- endunless -%}
+          {%- endfor -%}
+          </ul>
+        {%- endfor -%} {% endcomment %}
+      </div>
+    {%- endif -%}
+  </div>
+</div>

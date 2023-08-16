@@ -1,0 +1,153 @@
+{%- comment -%}
+  Renders Video (filtering and sorting)
+
+  Accepts:
+  - video: {String} Title
+  - title_tag: {String} Title Tag
+  - class: {String} Class name
+  - animations_reveal_on_scroll: {Boolean} Add animations
+  - filters: {Array} List of filter items
+  - enable_filter: {Boolean} turn on fitler
+
+  Usage:
+  In your liquid template file, copy the following line
+  {% render 'video' with title: title, title_tag: "", class: "", animations_reveal_on_scroll, %}
+{%- endcomment -%}
+
+
+{% liquid
+    assign video_id = video.id | default: video_url.id
+    assign video_alt = video.alt | default: description
+    assign alt = 'sections.video.load_video' | t: description: video_alt | escape
+    assign poster = video.preview_image | default: cover_image
+
+    if video != null
+        assign ratio_diff = video.aspect_ratio | minus: poster.aspect_ratio | abs
+        if ratio_diff < 0.01 and ratio_diff > 0
+        assign fix_ratio = true
+        endif
+    endif
+%}
+
+<noscript>
+  <div
+    class="video-section__media"
+    {% if poster != null %}
+    style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+    {% endif %}>
+    {%- if video == null and video_url != null -%}
+      <a
+        href="{{ video_url }}"
+        class="video-section__poster media media--transparent{% if poster == null %} video-section__placeholder{% endif %}">
+        {%- if poster != null -%}
+          {{
+             poster
+           | image_url: width: 3840
+           | image_tag:
+           loading: 'lazy',
+           sizes: sizes,
+           widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+           alt: alt }}
+        {%- else -%}
+          {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+        {%- endif -%}
+      </a>
+    {%- else -%}
+      {{
+         video
+       | video_tag: image_size: '1100x', loop: enable_video_looping, controls: true, muted: false }}
+    {%- endif -%}
+  </div>
+</noscript>
+<deferred-media
+  class="video-section__media deferred-media no-js-hidden gradient global-media-settings global-media-settings--full-width {% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+  data-media-id="{{ video_id }}"
+  {% if poster != null %}
+  style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+  {% endif %}>
+  <button
+    id="Deferred-Poster-Modal-{{ video_id }}"
+    class="video-section__poster media deferred-media__poster media--landscape"
+    type="button"
+    data-autoplay="{{ enable_video_autoplay }}"
+    aria-label="{{ alt }}"
+    tabindex="-1">
+    {%- if poster != null -%}
+      {{
+         poster
+       | image_url: width: 3840
+       | image_tag: loading: 'lazy', sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt }}
+    {%- else -%}
+      {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+    {%- endif -%}
+    <span
+      class="deferred-media__poster-button motion-reduce">
+      {%- render 'icon-play' -%}
+    </span>
+  </button>
+  <template>
+    {%- if video == null and video_url != null -%}
+      {%- liquid
+                assign loop = ''
+                if enable_video_looping
+                  assign loop = '&loop=1&playlist=' | append: video_id
+                endif
+                if enable_video_autoplay
+                  assign autoplay = 'autoplay=1'
+                else
+                  assign autoplay = 'autoplay=0'
+                endif
+              -%}
+      {%- if video_url.type == 'youtube' -%}
+        <iframe
+          src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&{{ autoplay }}{{ loop }}"
+          class="js-youtube"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          {% if enable_video_autoplay %}
+          autoplay
+          {% endif %}
+          title="{{ description | escape }}"></iframe>
+      {%- else -%}
+        <iframe
+          src="https://player.vimeo.com/video/{{ video_id }}?{{ autoplay }}{{ loop }}"
+          class="js-vimeo"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          {% if enable_video_autoplay %}
+          autoplay
+          {% endif %}
+          title="{{ description | escape }}"></iframe>
+      {%- endif -%}
+    {%- else -%}
+      {{
+         video
+       | video_tag:
+       image_size: '1100x',
+       autoplay: enable_video_autoplay,
+       loop: enable_video_looping,
+       controls: true,
+       muted: false }}
+    {%- endif -%}
+  </template>
+</deferred-media>
+{%- if video_label or link -%}
+  <div
+    class="video-section__txt-container">
+    {%- if video_label -%}
+      <div
+        class="video-section__label {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {{ video_label }}
+      </div>
+    {%- endif -%}
+    {% if link %}
+      <div
+        class="video-section__link {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <a
+          href="{{ link }}"
+          class="underlined-link"
+          rel="">{{ link_label | escape }}</a>
+      </div>
+    {% endif %}
+  </div>
+{%- endif -%}

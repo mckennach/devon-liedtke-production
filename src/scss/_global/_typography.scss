@@ -1,0 +1,19 @@
+
+
+.underlined-link {
+    @include pseudo-underline($width: 100%, $display: inline-block);
+    @include type-style(secondary);
+    opacity: 1;
+        transition: 1.5s all ease-in-out;
+    &:after {
+        content: '>';
+        position: relative;
+        margin-left: rem(20);
+    }
+
+    &:hover, &:active, &:focus {
+        opacity: .5;
+        @include pseudo-underline($width: 100%, $color: rgba(24,24,23,.5), $display: inline-block);
+        transition: 1.5s all ease-in-out;
+    }
+}

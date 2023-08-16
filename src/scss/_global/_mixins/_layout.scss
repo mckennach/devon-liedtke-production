@@ -10,9 +10,7 @@
 
     @if $layer {
         z-index: $layer;
-    }
-
-    @else {
+    } @else {
         z-index: 0;
     }
 }
@@ -24,7 +22,7 @@
 * Defaults to the site-width set in $base map in _includes/_variables.
 */
 
-@mixin container($width: 1880px) {
+@mixin container($width: site-width) {
     margin: 0 auto;
 
     // max-width: 90%;
@@ -35,7 +33,11 @@
 
     @include layer(primary);
 
-
+    @include breakpoint(phone) {
+        max-width: 90%;
+        padding-left: 0;
+        padding-right: 0;
+    }
 }
 
 @mixin object-fit($pos: 50% 50%, $fit: cover, $position: absolute) {
@@ -93,14 +95,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-    }
-
-    @else if $horizontal {
+    } @else if $horizontal {
         left: 50%;
         transform: translate(-50%, 0);
-    }
-
-    @else if $vertical {
+    } @else if $vertical {
         top: 50%;
         transform: translate(0, -50%);
     }
@@ -126,4 +124,16 @@
 @mixin custom-col-padding($padding) {
     padding-left: $padding;
     padding-right: $padding;
+}
+
+@mixin section-padding() {
+    padding: rem(100) 0;
+
+    @include breakpoint(tablet) {
+        padding: rem(50) 0;
+    }
+
+    @include breakpoint(phone) {
+        padding: rem(25) 0;
+    }
 }

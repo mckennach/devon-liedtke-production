@@ -1,0 +1,45 @@
+.main-blog {
+    padding: rem(35) 0 rem(150);
+
+    &__edit-title {
+        position: absolute;
+        top: rem(20);
+        right: rem(20);
+        @include type-style(heading);
+    }
+
+    &__grid {
+        @include flexbox($wrap: wrap, $justifyContent: flex-end);
+    }
+
+    &__article-item {
+        @include make-col(2);
+
+        &:nth-child(1) .article-card {
+            @include max-width(547);
+            @include breakpoint(tabletup) {
+                padding-right: rem(20);
+            }
+        }
+
+        &:nth-child(2) .article-card {
+            margin-top: rem(250);
+            @include max-width(405);
+        }
+
+        &:nth-child(3) {
+            flex: 0 0 75%;
+            .article-card {
+                margin-top: rem(50);
+                @include max-width(322);
+                
+            }
+        }
+    }
+}
+
+.announcement-active .main-blog__edit-title {
+
+     top: rem(70);
+
+ }

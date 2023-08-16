@@ -1,0 +1,59 @@
+/**
+* Transition
+*
+* Helper to support common duration and timing functions.
+* Defaults to the font-size value set in the $base map in _includes/_variables.
+*/
+
+@mixin transition($property: all,
+    $duration: base(transition-duration),
+    $timing-function: base(transition-timing-function)) {
+    transition-duration: $duration;
+    transition-property: $property;
+    transition-timing-function: $timing-function;
+}
+
+
+@mixin hardware($backface: true, $perspective: 1000) {
+    @if $backface {
+        backface-visibility: hidden;
+    }
+    perspective: $perspective;
+}
+
+
+@mixin bounce($bounce: -12, $speed: .5s) {
+    transform: translate(0, 0);
+    transition: all .5s;
+
+    &:hover {
+        transform: translate(0, rem($bounce));
+        transition: all $speed;
+    }
+}
+
+@mixin fade($type) {
+    @if $type == "hide" {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 1s, opacity 1s;
+    } @else if $type == "show" {
+        visibility: visible;
+        opacity: 1;
+        transition: visibility 1s, opacity 1s;
+    }
+}
+
+
+@mixin toggle-visiblity() {
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.2s;
+
+    &.active {
+        height: auto;
+        opacity: 1;
+        transition: all 0.2s;
+    }
+}

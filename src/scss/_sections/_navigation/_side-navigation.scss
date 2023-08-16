@@ -1,0 +1,41 @@
+.side-navigation {
+    // display: none;
+    &__navigation {
+        position: fixed;
+        z-index: 100;
+        // transform: translateY(rem(100));
+        top: 25%;
+        @include breakpoint(tablet) {
+            display: none;
+        }
+    }
+    
+
+    &__menu {
+        @include list-zero;
+        min-width: rem(190);
+    }
+
+    &__menu-item {
+        @include pseudo-underline($color: var(--color-text-primary), $width: 0%, $display: inline, $speed: .2s, $bottom: -1px);
+        &:hover {
+            @include pseudo-underline($color: var(--color-text-primary), $width: 100%, $display: inline, $speed: .2s, $bottom: -1px);
+        }
+    }
+
+    .cart-count {
+        display: inline;
+    }
+
+    &__submenu {
+        padding-left: rem(10);
+    }
+}
+
+
+
+
+#theme-index .side-navigation__navigation {
+    
+    // transform: translateY(rem(200));
+}

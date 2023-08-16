@@ -1,0 +1,171 @@
+<div
+  class="press">
+  {%- if section.settings.title -%}
+    <div
+      class="press__heading">
+      {% render 'heading' 
+       with title: section.settings.title,
+       title_tag: 'h2',
+       class: 'press',
+       animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+    </div>
+  {%- endif -%}
+  <div
+    class="press__container">
+    <div
+      class="press__entry-container"
+      container-sm>
+      <div>
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when 'press_entry' -%}
+            {% liquid
+                assign image = block.settings.featured_image
+                if image.width > image.height
+                  assign aspect = 'landscape'
+                else
+                  assign aspect = 'portrait'
+                endif
+              %}
+            <p
+              class="press__entry scroll-trigger animate--slide-in"
+              data-cascade
+              style="--animation-order: {{ forloop.index }};">
+              <a
+                href="{{ block.settings.link }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-id="{{ block.id }}"
+                data-image-aspect="{{ aspect }}"
+                data-image-url="{{ image }}">{{ block.settings.title }}</a>
+              {%- unless forloop.last -%}
+                <span>
+                  /
+                </span>
+              {%- endunless -%}
+            </p>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+    <div
+      class="press__image-background">
+      <div
+        class="press__image-background-container"
+        container>
+        {%- for block in section.blocks limit: 3 -%}
+          {%- case block.type -%}
+            {%- when 'press_entry' -%}
+            {% liquid
+                assign image = block.settings.featured_image
+                if image.width > image.height
+                  assign aspect = 'landscape'
+                else
+                  assign aspect = 'portrait'
+                endif
+              %}
+            <div
+              class="press__image-outter-container">
+              <div
+                class="press__image-container"
+                data-id="{{ block.id }}"
+                data-aspect="{{ aspect | escape }}">
+
+                <img
+                  srcset="{% if image.width >= 288 %}
+                  {{ image | image_url: width: 288 }} 288w,{% endif %}
+                {% if image.width >= 576 %}
+                  {{ image | image_url: width: 576 }} 576w,{% endif %}
+                {% if image.width >= 550 %}
+                  {{ image | image_url: width: 550 }} 550w,{% endif %}
+                {% if image.width >= 1100 %}
+                  {{ image | image_url: width: 1100 }} 1100w,{% endif %}
+                {{ image | image_url }} {{ image.width }}w"
+                src="{{ image | image_url: width: 715, height: 550 }}"
+                loading="lazy"
+                width="715"
+                height="{{ 645 | divided_by: image.aspect_ratio }}"
+                alt="{{ image.alt | escape }}"
+                class="press__image scroll-trigger animate--slide-in"
+                data-cascade
+                style="--animation-order: {{ forloop.index }};">
+              </div>
+            </div>
+
+
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Press",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": "Press Settings"
+      }, {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title",
+        "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+      }, {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "background-1"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "press_entry",
+        "name": "Press Entry",
+        "settings": [
+          {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Link"
+          }, {
+            "type": "image_picker",
+            "id": "featured_image",
+            "label": "Featured Image",
+            "info": "This will display on hover"
+          }
+        ]
+      }, {
+        "type": "image",
+        "name": "Image",
+        "limit": 3,
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "These images will display on load until press items are hovered"
+          }, {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Press"
+      }
+    ]
+
+  }
+{% endschema %}

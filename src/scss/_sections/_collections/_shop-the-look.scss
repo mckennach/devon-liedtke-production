@@ -1,0 +1,80 @@
+.look {
+    width: rem(1465);
+    padding: rem(100) 0;
+    max-width: 100%;
+    @include breakpoint(tabletup) {
+        max-width: 85%;
+    }
+    &.even {
+        margin-right: 0;
+        margin-left: auto;
+    }
+
+    &.odd {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &:nth-of-type(even) {
+        background-color: red;
+    }
+    &__grid {
+        @include flexbox($wrap: wrap, $justifyContent: space-between);
+        @include breakpoint(tablet) {
+            @include flexbox($wrap: wrap, $justifyContent: space-between, $direction: column-reverse);
+        }
+    }
+
+    &__grid-item {
+        @include make-col(2);
+    }
+
+    &__products-container {
+        @include flexbox($direction: column, $justifyContent: space-between);
+        padding-right: rem(20);
+    }
+
+    &__heading {
+        border-top: 1px solid;
+        padding-top: rem(10);
+    }
+    
+    &__heading-title {
+        text-transform: uppercase;
+    }
+
+    
+
+    &__products {
+        @include flexbox($gap: rem(30), $wrap: wrap);
+        @include breakpoint(tablet) {
+            @include flexbox($direction: column);
+        }
+    }
+
+    &__item {
+        position: relative;
+        max-width: rem(207);
+        top: rem(-50);
+        &:first-of-type {
+            top: 0;
+            max-width: rem(270);
+        }
+    }
+
+    &__img-container {
+        margin-bottom: rem(8);
+
+        &.portrait {
+            @include aspect-ratio(500, 725);
+        }
+
+        &.landscape {
+            @include aspect-ratio(500, 400);
+        }
+    }
+
+    &__txt-inner-container {
+        flex-direction: column;
+    }
+}

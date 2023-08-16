@@ -1,0 +1,69 @@
+.footer {
+    border-top: rem(1) solid;
+    padding: rem(20) 0 rem(40);
+    &__grid {
+        @include flexbox($justifyContent: space-between, $wrap: wrap);
+        @include breakpoint(tablet) {
+            @include flexbox($direction: column);
+        }
+    }
+
+    &__grid-item {
+        @include make-col(2);
+    }
+
+   
+
+    &__submark-container {
+        @include flexbox($justifyContent: flex-end, $alignItems: flex-end);
+        margin-top: rem(100);
+    }
+
+    &__details-content {
+        @include flexbox($justifyContent: space-between, $wrap: wrap);
+        li {
+            @include make-col(4);
+            margin-bottom: rem(6);
+        }
+    }
+
+    &__content-container {
+        height: 100%;
+        width: 100%;
+        max-width: rem(770);
+        @include flexbox($direction: column, $justifyContent: space-between);
+    }
+
+    &__newsletter {
+        
+        .field {
+            position: relative;
+            margin-bottom: 0;
+        }
+
+        .field input[type="email"] {
+            display: block;
+            background-color: transparent;
+            width: 100%;
+            border: none;
+            box-shadow: none;
+            outline: none;
+            padding-bottom: rem(8);
+            border-bottom: 1px solid;
+            color: var(--color-text-primary);
+
+            @include input-placeholder {
+                    color: var(--color-text-primary);
+                }
+        }
+        
+
+        .field__button {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+
+
+}
