@@ -1,6 +1,9 @@
 .footer {
     border-top: rem(1) solid;
     padding: rem(20) 0 rem(40);
+    @include breakpoint(tablet) {
+        padding: rem(125) 0 rem(40);
+    }
     &__grid {
         @include flexbox($justifyContent: space-between, $wrap: wrap);
         @include breakpoint(tablet) {
@@ -11,8 +14,6 @@
     &__grid-item {
         @include make-col(2);
     }
-
-   
 
     &__submark-container {
         @include flexbox($justifyContent: flex-end, $alignItems: flex-end);
@@ -35,7 +36,9 @@
     }
 
     &__newsletter {
-        
+        @include breakpoint(tablet) {
+                margin-top: rem(50)
+            }
         .field {
             position: relative;
             margin-bottom: 0;
@@ -48,7 +51,8 @@
             border: none;
             box-shadow: none;
             outline: none;
-            padding-bottom: rem(8);
+            padding: 0 0 rem(8);
+    
             border-bottom: 1px solid;
             color: var(--color-text-primary);
 

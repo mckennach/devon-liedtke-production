@@ -1,0 +1,49 @@
+.featured-blog-collection {
+    &__container {
+        @include flexbox;
+    }
+
+    &__grid {
+        flex-basis: 100%;
+        
+
+        @include breakpoint(tabletup) {
+            flex-basis: 75%;
+        }
+
+        @include breakpoint(desktopup) {
+            flex-basis: 60%;
+        }
+    }
+
+    &__heading {
+        padding: rem(8) 0;
+        margin-bottom: rem(20);
+    }
+
+    &__heading-title {
+        @include type-style(primary);
+    }
+
+    &__heading-container {
+        padding-left: rem(5);
+    }
+
+    &__products {
+        display: grid;
+        grid-template-rows: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: rem(50) rem(20);
+    
+        @include breakpoint(tabletup) {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    
+   
+
+    }
+
+    &__img-container.portrait {
+        @include aspect-ratio(210, 277);
+    }
+}

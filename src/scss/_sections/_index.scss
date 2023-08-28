@@ -1,16 +1,21 @@
 // NAVIGATION
 @import '_navigation/header';
-@import '_navigation/side-navigation';
+@import '_navigation/navigation-desktop';
+@import '_navigation/navigation-mobile';
 @import '_navigation/footer';
 
 // SECTIONS
+@import '_main-sections/landing';
 @import '_main-sections/home-hero';
 @import '_main-sections/video';
 @import '_main-sections/featured-collection';
+@import '_main-sections/featured-blog-collection';
 @import '_main-sections/featured-blog';
 @import '_main-sections/contact-form';
 @import '_main-sections/press';
 @import '_main-sections/image-with-text';
+@import '_main-sections/faqs';
+@import '_main-sections/image-grid';
 
 // COLLECTIONS
 @import '_collections/collection-page';
@@ -32,3 +37,7 @@
 @import '_cart/cart-item';
 @import '_cart/totals';
 @import '_cart/tax-note';
+
+@import '_search/search';
+@import '_search/main-search';
+@import '_search/search-result';

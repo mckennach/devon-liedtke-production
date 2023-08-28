@@ -1,0 +1,111 @@
+{% liquid
+    assign title = section.settings.title
+    assign accordion_class = ''
+    if section.settings.enable_accordion 
+      assign accordion_class = 'enable-accordion'
+    endif
+%}
+
+<div class="faqs">
+  {%- if title != blank -%}
+    {% render 'heading' 
+     with title: title,
+     title_tag: 'h2',
+     class: 'faqs',
+     animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+  {%- endif -%}
+
+  <div class="faqs__container" container>
+    <div class="faqs__grid-item">
+      {%- if section.settings.image -%}
+        <div class="faqs__image-outter-container">
+          <div class="faqs__image-container">
+            <img
+              srcset="{{ section.settings.image.src | image_url: width: 1500 }}"
+              src="{{ section.settings.image.src | image_url: width: 533 }}"
+              alt="{{ section.settings.image.src.alt | escape }}"
+              class="motion-reduce"
+              loading="lazy"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}">
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+    <div class="faqs__grid-item faqs__faq-container">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {% when 'faq' %}
+          <div class="faqs__accordion-container {{ accordion_class }}">
+            <div class="faqs__accordion-toggle" {%- if section.settings.enable_accordion -%}aria-expanded="false"aria-controls="faq-{{ forloop.index }}"{%- endif -%}>
+              <h4>Q / {{ block.settings.title }}</h4>
+              {%- if section.settings.enable_accordion -%}
+                <div
+                  class="faqs__toggle-plus toggle-plus "
+                  role="menuitem"
+                  tabindex="-1">
+                  <span></span>
+                  <span></span>
+                </div>
+              {%- endif -%}
+            </div>
+            <div class="faqs__accordion-content faq-{{ forloop.index }}">
+              <p>{{ block.settings.content }}</p>
+            </div>
+          </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "FAQs",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title",
+        "default": "Frequently&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;asked&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;questions",
+        "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+      }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }, {
+        "type": "checkbox",
+        "id": "enable_accordion",
+        "label": "Enable Accordion",
+        "info": "Will enable accordion-style faqs"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "faq",
+        "name": "FAQ",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          }, {
+            "type": "textarea",
+            "id": "content",
+            "label": "Content"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "FAQs"
+      }
+    ]
+  }
+{% endschema %}

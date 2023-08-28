@@ -50,6 +50,36 @@
         "padding_bottom": 36
       }
     },
+    "c033ade5-253e-4138-add6-2375d59be4b2": {
+      "type": "image-grid",
+      "blocks": {
+        "5b14e1da-90d0-4bc3-a3ed-7529edd15755": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Rectangle_207.jpg",
+            "caption": "(  Devon at home in BCN )",
+            "caption_position": "left",
+            "link": ""
+          }
+        },
+        "47774e69-90d2-4018-8919-25211e318a5a": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Rectangle_208.jpg",
+            "caption": "",
+            "caption_position": "bottom",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "5b14e1da-90d0-4bc3-a3ed-7529edd15755",
+        "47774e69-90d2-4018-8919-25211e318a5a"
+      ],
+      "settings": {
+        "title": ""
+      }
+    },
     "73c1c0d1-7fd7-4ae5-bee7-f321a342efaf": {
       "type": "image-with-text",
       "blocks": {
@@ -126,6 +156,7 @@
   "order": [
     "2d339acf-6c35-4681-b1ec-9a8c388cff0e",
     "ba62ce82-78cb-440c-a59c-66d020166409",
+    "c033ade5-253e-4138-add6-2375d59be4b2",
     "73c1c0d1-7fd7-4ae5-bee7-f321a342efaf",
     "3caf00f0-e5a5-4912-934f-dd1be4b19dc6"
   ]

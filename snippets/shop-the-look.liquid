@@ -9,7 +9,7 @@
   {% render 'shop-the-look' with data: data, class %}
 {%- endcomment -%}
 {% liquid
-    assign title = data.title | default: 'Shop             the                                                    look' 
+    assign title = data.title | default: 'Shop               the                                                      look' 
     assign collection = data.collection
     assign products_count = collection.products_count
     assign products = collection.products

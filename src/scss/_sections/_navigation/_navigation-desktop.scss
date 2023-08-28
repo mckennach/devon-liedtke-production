@@ -1,0 +1,56 @@
+.side-navigation {
+    
+    &__navigation {
+        position: fixed;
+        z-index: 100;
+        top: rem(160);
+        visibility: visible;
+        opacity: 1;
+        transition: transform var(--duration-long) ease;
+        @include breakpoint(tablet) {
+            display: none;
+        }
+    }
+
+    &__menu {
+        @include list-zero;
+        min-width: rem(190);
+    }
+
+    &__menu-item {
+        @include pseudo-underline($color: rgb(var(--color-foreground)), $width: 0%, $display: inline, $speed: .2s, $bottom: -1px);
+        &:hover {
+            @include pseudo-underline($color: rgb(var(--color-foreground)), $width: 100%, $display: inline, $speed: .2s, $bottom: -1px);
+        }
+    }
+
+    &__menu-item--active {
+        @include pseudo-underline($color: rgb(var(--color-foreground)), $width: 100%, $display: inline, $speed: .2s, $bottom: -1px);
+    }
+
+
+
+    .cart-count {
+        display: inline;
+    }
+
+    &__submenu {
+        padding-left: rem(10);
+    }
+}
+
+.landing-active .side-navigation__navigation {
+    @include breakpoint(tabletup) {
+        visibility: hidden;
+        opacity: 0;
+        transition: transform var(--duration-long) ease;
+    }
+}
+
+
+
+
+#theme-index .side-navigation__navigation {
+    
+    // transform: translateY(rem(200));
+}

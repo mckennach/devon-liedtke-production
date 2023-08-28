@@ -17,14 +17,16 @@
       data-section="{{ section.id }}"
       data-url="{{ product.url }}"
       {% if update_url == false %}
-        data-update-url="false"
+      data-update-url="false"
       {% endif %}
-      {{ block.shopify_attributes }}
-    >
+      {{ block.shopify_attributes }}>
       {%- for option in product.options_with_values -%}
         <fieldset class="js product-form__input">
           <legend class="form__label">{{ option.name }}</legend>
-          {% render 'product-variant-options', product: product, option: option, block: block %}
+          <div class="form__variants">
+            {% render 'product-variant-options', product: product, option: option, block: block %}
+
+          </div>
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
@@ -38,10 +40,9 @@
       data-section="{{ section.id }}"
       data-url="{{ product.url }}"
       {% if update_url == false %}
-        data-update-url="false"
+      data-update-url="false"
       {% endif %}
-      {{ block.shopify_attributes }}
-    >
+      {{ block.shopify_attributes }}>
       {%- for option in product.options_with_values -%}
         <div class="product-form__input product-form__input--dropdown">
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
@@ -52,8 +53,7 @@
               id="Option-{{ section.id }}-{{ forloop.index0 }}"
               class="select__select"
               name="options[{{ option.name | escape }}]"
-              form="{{ product_form_id }}"
-            >
+              form="{{ product_form_id }}">
               {% render 'product-variant-options', product: product, option: option, block: block %}
             </select>
             {% render 'icon-caret' %}
@@ -78,18 +78,16 @@
         name="id"
         id="Variants-{{ section.id }}"
         class="select__select"
-        form="{{ product_form_id }}"
-      >
+        form="{{ product_form_id }}">
         {%- for variant in product.variants -%}
           <option
             {% if variant == product.selected_or_first_available_variant %}
-              selected="selected"
+            selected="selected"
             {% endif %}
             {% if variant.available == false %}
-              disabled
+            disabled
             {% endif %}
-            value="{{ variant.id }}"
-          >
+            value="{{ variant.id }}">
             {%- liquid
               echo variant.title
               echo variant.price | money | strip_html | prepend: ' - '

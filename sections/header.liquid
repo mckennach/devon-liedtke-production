@@ -18,11 +18,10 @@
         <span class="h2">{{ shop.name }}</span>
       {%- endif -%}
     </a>
-
-    {% render 'hamburger' %}
-
   </div>
 </header>
+{% render 'navigation-desktop' links: section.settings.menu.links %}
+{% render 'navigation-mobile' links: section.settings.menu.links %}
 
 
 {% schema %}
@@ -41,7 +40,11 @@
         "id": "secondary_logo",
         "label": "Secondary Logo",
         "info": "Will replace logo on Edit (Blog) Pages"
-
+      },
+      {
+        "type": "text",
+        "id": "test",
+        "label": "Test"
       },
       {
         "type": "select",
@@ -60,8 +63,7 @@
         ],
         "default": "on-scroll-up",
         "label": "Sticky Navigation"
-      },
-      {
+      }, {
         "type": "header",
         "content": "Link Bottom Margin"
       }, {

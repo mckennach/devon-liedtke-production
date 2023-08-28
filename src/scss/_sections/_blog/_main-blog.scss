@@ -1,45 +1,109 @@
 .main-blog {
     padding: rem(35) 0 rem(150);
-
+    @include breakpoint(tablet) {
+        padding: 0 0 rem(50);
+    }
+    &__container {
+        @include breakpoint(tablet) {
+            // padding: 0;
+        }
+    }
     &__edit-title {
         position: absolute;
         top: rem(20);
         right: rem(20);
-        @include type-style(heading);
+        @include heading;
+        @include breakpoint(tablet) {
+            right: unset;
+            left: rem(20);
+            top: rem(15);  
+        }
     }
 
     &__grid {
         @include flexbox($wrap: wrap, $justifyContent: flex-end);
+        @include breakpoint(tablet) {
+            @include flexbox($justifyContent: flex-start, $direction: column);
+        }
     }
 
     &__article-item {
         @include make-col(2);
+        @include breakpoint(tablet) {
+            margin-top: rem(50);
+            max-width: 70%;
+            width: 70%;
+        }
 
-        &:nth-child(1) .article-card {
-            @include max-width(547);
-            @include breakpoint(tabletup) {
-                padding-right: rem(20);
+        &:nth-child(odd) {
+            @include breakpoint(tablet) {
+                margin-left: auto;
+                margin-right: 0;
             }
         }
 
+      
+        &:first-child {
+            margin-top: rem(0);
+            @include breakpoint(tablet) {
+                max-width: 90%;
+                width: 90%;
+            }
+
+            .article-card {
+                @include breakpoint(tabletup) {
+                    @include max-width(547);
+                    padding-right: rem(20);
+                }
+            }
+        }
+
+     
         &:nth-child(2) .article-card {
-            margin-top: rem(250);
-            @include max-width(405);
+            @include breakpoint(tabletup) {
+                margin-top: rem(50);
+                margin-top: rem(250);
+                @include max-width(405);
+            }
         }
 
         &:nth-child(3) {
-            flex: 0 0 75%;
-            .article-card {
-                margin-top: rem(50);
-                @include max-width(322);
-                
+            @include breakpoint(tabletup) {
+                flex: 0 0 75%;
+                .article-card {
+                    margin-top: rem(50);
+                    @include max-width(322);
+                }
+            }
+        }
+
+        &.group-hide {
+            @include breakpoint(tabletup) {
+                display: none;
             }
         }
     }
 }
 
 .announcement-active .main-blog__edit-title {
-
      top: rem(70);
+     @include breakpoint(tablet) {
+        top: rem(70);
+     }
+}
 
- }
+
+// #theme-blog {
+//     .header {
+//         @include breakpoint(tablet) {
+//             position: absolute;
+//             width: 100%;
+//         }
+//     }
+
+//     .header__heading-logo-wrapper svg path {
+//         @include breakpoint(tablet) {
+//             fill: white;
+//         }
+//     }
+// }

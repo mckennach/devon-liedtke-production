@@ -56,12 +56,42 @@ body {
 	font-size: rem(13);
 }
 
+html:not(.shopify-design-mode) .site-wrapper {
+	position: relative;
+	z-index: 2;
+	overflow-y: hidden;
+	background-color: rgba(var(--color-background), 1);
+}
+
+html:not(.shopify-design-mode) .disable-scroll {
+	overflow: hidden;
+}
+
+
+
+
+
+html:not(.shopify-design-mode) .landing-active .scroll-overlay {
+
+	width: 100%;
+	height: 100%;
+	z-index: 200;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background-color: rgba(var(--color-background), 1);
+}
+
 [container],
 .container {
 	// max-width: var(--page-width);
 	width: 100%;
 	margin: 0 auto;
 	padding: 0 rem(20);
+	@include breakpoint(tablet) {
+		padding: 0 rem(15);
+	}
 }
 
 [container-sm],
@@ -72,7 +102,7 @@ body {
 	@include breakpoint(tablet) {
 		width: 100%;
 		margin: 0 auto;
-		padding: 0 rem(20);
+		padding: 0 rem(15);
 	}
 }
 
@@ -88,7 +118,7 @@ body {
 	@include breakpoint(tablet) {
 		width: 100%;
 		margin: 0 auto;
-		padding: 0 rem(20);
+		padding: 0 rem(15);
 	}
 }
 
@@ -445,6 +475,19 @@ video {
 	max-width: 100%;
 	height: auto;
 }
+
+// img.lazy, *.lazy, img.lazy.loading,
+// *.lazy.loading {
+// 	visibility: hidden;
+// 	opacity: 0;
+// 	transition: opacity 1s ease-in-out;
+// }
+
+// img.lazy.loaded, *.lazy.loaded {
+// 	visibility: visible;
+// 	opacity: 1;
+// 	transition: opacity 1s ease-in-out;
+// }
 
 /*
 Ensure the default browser behavior of the `hidden` attribute.

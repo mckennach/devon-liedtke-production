@@ -1,0 +1,95 @@
+{%- comment -%}
+  Renders Landing (filtering and sorting)
+
+  Accepts:
+  - video: {String} Title
+  - title_tag: {String} Title Tag
+  - class: {String} Class name
+  - animations_reveal_on_scroll: {Boolean} Add animations
+  - filters: {Array} List of filter items
+  - enable_filter: {Boolean} turn on fitler
+
+  Usage:
+  In your liquid template file, copy the following line
+  {% render 'landing' with title: title, enable_white: true, image: image, mobile_image %}
+{%- endcomment -%}
+{% comment %} {% endcomment %}
+{% liquid
+    assign image_url = settings.image | img_url: '1920x'
+    assign image_url_medium = settings.image | img_url: '1000x'
+    assign mobile_image_url = settings.mobile_image | img_url: '768x'
+    assign mobile_image_url_small = settings.mobile_image | img_url: '414x'
+%}
+
+
+  <landing
+  class="landing-bg-img"
+  data-src="{{ settings.image | img_url: '500x' }}"
+  data-days="{{ settings.days_to_hide }}"> <div class="landing">
+    <div class="landing__content-area">
+      <div class="landing__container" container>
+        <div class="landing__inner-container">
+          {%- if settings.title -%}
+            <h1 id="Landing-Title" class="landing__title">{{ settings.title }}</h1>
+          {%- endif -%}
+          <div id="Landing-Logo-Desktop" class="landing__logo tablet-hide">
+            {% render 'icon-logo-no-text' with id: 'landing', enable_white: settings.white_logo %}
+          </div>
+          <div id="Landing-Logo-Mobile" class="landing__logo tabletup-hide">
+            {% render 'icon-logo-break' with id: 'landing-mobile', enable_white: settings.white_logo %}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div>end</div>
+</landing>
+
+{% style %}
+  .landing-bg-img {
+    background-image: url('{{ settings.image | img_url: '1920x' }}');
+  }
+  @media(max-width: 768px) {
+    .landing-bg-img {
+      background-image: url('{{ settings.mobile_image | img_url: '768x' }}');
+    }
+  }
+
+  @media(max-width: 450px) {
+    .landing-bg-img {
+      background-image: url('{{ settings.mobile_image | img_url: '400x' }}');
+
+    }
+  }
+{% endstyle %}
+
+<script>
+  window.landingSettings = {
+    title: "{{ settings.title }}",
+    enable_white: "{{ settings.white_logo }}",
+    image: {
+      src: "{{ settings.image | img_url: '500x' }}",
+      srcset: "{{ settings.image | img_url: '2000x' }}",
+      alt: "{{ settings.image.alt }}"
+    },
+    mobile_image: {
+      src: "{{ settings.mobile_image | img_url: '500x' }}",
+      srcset: "{{ settings.mobile_image | img_url: '2000x' }}",
+      alt: "{{ settings.mobile_image.alt }}"
+    },
+    enable_white: "{{ settings.white_logo  }}",
+    days_to_hide: "{{ settings.days_to_hide }}"
+  }
+  const body = document.querySelector('body');
+  const landing = document.querySelector('landing');
+
+  const currentDate = new Date().toString();
+  const isDisabled = sessionStorage.getItem('disable');
+
+  if (isDisabled && isDisabled == 'true') {
+    landing.remove();
+  } else {
+    body.classList.add('landing-active');
+  }
+</script>

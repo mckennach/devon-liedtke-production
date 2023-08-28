@@ -1,0 +1,92 @@
+/* --------------------------------------------------------------------------
+Hamburger Icon styles
+----------------------------------------------------------------------------- */
+
+.menu-bar {
+  position: fixed;
+  top: 0;
+  width: 20%;
+  right: 0;
+  z-index: 201;
+  height: 4rem;
+  @include breakpoint(tablet) {
+      display: block;
+  }
+  &__hamburger {
+      backdrop-filter: unset;
+      background-color: unset;
+      border: none;
+      top: rem(15);
+      cursor: pointer;
+      outline: none;
+      padding: unset;
+      position: absolute;
+      right: rem(15);
+      width: rem(26);
+      height: rem(10);
+  
+      
+      span {
+        border-bottom: rem(1) solid rgb(var(--color-foreground));
+        display: block;
+        height: rem(1);
+        left: 60%;
+        position: absolute;
+        transform: translate(-50%, 0);
+        transition: all 0.2s ease-in-out;
+        width: 100%;
+      }
+  
+      span:first-of-type {
+        top: 0%;
+      }
+  
+      span:nth-of-type(2) {
+        top: 50%;
+  
+      }
+  
+      span:nth-of-type(3) {
+        top: 100%;
+      }
+    }
+}
+
+.landing-active button.menu-bar__hamburger {
+    span {
+      border-bottom: rem(1) solid var(--color-text-secondary) !important;
+    }
+}
+
+.landing-active.open-mobile-nav button.menu-bar__hamburger {
+ 
+  span {
+    border-bottom: rem(1) solid var(--color-text-primary) !important;
+  }
+}
+
+
+.open-mobile-nav button.menu-bar__hamburger {
+  width: rem(17);
+  height: rem(17);
+  span {
+        border-bottom: rem(1) solid var(--color-text-primary) !important;
+  }
+  span:first-of-type {
+    top: 50%;
+    transform: translate(-50%, 0) rotate(-45deg);
+  }
+
+  span:nth-of-type(2) {
+    opacity: 0;
+  }
+
+  span:nth-of-type(3) {
+    top: 50%;
+    transform: translate(-50%,0) rotate(45deg);
+  }
+}
+
+.announcement-active button.menu-bar { 
+  top: 5rem;
+}

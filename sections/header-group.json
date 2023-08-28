@@ -18,6 +18,7 @@
       ],
       "settings": {
         "color_scheme": "background-2",
+        "enable_announcement_bar": false,
         "show_line_separator": true,
         "show_social": false,
         "auto_rotate": false,
@@ -28,14 +29,7 @@
       "type": "header",
       "settings": {
         "menu": "main-menu",
-        "sticky_header_type": "on-scroll-up",
-        "margin_bottom": 0
-      }
-    },
-    "side-navigation": {
-      "type": "side-navigation",
-      "settings": {
-        "menu": "main-menu",
+        "test": "",
         "sticky_header_type": "on-scroll-up",
         "margin_bottom": 0
       }
@@ -43,7 +37,6 @@
   },
   "order": [
     "announcement-bar",
-    "header",
-    "side-navigation"
+    "header"
   ]
 }

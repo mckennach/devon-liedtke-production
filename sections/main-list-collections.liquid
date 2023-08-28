@@ -1,11 +1,19 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 
-<div class="page-width">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ section.settings.title }}
-  </h1>
-  {%- liquid
+<div class="collection-page">
+    <div
+    class="collection-page__header-container">
+    {% render 'heading' 
+    with title: 'Collections',
+    title_tag: 'h1',
+    class: 'collection-page',
+    animations_reveal_on_scroll: section.settings.animations_reveal_on_scroll,
+    enable_filter: section.settings.enable_filter,
+    filters: filters %}
+  </div>
+  <div class="collection-page__container" container-md>
+    {%- liquid
     case section.settings.sort
       when 'products_high', 'products_low'
         assign collections = collections | sort: 'all_products_count'
@@ -46,6 +54,8 @@
     </ul>
     {% render 'pagination', paginate: paginate %}
   {%- endpaginate -%}
+</div>
+  </div>
 </div>
 {% schema %}
 {

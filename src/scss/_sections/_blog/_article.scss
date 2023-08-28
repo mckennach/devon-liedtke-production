@@ -1,22 +1,87 @@
 .article-template {
-    padding: rem(50) 0;
-
+    padding: 0 0 rem(100);
+        @include breakpoint(tablet) {
+            padding-bottom: rem(50);
+        }
     &__hero-container {
         margin-bottom: rem(100);
+        @include breakpoint(tablet) {
+            padding: 0;
+            margin-bottom: 0;
+        }
     }
 
+   
+
     &__hero-grid {
-        @include flexbox($wrap: wrap, $justifyContent: space-between);
+        @include flexbox($justifyContent: space-between);
+        padding-top: rem(50);
+        padding-left: 12%;
+        @include breakpoint(full) {
+            padding-top: rem(100);
+        }
+        @include breakpoint(desktop) {
+            padding-left: rem(20);
+        }
+
+        @include breakpoint(tablet) {
+            @include flexbox($justifyContent: space-between, $direction: column-reverse);
+            padding: 0;
+        }
+        
+
     }
 
     &__grid-item {
-        @include make-col(2);
+        
+        @include breakpoint(tablet) {
+            width: 100%;
+            flex-basis: 100%;
+        }
+        
+        &:first-child {
+            flex-basis: 45%;
+            @include breakpoint(desktop) {
+                flex-basis: 20%;
+            }
+        }
+        
+        &:nth-child(2) {
+            flex-basis: 55%;
+            @include breakpoint(desktop) {
+                flex-basis: 80%;
+            }
+        }
+        
+    
+        
     }
 
     &__hero-content {
-        @include flexbox($alignItems: center);
+        @include flexbox($alignItems: flex-end);
+
+        @include breakpoint(tablet) {
+            padding: 0 rem(15);
+            @include flexbox($alignItems: flex-end, $direction: column);
+            margin-top: rem(15);
+        }
+
+    }
+   
+
+    &__hero-content-container {
         @include max-width(650);
-        padding: 0 rem(20);
+        padding: 0 rem(20) 6%;
+
+        @include breakpoint(full) {
+            padding: 0 rem(15) 2% 0;
+        }   
+
+        @include breakpoint(tablet) {
+                max-width: 100%;
+                    width: 100%;
+                    padding: 0;
+        }
     }
 
     &__hero-heading {
@@ -30,10 +95,8 @@
   
 
     &__date {
-        @include type-style(secondary);
-        font-size: rem(14);
-        line-height: rem(18);
-        letter-spacing: letter-spacing(-80px);
+        @include article-body;
+
     }
 
     &__title {
@@ -43,11 +106,21 @@
 
     &__excerpt {
         @include max-width(650);
-        @include type-style(article-text);
+                 @include article-body;
+
     }
 
     &__content {
-        @include type-style(article-text);
+        padding: 0 0 rem(100);
+        @include breakpoint(tablet) {
+            padding: 0 rem(15) rem(50);
+        }
+                 @include article-body;
+
+        * {
+            margin-bottom: rem(12);
+
+        }
         table:not([class]) {
             table-layout: fixed;
             width: max-content !important;
@@ -70,5 +143,23 @@
             max-width: rem(700);
             @include type-style(blockquote);
         }
+    }
+}
+
+#theme-article {
+    // background-color: var(--color-canvas-primary);
+    @include breakpoint(tablet) {
+            .header {
+                @include breakpoint(tablet) {
+                    position: absolute;
+                    width: 100%;
+                }
+            }
+    
+            .header__heading-logo-wrapper svg path {
+                @include breakpoint(tablet) {
+                    fill: white;
+                }
+            }
     }
 }

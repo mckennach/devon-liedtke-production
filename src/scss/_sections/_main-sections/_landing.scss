@@ -1,0 +1,138 @@
+landing {
+    @include breakpoint(tabletup) {
+        background-color: var(--color-text-primary);
+        background-attachment: fixed;
+    }
+    // background: var(--color-text-primary);
+    background-position: center;
+    background-repeat: no-repeat;
+    // background-color: var(--color-text-primary);
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    min-height: 100px;
+    display: block;
+    position: relative;
+    z-index: 3;
+    -webkit-transition: background 300ms ease-in 200ms;
+    -moz-transition: background 300ms ease-in 200ms;
+    -o-transition: background 300ms ease-in 200ms;
+    -ms-transition: background 300ms ease-in 200ms;
+    transition: background 300ms ease-in 200ms;
+    -webkit-animation: fade-in-bg .3s;
+    /* Chrome, Safari, Opera */
+    animation: fade-in-bg .3s;
+    position: fixed;
+    overflow: scroll;
+}
+
+.landing {
+    height: 300dvh;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    
+    &__content-area {
+        position: sticky;
+        top: 0;
+        left: 0;
+        height: 100dvh;
+        width: 100vw;
+        min-height: 100px;
+    }
+
+    
+//     &__image-container {
+//         @include aspect-ratio(16,9);
+//         height: 100%;
+//         position: absolute;
+//         width: 100%;
+//         top: 0;
+//         left: 0;
+       
+//         @include breakpoint(tablet) {
+//             @include aspect-ratio(9,16);
+//             height: 100%;
+//             position: absolute;
+//             width: 100%;
+//             top: 0;
+//             left: 0;
+//         }
+
+        
+// }
+    
+
+    &__container {
+        position: relative;
+        height: 100%;
+        padding: rem(15) rem(20);
+        @include flexbox($direction: column, $justifyContent: space-between);
+        @include breakpoint(tablet) {
+            padding: rem(10) rem(15);
+        }
+    }
+
+    &__inner-container {
+        height: 100%;
+        position: relative
+    }
+
+    &__title {
+        @include landing-title;
+        color: var(--color-canvas-primary);
+        max-width: 92%;
+        margin-left: 0;
+        margin-right: auto;
+        position: absolute;
+        top: -10%;
+        opacity: 0;
+        left: 0;
+        width: 100%;
+        padding: 0;
+    }
+    
+    &__logo {
+        position: absolute;
+        bottom: -10%;
+        opacity: 0;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        left: 0;
+        svg {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fade-in-bg {
+    from {
+        background-color: var(--color-canvas-primary);
+    }
+
+    to {
+        background-color: var(--color-text-primary);
+    }
+}
+
+/* Standard syntax */
+@keyframes fade-in-bg {
+    from {
+        background-color: var(--color-canvas-primary);
+    }
+
+    to {
+        background-color: var(--color-text-primary);
+    }
+}
+
+.shopify-design-mode {
+    landing {
+        display: none;
+    }
+}

@@ -1,30 +1,51 @@
 .image-with-text {
     padding-bottom: rem(100);
+    @include breakpoint(tablet) {
+        padding-bottom: rem(50);
+    }
     &__container {
-        padding-right: 12%;
+        // padding-right: 12%;
     }
 
     &__container--reverse {
-        padding-left: 12%;
-        padding-right: 0;
+        // padding-left: 12%;
+        // padding-right: 0;
     }
 
     &__media--medium.portrait &__container--reverse {
-        padding-left: 25%;
+        // padding-left: 25%;
     }
+
+
 
 
 
     &__grid {
+        @include breakpoint(tabletup) {
+            padding-right: 12%;
+            padding-left: 0;
+        }
+
         @include flexbox($wrap: wrap);
         @include breakpoint(tablet) {
             @include flexbox($direction: column, $wrap: wrap);
         }
     }
     &__grid--reverse {
+        @include breakpoint(tabletup) {
+            padding-left: 12%;
+            padding-right: 0;
+        }
         @include flexbox($direction: row-reverse, $wrap: wrap);
         @include breakpoint(tablet) {
             @include flexbox($direction: column, $wrap: wrap);
+        }
+    }
+
+    &__media--medium.portrait &__grid--reverse {
+        @include breakpoint(tabletup) {
+            padding-left: 25%;
+            padding-right: 0;
         }
     }
 
@@ -38,12 +59,15 @@
         }
 
         &.subtitle {
-            @include type-style(secondary);
+                    @include article-body;
         }
     }
 
     &__media-item {
         width: 100%;
+        @include breakpoint(tablet) {
+            margin-bottom: rem(15);
+        }
     }
 
     &__media {
@@ -58,24 +82,34 @@
     }
 
     &__media--large.landscape &__media-item {
-        flex-basis: 60%;
+        @include breakpoint(tabletup) {
+            flex-basis: 60%;
+        }
     }
 
     &__media--large.landscape &__text-item {
-        flex-basis: 40%;
+        @include breakpoint(tabletup) {
+            flex-basis: 40%;
+        }
     }
 
     &__media--medium.portrait &__media-item {
-        flex-basis: 40%;
+        @include breakpoint(tabletup) {
+            flex-basis: 40%;
+        }
     }
 
     &__media--medium.portrait &__text-item {
-        flex-basis: 60%;
+        @include breakpoint(tabletup) {
+            flex-basis: 38%;
+        }
     }
     
     &__content {
         height: 100%;
-        padding: rem(30);
+        @include breakpoint(tabletup) {
+            padding: rem(30);
+        }
     }
 
     &__content--middle {

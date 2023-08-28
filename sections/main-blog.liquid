@@ -31,7 +31,8 @@
               {% assign blog_handle = value %}
             {% endif %}
           {% endfor %}
-          <div class="main-blog__article-item {% if forloop.index > 3 %}hide{% endif %}">
+          {% assign group = forloop.index | modulo: 3 %}
+          <div class="main-blog__article-item {% if forloop.index > 3 %}group-hide{% endif %}" data-group="{{ group}}">
             {% render 'card-article'
              , blog_handle: blog_handle,
              article: article,

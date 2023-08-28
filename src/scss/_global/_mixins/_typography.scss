@@ -177,7 +177,7 @@
 
 
 
-@mixin pseudo-underline($color: $black, $thickness: 1px, $bottom: -6px, $width: 0%, $display: block, $speed: .35s) {
+@mixin pseudo-underline($color: $black, $thickness: 1px, $bottom: -6px, $width: 0%, $display: block, $speed: .2s) {
     display: $display;
     position: relative;
 
@@ -201,7 +201,7 @@
         // right: 0;
 
         /* optional animation */
-        transition: all $speed ease-in-out;
+        transition: all var(--duration-long) ease;
         width: $width;
         
     }

@@ -1,0 +1,145 @@
+<aside class="side-navigation container">
+  <nav class="side-navigation__navigation" role="navigation">
+    <ul class="side-navigation__menu has-submenu list-menu" role="menu">
+      {%- for link in links -%}
+        <li>
+          {%- if link.links != blank -%}
+
+
+            {% liquid
+              if link.handle == 'the-edit' and template == 'article' or template == 'blog'
+                assign open = true
+              
+              elsif link.handle == 'shop' and template == 'collection'
+                assign open = true
+              else 
+                assign open = fasle
+              endif 
+            %}
+
+            <details id="Details-side-navigation-menu-item-{{ forloop.index }}" {% if open %}open{% endif %}>
+              <summary id="HeaderDrawer-{{ link.handle }}" class="side-navigation__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} ide-navigation__menu-item--active{% endif %}">
+                {% if link.handle == 'the-edit' and template != 'blog' and template != 'article' %}
+                  <a
+                    href="{{ link.url }}"
+                    {% if template == 'article' or template == 'blog' %}
+                    disable
+                    {% endif %}>
+                    {{ link.title | escape }}
+                  </a>
+                {% else %}
+                  {{ link.title | escape }}
+
+                {% endif %}
+
+              </summary>
+              <div
+                id="link-{{ link.handle | escape }}"
+                class="side-navigation__submenu  motion-reduce"
+                tabindex="-1">
+                <div class="side-navigation__inner-submenu">
+                  <ul
+                    class="side-navigation__menu list-menu"
+                    role="list"
+                    tabindex="-1">
+                    {%- for childlink in link.links -%}
+                      <li>
+                        {%- if childlink.links == blank -%}
+                          <a
+                            id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                            href="{{ childlink.url }}"
+                            class="side-navigation__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} side-navigation__menu-item--active{% endif %}"
+                            {% if childlink.current %}
+                            aria-current="page"
+                            {% endif %}>
+                            {{ childlink.title | escape }}
+                          </a>
+                        {%- else -%}
+                          <details id="Details-side-navigation-{{ link.handle }}-{{ childlink.handle }}">
+                            <summary id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}" class="side-navigation__menu-item link link--text list-menu__item focus-inset">
+                              {{ childlink.title | escape }}
+
+                            </summary>
+                            <div id="childlink-{{ childlink.handle | escape }}" class="side-navigation__submenu has-submenu gradient motion-reduce">
+                              <button class="side-navigation__close-button link link--text focus-inset" aria-expanded="true">
+                                {% render 'icon-arrow' %}
+                                {{ childlink.title | escape }}
+                              </button>
+                              <ul
+                                class="side-navigation__menu list-menu"
+                                role="list"
+                                tabindex="-1">
+                                {%- for grandchildlink in childlink.links -%}
+                                  <li>
+                                    <a
+                                      id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                      href="{{ grandchildlink.url }}"
+                                      class="side-navigation__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} side-navigation__menu-item--active{% endif %}"
+                                      {% if grandchildlink.current %}
+                                      aria-current="page"
+                                      {% endif %}>
+                                      {{ grandchildlink.title | escape }}
+                                    </a>
+                                  </li>
+                                {%- endfor -%}
+                              </ul>
+                            </div>
+                          </details>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              </div>
+            </details>
+          {%- else -%}
+
+
+            {%- if link.handle == 'search' -%}
+              {% render 'search-form', input_id: 'Search-In-Modal' %}
+            {%- else -%}
+              <a
+                id="HeaderDrawer-{{ link.handle }}"
+                href="{{ link.url }}"
+                class="side-navigation__menu-item header-drawer-{{ link.handle }} list-menu__item link link--text focus-inset{% if link.current %} side-navigation__menu-item--active{% endif %}"
+                {% if link.current %}
+                aria-current="page"
+                {% endif %}>
+                {{ link.title | escape }}
+                {%- if link.handle == 'cart' -%}
+                  <div id="cart-count" style="display: inline-block">
+                    <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+                    {%- if cart != empty -%}
+                      <div class="">
+                        {%- if cart.item_count < 100 -%}
+                          <span aria-hidden="true">( {{ cart.item_count }} )</span>
+                        {%- endif -%}
+                        <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                      </div>
+                    {%- endif -%}
+                  </div>
+
+                  {% comment %} {%- if cart.item_count < 100 -%}
+                    <div
+                    id="cart-count"
+                    class="cart-count">
+                    {%- liquid
+                    if cart == empty
+                    render 'cart-count-empty'
+                    else
+                    render 'cart-count'
+                    endif
+                    -%}
+                    </div>
+                    {%- endif -%}
+                    <span
+                  class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span> {% endcomment %}
+                {%- endif -%}
+              </a>
+            {%- endif -%}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </nav>
+</aside>

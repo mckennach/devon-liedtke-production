@@ -33,6 +33,7 @@
 
     &__input {
         @include type-style(form);
+        font-size: rem(13);
         opacity: 0.85;
         text-align: center;
         background-color: transparent;
@@ -43,6 +44,7 @@
         -webkit-appearance: none;
         appearance: none;
         max-width: rem(32);
+        width: fit-content;
     }
     
     

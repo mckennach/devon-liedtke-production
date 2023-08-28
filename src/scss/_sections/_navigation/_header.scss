@@ -1,9 +1,14 @@
 .header {
     padding: rem(10) 0;
     position: relative;
+    @include breakpoint(tablet) {
+        padding: rem(15) 0 rem(10);
+    }
     &.main &__heading-link {
         max-width: 55%;
         display: inline-block;
+        position: relative;
+        z-index: 100;
         @include breakpoint(tablet) {
             max-width: 76%;
         }
@@ -11,7 +16,6 @@
 
     &.main &__heading-logo-wrapper {
         svg {
-            // width: rem(885);
             max-width: 100%;
             height: 100%;
         }
@@ -19,14 +23,37 @@
 
     &.secondary {
         padding-bottom: rem(120);
+        @include breakpoint(tablet) {
+            padding: rem(100) 0 rem(50);
+        }
     }
 
+  
     &.secondary &__heading-link {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
         @include layer(primary);
+        @include breakpoint(tabletup) {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        svg {
+            height: 100%;
+            @include max-width(300);
+            @include breakpoint(desktop) {
+                height: 100%;
+                @include max-width(230);
+            }
+            @include breakpoint(tablet) {
+                height: 100%;
+                @include max-width(200);
+            }
+        }
+        @include breakpoint(tablet) {
+            transform: translateX(-50%);
+           
+        }
     }
 }
 
@@ -39,8 +66,11 @@
     }
 }
 
-#theme-collection, #theme-page-contact {
+#theme-collection, #theme-page-contact, #theme-page-faq, #theme-cart, #theme-search, #theme-page, #theme-404, #theme-list-collections {
     .header {
-        margin-bottom: rem(225);
+        margin-bottom: rem(50);
+        @include breakpoint(tabletup) {
+            margin-bottom: rem(225);
+        }
     }
 }

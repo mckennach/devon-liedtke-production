@@ -27,8 +27,8 @@ document.querySelectorAll('[id^="Details-"] summary').forEach((summary) => {
   });
 
   if (summary.closest('header-drawer, menu-drawer')) return;
-  summary.parentElement.addEventListener('keyup', onKeyUpEscape);
-});
+    summary.parentElement.addEventListener('keyup', onKeyUpEscape);
+  });
 
 const trapFocusHandlers = {};
 
@@ -156,7 +156,6 @@ function removeTrapFocus(elementToFocus = null) {
   document.removeEventListener('focusin', trapFocusHandlers.focusin);
   document.removeEventListener('focusout', trapFocusHandlers.focusout);
   document.removeEventListener('keydown', trapFocusHandlers.keydown);
-
   if (elementToFocus) elementToFocus.focus();
 }
 

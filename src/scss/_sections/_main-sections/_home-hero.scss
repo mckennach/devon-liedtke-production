@@ -1,5 +1,5 @@
 .home-hero {
-    padding-top: rem(20);
+    padding-top: rem(10);
     &__container {
         // padding-top: rem(60);
     }
@@ -23,7 +23,10 @@
 
     &__left-item {
         align-self: center;
+        position: relative;
+        top: 2rem;
         @include breakpoint(tablet) {
+            top: 0;
             margin-top: 5rem;
             align-self: flex-start;
         }
@@ -32,8 +35,8 @@
     &__featured-collection {
         max-width: 60%;
         margin-left: 0;
-
         @include breakpoint(tabletup) {
+            transform: translate(60px, 0);
             width: 34%;
             min-width: rem(200);
             margin: rem(30) auto 0;
@@ -71,7 +74,7 @@
     }
 
     &__section-caption {
-        max-width: 72%;
+        max-width: 70%;
         margin-right: 0;
         margin-left: auto;
         p {

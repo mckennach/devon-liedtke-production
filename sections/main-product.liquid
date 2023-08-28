@@ -5,7 +5,7 @@
 >
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script> 
   {% if section.settings.image_zoom == 'hover' %}
     <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
   {% endif %}
@@ -35,6 +35,8 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
   <div class="product product--{{ section.settings.media_size }} container-md" data-scheme="{{ section.settings.color_scheme }}">
+    <div class="product__grid-item tablet-hide"><span></span></div>
+
     <div class="product__media-wrapper product__grid-item tablet-hide">
       {% render 'product-media-gallery', variant_images: variant_images %}
     </div>

@@ -4,11 +4,27 @@
         margin-bottom: rem(50);
     }
 
+    &__container {
+        @include breakpoint(tablet) {
+            padding: 0;
+        }
+    }
+
+    .featured-collection__product-group {
+        @include breakpoint(tablet) {
+            padding: 0 rem(15);
+        }
+    }
+
     &__video {
-        max-width: 55%;
-        width: rem(1000);
-        padding: rem(100) 0;
-    
+        @include breakpoint(tablet) {
+            padding-bottom: rem(50);
+        }
+        @include breakpoint(tabletup) {
+            max-width: 55%;
+            width: rem(1000);
+            padding: rem(100) 0;
+        }
         &.odd {
             margin-right: 0;
             margin-left: auto;

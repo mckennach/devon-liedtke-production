@@ -1,0 +1,82 @@
+.search {
+    &__input {
+        background-color: unset !important;
+        padding: 0 !important;
+        @include type-style(primary);
+        @include input-placeholder {
+            color: rgb(var(--color-foreground));
+            transition: all var(--duration-long) ease;
+        }
+        border-bottom: 1px solid rgba(var(--color-foreground), 1);
+        transition: all var(--duration-long) ease;
+        &:focus, &:focus-visible, &:hover, &:active {
+            border-bottom: 1px solid rgba(var(--color-foreground), 1);
+            &:before {
+                content: 'Search Here';
+            }
+        }
+    }
+
+    #Search-In-Modal {
+        border-bottom: 1px solid rgba(var(--color-foreground), 0);
+    }
+
+    &__button {
+        position: absolute;
+        right: 0;
+        top: 0;
+      
+        @include breakpoint(tablet) {
+        }
+    }
+
+    #Search-In-Modal:focus + &__button, #Search-In-Modal:focus-visible + &__button, #Search-In-Modal:hover + &__button,
+        #Search-In-Modal:active + &__button {
+        opacity: 1;
+    }
+}
+
+#Search-In-Modal-Container {
+    .search__button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            opacity: 0;
+    
+            @include breakpoint(tablet) {}
+        }
+
+        .search__input {
+            border-bottom: 1px solid rgba(var(--color-foreground), 0);
+            
+                &:focus,
+                &:focus-visible,
+                &:hover,
+                &:active {
+                    border-bottom: 1px solid rgba(var(--color-foreground), 1);
+            
+                    &:before {
+                        content: 'Search Here';
+                    }
+                }
+        }
+}
+
+
+
+#Search-In-Modal-Mobile-Container .search__button {
+    opacity: 1;
+    top: 7px;
+    right: rem(15);
+}
+
+.search-modal {
+    &__form .field {
+        margin-bottom: 0;
+        position: relative;
+    }
+}
+
+.predictive-search {
+    display: none !important;
+}

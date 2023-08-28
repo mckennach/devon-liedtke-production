@@ -69,9 +69,13 @@
 
     &__label {
         
-        @include flexbox($shrink: 1, $alignItems: baseline, $gap: 2%, $wrap: wrap);
-        
-        flex: 1;
+        @include flexbox($shrink: 1, $alignItems: baseline, $gap: 2%);
+        flex-basis: 70%;
+        @include breakpoint(tablet) {
+            @include flexbox($shrink: 1, $alignItems: baseline, $gap: 2%, $wrap: wrap);
+            flex-basis: 100%;
+        }
+        // flex: 1;
         p {
             max-width: rem(303);
             margin-bottom: rem(15);

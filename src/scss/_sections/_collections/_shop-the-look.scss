@@ -5,6 +5,13 @@
     @include breakpoint(tabletup) {
         max-width: 85%;
     }
+
+    &__container {
+        @include breakpoint(tablet) {
+            padding: 0 rem(15);
+        }
+    }
+
     &.even {
         margin-right: 0;
         margin-left: auto;
@@ -25,6 +32,14 @@
         }
     }
 
+    &.odd &__grid {
+        @include flexbox($wrap: wrap, $justifyContent: space-between, $direction: row-reverse);
+    
+        @include breakpoint(tablet) {
+            @include flexbox($wrap: wrap, $justifyContent: space-between, $direction: column-reverse);
+        }
+    }
+
     &__grid-item {
         @include make-col(2);
     }
@@ -32,11 +47,31 @@
     &__products-container {
         @include flexbox($direction: column, $justifyContent: space-between);
         padding-right: rem(20);
+        position: relative;
+        @include breakpoint(tablet) {
+            @include flexbox($justifyContent: space-between);
+            padding: rem(20) 0;
+        }
+    }
+
+    &.odd &__products-container {
+        @include breakpoint(tabletup) {
+            padding-right: 0;
+            padding-left: rem(20);
+        }
     }
 
     &__heading {
-        border-top: 1px solid;
         padding-top: rem(10);
+        @include breakpoint(tabletup) {
+            border-top: 1px solid;
+        }
+        @include breakpoint(tablet) {
+            border-right: 1px solid;
+            flex-basis: 35%;
+            padding-right: 2.5%;
+            
+        }
     }
     
     &__heading-title {
@@ -47,18 +82,46 @@
 
     &__products {
         @include flexbox($gap: rem(30), $wrap: wrap);
+        @include breakpoint(tabletup) {
+            margin-top: rem(50);
+        }
         @include breakpoint(tablet) {
-            @include flexbox($direction: column);
+            @include flexbox($direction: column-reverse, $shrink: unset, $grow: unset);
+            flex-basis: 65%;
+            padding-left: 2.5%;
+        }
+    }
+
+    &.odd &__products {
+        @include flexbox($gap: rem(30), $wrap: wrap, $direction: row-reverse);
+    
+        @include breakpoint(tablet) {
+            @include flexbox($direction: column-reverse, $shrink: unset, $grow: unset);
+            flex-basis: 65%;
+            padding-left: 2.5%;
         }
     }
 
     &__item {
         position: relative;
-        max-width: rem(207);
-        top: rem(-50);
+        max-width: rem(240);
+        @include breakpoint(phone) {
+                max-width: 90%;
+        }
         &:first-of-type {
-            top: 0;
-            max-width: rem(270);
+            top: rem(40);
+            max-width: rem(230);
+            @include breakpoint(tablet) {
+                top: 0;
+                margin-right: 0;
+                margin-left: auto;
+            }
+
+            @include breakpoint(phone) {
+                max-width: 70%;
+            }
+
+
         }
     }
 
@@ -76,5 +139,11 @@
 
     &__txt-inner-container {
         flex-direction: column;
+    }
+
+    .card-product {
+        @include breakpoint(tablet) {
+            margin-bottom: 0;
+        }
     }
 }

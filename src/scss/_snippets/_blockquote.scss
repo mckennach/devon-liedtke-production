@@ -1,0 +1,10 @@
+.blockquote {
+    
+    * {
+        @include type-style(blockquote);
+    }
+
+    blockquote {
+        max-width: rem(790);
+    }
+}

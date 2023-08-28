@@ -1,0 +1,21 @@
+{%- comment -%}
+  Renders Video (filtering and sorting)
+
+  Accepts:
+  - blockquote: {String} Title
+
+
+  Usage:
+  In your liquid template file, copy the following line
+  {% render 'blockquote' with blockquote: '' %}
+{%- endcomment -%}
+
+<div class="blockquote">
+  {% if blockquote != blank %}
+    <div class="blockquote__container" container>
+      <blockquote class="">
+        {{ blockquote }}
+      </blockquote>
+    </div>
+  {% endif %}
+</div>

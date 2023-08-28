@@ -10,18 +10,25 @@
     &__container {
         @include flexbox($justifyContent: space-between, $wrap: wrap);
         @include breakpoint(tablet) {
-
+            padding: 0;
         }
     }
+
     &__title {
         @include heading;
+        @include breakpoint(tablet) {
+            width: 100%;
+            padding: 0 rem(15);
+        }
     }
+
+    
 
     &__filter-container {
         @include breakpoint(tablet) {
             width: 100%;
             margin-top: rem(40);
-            padding: rem(15) 0;
+            padding: rem(15);
             border-top: 1px solid;
             border-bottom: 1px solid;
         }

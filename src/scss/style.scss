@@ -7,13 +7,15 @@
 /* --------------------------------------------------------------------------
   Snippets
 ----------------------------------------------------------------------------- */
-@import '_snippets/hamburger';
+@import '_snippets/menu-bar';
+
 @import '_snippets/forms';
 @import '_snippets/debug';
 @import '_snippets/buttons';
 @import '_snippets/video';
-@import '_snippets/search';
 
+@import '_snippets/toggle-plus';
+@import '_snippets/blockquote';
 @import '_snippets/illustrations';
 @import '_snippets/swiper';
 
@@ -36,4 +38,10 @@
   Sections
 ----------------------------------------------------------------------------- */
 @import '_sections/index';
+
+/* --------------------------------------------------------------------------
+  Templates
+----------------------------------------------------------------------------- */
+@import '_templates/page';
+@import '_templates/404';
 

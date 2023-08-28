@@ -1,0 +1,75 @@
+{% liquid
+    assign featured_collection = section.settings.collection
+
+    assign products = featured_collection.products
+    assign collection_length = featured_collection.products | size
+    assign title = section.settings.title
+%}
+
+{%- unless collection_length == 0 -%}
+  <div class="featured-blog-collection" data-scheme="{{ section.settings.color_scheme }}">
+    <div class="featured-blog-collection__container" container>
+      <div class="featured-blog-collection__grid">
+        {% render 'heading' with title: featured_collection.title, title_tag: 'h2'
+         , class: 'featured-blog-collection',
+         animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+        <div class="featured-blog-collection__products">
+          {%- for product in products -%}
+
+            {% render 'card-product'
+             , card_product: product,
+             media_aspect_ratio: section.settings.image_ratio,
+             image_shape: section.settings.image_shape,
+             show_secondary_image: section.settings.show_secondary_image,
+             show_vendor: section.settings.show_vendor,
+             show_rating: section.settings.show_rating,
+             show_quick_add: section.settings.enable_quick_add,
+             section_id: section.id,
+             index: forloop.index,
+             class: 'featured-blog-collection'
+             animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+
+          {%- endfor -%}
+        </div>
+
+      </div>
+    </div>
+  </div>
+{%- endunless -%}
+
+{% schema %}
+  {
+    "name": "Featured Blog Collection",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "t:sections.featured-collection.settings.collection.label"
+      }, {
+        "type": "range",
+        "id": "products_to_show",
+        "min": 2,
+        "max": 25,
+        "step": 1,
+        "default": 4,
+        "label": "t:sections.featured-collection.settings.products_to_show.label"
+      }, {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "background-1"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured Blog Collection"
+      }
+    ]
+  }
+{% endschema %}

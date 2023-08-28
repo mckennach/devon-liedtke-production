@@ -9,6 +9,7 @@
 {% endcomment %}
 
 <predictive-search
+  id="{{ input_id }}-Container"
   class="search-modal__form"
   data-loading-text="{{ 'accessibility.loading' | t }}">
   <form
@@ -38,9 +39,18 @@
         autocomplete="off"
         autocapitalize="off"
         spellcheck="false">
-      <button
-        class="search__button field__button"
-        aria-label="{{ 'general.search.search' | t }}">></button>
+        {% if input_id == 'Search-In-Modal-Mobile' %}
+               <button
+                class="search__button field__button"
+                aria-label="{{ 'general.search.search' | t }}">
+                  {% render 'icon-search' %}
+                </button>
+        {% else  %}
+               <button
+                class="search__button field__button"
+                aria-label="{{ 'general.search.search' | t }}">></button>
+        {% endif %}
+ 
       <input
         type="hidden"
         name="options[prefix]"
@@ -49,13 +59,7 @@
         type="reset"
         class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
         aria-label="{{ 'general.search.reset' | t }}">
-        <svg
-          class="icon icon-close"
-          aria-hidden="true"
-          focusable="false">
-          <use
-            xlink:href="#icon-reset"></svg>
-        </button>
+      </button>
 
       </div>
 

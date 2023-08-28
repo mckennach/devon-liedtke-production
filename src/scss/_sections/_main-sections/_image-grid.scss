@@ -1,0 +1,63 @@
+.image-grid {
+    &__container {
+        padding: rem(50) rem(20) rem(100);
+        @include breakpoint(tablet) {
+            padding: rem(50) 12% rem(100);
+        }
+    }
+
+    &__items-container {
+        @include flexbox($gap: rem(20), $justifyContent: center);
+        @include breakpoint(tablet) {
+            @include flexbox($gap: rem(11), $justifyContent: center);
+        }
+    }
+
+    &__img-container {
+        @include aspect-ratio(463, 560);
+    }
+
+    &__figure {
+        @include max-width(390);
+        position: relative;
+        figcaption {
+            margin-top: rem(8);
+            max-width: 100%;
+            @include type-style(figcaption);
+            @include breakpoint(tablet) {
+                font-size: rem(10);
+            }
+        }
+        &.caption-left figcaption {
+            // position: absolute;
+            // transform: translate(-90px, 70px) rotate(270deg);
+            // top: 0;
+            // left: 0;
+            @include breakpoint(tabletup) {
+                position: absolute;
+                top: 38%;
+                left: -2rem;
+                transform: rotate(-90deg);
+                transform-origin: top left;
+                margin-top: 0;
+            }
+                
+        }
+
+        &.caption-right figcaption {
+            @include breakpoint(tabletup) {
+                position: absolute;
+                transform: translate(90px, 70px) rotate(-270deg);
+                top: 0;
+                right: 0;
+                margin-top: 0;
+            }
+        }
+
+        &.caption-bottom figcaption {
+            margin-top: rem(8);
+        }
+
+        
+    }
+}

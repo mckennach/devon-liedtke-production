@@ -7,6 +7,11 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 
+<style>
+  .drawer {
+    visibility: hidden;
+  }
+</style>
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
@@ -18,16 +23,18 @@
       aria-label="{{ 'sections.cart.title' | t }}"
       tabindex="-1">
       {%- if cart == empty -%}
+        {%- assign title = 'sections.cart.empty' | t -%}
+        {% render 'heading' with title: title, title_tag: 'h1', class: 'drawer', animations_reveal_on_scroll: true, wrapper_class: 'top' %}
         <div class="drawer__inner-empty">
-          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
+          <div class="cart-drawer__warnings center">
             <div class="cart-drawer__empty-content">
-              <h2 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
               <button
                 class="drawer__close"
                 type="button"
                 onclick="this.closest('cart-drawer').close()"
-                aria-label="{{ 'accessibility.close' | t }}">
-                {% render 'icon-close' %}
+                aria-label="{{ 'accessibility.close' | t }}">{% comment %} <span></span>
+                  <span></span> {% endcomment %}
+
               </button>
               <a href="{{ routes.all_products_collection_url }}" class="button">
                 {{ 'general.continue_shopping' | t }}
@@ -41,38 +48,34 @@
               {%- endif -%}
             </div>
           </div>
-          {%- if settings.cart_drawer_collection != blank -%}
-            <div class="cart-drawer__collection">
-              {% render 'card-collection', card_collection: settings.cart_drawer_collection, columns: 1 %}
-            </div>
-          {%- endif -%}
+
         </div>
       {%- endif -%}
-      <div class="drawer__header" container>
-        <h2 class="drawer__heading"></h2>
-        <button
-          class="drawer__close"
-          type="button"
-          onclick="this.closest('cart-drawer').close()"
-          aria-label="{{ 'accessibility.close' | t }}">
-          {% render 'icon-close' %}
-        </button>
-      </div>
-      <div class="drawer__heading">
+      <div class="drawer__header">
+        <div class="drawer__header-container">
+
+
+          <button
+            class="drawer__close"
+            type="button"
+            onclick="this.closest('cart-drawer').close()"
+            aria-label="{{ 'accessibility.close' | t }}">
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
         {% liquid
-          if cart == empty
-            assign title = 'CART ( ' | append: cart.item_count | append: ' )' 
-          else 
-            assign title = 'CART'
-          endif  
+          assign title = 'CART ( ' | append: cart.item_count | append: ' )' 
         %}
-        {% render 'heading' with title: title, title_tag: 'h1', class: 'drawer', animations_reveal_on_scroll: true, wrapper_class: 'top' %}
+        {% if cart != empty %}
+          {% render 'heading' with title: title, title_tag: 'h1', class: 'drawer', animations_reveal_on_scroll: true, wrapper_class: 'top' %}
+        {% endif %}
       </div>
       <cart-drawer-items
         {% if cart == empty %}
         class=" is-empty"
-        {% endif %}
-        container>
+        {% endif %}>
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
@@ -80,10 +83,12 @@
           method="post">
           <div id="CartDrawer-CartItems" class="drawer__contents js-contents">
             {%- if cart != empty -%}
-              <div class="drawer__cart-items-wrapper">
-                {%- for item in cart.items -%}
-                  {% render 'cart-item' with item: item %}
-                {%- endfor -%}
+              <div class="drawer__cart-items-wrapper" container>
+                <div class="cart-items" role="table">
+                  {%- for item in cart.items -%}
+                    {% render 'cart-item' with item: item %}
+                  {%- endfor -%}
+                </div>
               </div>
             {%- endif -%}
             <p
@@ -101,69 +106,45 @@
           <div id="CartDrawer-CartErrors" role="alert"></div>
         </form>
       </cart-drawer-items>
-      <div class="drawer__footer">
+
+      <div class="drawer__footer {% if cart.item_count >= 4 %} shadow {% endif %}">
         <div class="drawer__footer-container" container>
-          <div class="drawer__cart-controls">
-            {%- if settings.show_cart_note -%}
-              <details id="Details-CartDrawer">
-                <summary>
-                  <span class="summary__title">
-                    {{ 'sections.cart.note' | t }}
-                    {% render 'icon-caret' %}
-                  </span>
-                </summary>
-                <cart-note class="cart__note field">
-                  <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
-                  <textarea
-                    id="CartDrawer-Note"
-                    class="text-area text-area--resize-vertical field__input"
-                    name="note"
-                    placeholder="{{ 'sections.cart.note' | t }}">{{ cart.note }}</textarea>
-                </cart-note>
-              </details>
-            {%- endif -%}
+          <!-- Start blocks -->
+          <!-- Subtotals -->
 
-            <!-- Start blocks -->
-            <!-- Subtotals -->
-
-            <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
-              <div class="totals" role="status">
-                <h2 class="totals__subtotal">TOTAL</h2>
-                <p class="totals__subtotal-value">{{ cart.total_price | | money_without_trailing_zeros }}</p>
-              </div>
-
-              <div>
-                {%- if cart.cart_level_discount_applications.size > 0 -%}
-                  <ul
-                    class="discounts list-unstyled"
-                    role="list"
-                    aria-label="{{ 'customer.order.discount' | t }}">
-                    {%- for discount in cart.cart_level_discount_applications -%}
-                      <li class="discounts__discount discounts__discount--end">
-                        {%- render 'icon-discount' -%}
-                        {{ discount.title }}
-                        (-{{ discount.total_allocated_amount | money }})
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
-              </div>
-
-              <small class="tax-note caption-large rte">
-                {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
-                  {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                {%- elsif cart.taxes_included -%}
-                  {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
-                {%- elsif shop.shipping_policy.body != blank -%}
-                  {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
-                {%- else -%}
-                  {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
-                {%- endif -%}
-              </small>
+            <div class="cart-drawer__footer" {{ block.shopify_attributes }}> <div class="totals" role="status">
+              <h2 class="totals__subtotal">{{ 'sections.cart.subtotal' | t }}</h2>
+              <p class="totals__subtotal-value">{{ cart.total_price | money_without_trailing_zeros }}</p>
             </div>
 
-            <!-- CTAs -->
+            <div>
+              {%- if cart.cart_level_discount_applications.size > 0 -%}
+                <ul
+                  class="discounts list-unstyled"
+                  role="list"
+                  aria-label="{{ 'customer.order.discount' | t }}">
+                  {%- for discount in cart.cart_level_discount_applications -%}
+                    <li class="discounts__discount discounts__discount--end">
+                      {%- render 'icon-discount' -%}
+                      {{ discount.title }}
+                      (-{{ discount.total_allocated_amount | money }})
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
 
+            <small class="tax-note caption-large rte">
+              {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+                {{ 'sections.cart.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+              {%- elsif cart.taxes_included -%}
+                {{ 'sections.cart.taxes_included_but_shipping_at_checkout' | t }}
+              {%- elsif shop.shipping_policy.body != blank -%}
+                {{ 'sections.cart.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+              {%- else -%}
+                {{ 'sections.cart.taxes_and_shipping_at_checkout' | t }}
+              {%- endif -%}
+            </small>
             <div class="cart__ctas" {{ block.shopify_attributes }}>
               <noscript>
                 <button
@@ -186,12 +167,33 @@
                 {{ 'sections.cart.checkout' | t }}
               </button>
             </div>
+            {%- if settings.show_cart_note -%}
+              <details id="Details-CartDrawer">
+                <summary>
+                  <span class="summary__title">
+                    {{ 'sections.cart.note' | t }}
+                    {% render 'icon-caret' %}
+                  </span>
+                </summary>
+                <cart-note class="cart__note field">
+                  <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
+                  <textarea
+                    id="CartDrawer-Note"
+                    class="text-area text-area--resize-vertical field__input"
+                    name="note"
+                    placeholder="{{ 'sections.cart.note' | t }}">{{ cart.note }}</textarea>
+                </cart-note>
+              </details>
+            {%- endif -%}
           </div>
-          <div class="cart-drawer__logo">
+
+          <!-- CTAs -->
+
+
+          <div class="cart-drawer__logo tablet-hide">
             {% render 'icon-logo-submark' with id: 'cart' %}
           </div>
         </div>
-
 
       </div>
     </div>

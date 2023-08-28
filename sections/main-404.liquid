@@ -1,23 +1,16 @@
-<style type="text/css">
-  .template-404 .title + * {
-    margin-top: 1rem;
-  }
+<div class="page">
+  {% render 'heading' 
+   with title: 'Page Not Found (404)',
+   title_tag: 'h1',
+   class: 'default',
+   animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+  <div class="page__container" container-md>
+    <div style="text-align:center;">
 
-  @media screen and (min-width: 750px) {
-    .template-404 .title + * {
-      margin-top: 2rem;
-    }
-  }
-</style>
+      <a href="{{ routes.all_products_collection_url }}" class="button">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+    </div>
 
-<div class="template-404 page-width page-margin center">
-  <p>
-    {{ 'templates.404.subtext' | t }}
-  </p>
-  <h1 class="title">
-    {{ 'templates.404.title' | t }}
-  </h1>
-  <a href="{{ routes.all_products_collection_url }}" class="button">
-    {{ 'general.continue_shopping' | t }}
-  </a>
+  </div>
 </div>

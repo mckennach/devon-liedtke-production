@@ -4,10 +4,10 @@
   itemtype="http://schema.org/BlogPosting"
   data-scheme="background-1">
   <div class="article-template__container">
-    <header class="article-template__hero-container" container-md>
+    <header class="article-template__hero-container" container>
       <div class="article-template__hero-grid">
         <div class="article-template__grid-item article-template__hero-content">
-          <div>
+          <div class="article-template__hero-content-container">
             <div class="article-template__hero-heading">
               <h2 class="article-template__blog-title">( {{ blog.title }} )</h2>
               <div class="article-template__date">
@@ -23,7 +23,6 @@
               </div>
             {%- endif -%}
           </div>
-
         </div>
         {%- if article.image -%}
           <div class="article-template__grid-item article-template__hero-image {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}" {{ block.shopify_attributes }}>
@@ -43,7 +42,7 @@
               {% if article.image.width >= 3000 %}
                 {{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
               {{ article.image | image_url }} {{ article.image.width }}w
-                                                                                                                                                                                                                                                                                                                                                                                                            "
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  "
               sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
               src="{{ article.image | image_url: width: 1100 }}"
               loading="eager"
@@ -59,12 +58,114 @@
     <div
       class="article-template__content {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       itemprop="articleBody"
-      {{ block.shopify_attributes }}>
+      {{ block.shopify_attributes }}
+      hidden>
       <div class="container">
         {{ article.content }}
       </div>
     </div>
   </div>
+</article>
+<article
+  class="article-template"
+  itemscope
+  itemtype="http://schema.org/BlogPosting">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+      <div class="container">
+        {% render block %}
+      </div>
+      {%- when 'intro_section' -%}
+      {% render 'image-with-text' with 
+       image: block.settings.image,
+       desktop_image_width: block.settings.desktop_image_width,
+       layout: block.settings.layout,
+       color_scheme: block.settings.color_scheme,
+       desktop_content_position: block.settings.desktop_content_position,
+       desktop_content_alignment: block.settings.desktop_content_alignment,
+       image_behavior: block.settings.image_behavior,
+       section_id: block.id,
+       mobile_content_alignment: block.settings.mobile_content_alignment
+       blocks: false,
+       no_blocks: true,
+       text: block.settings.text %}
+      {%- when 'description' -%}
+      <div
+        class="article-template__content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        itemprop="articleBody"
+        {{ block.shopify_attributes }}
+        container-md>
+        {{ article.content }}
+      </div>
+      {%- when 'imgs_with_captions' -%}
+      {% liquid
+          assign image_grid = article.metafields.custom.image_grid.value
+          assign image_grid_size = image_grid | size
+      %}
+
+
+      {% comment %} {{ article.metafields.custom.image_grid.list }}<br> {% endcomment %}
+      {% comment %} {{ article.metafields.custom.image_grid.value }}<br>
+      {{ article.metafields.custom.image_grid.type }}<br> {% endcomment %}
+
+        {%- unless image_grid_size == 0 -%}
+          <div class="image-grid"> <div class="image-grid__container" container-sm>
+            <div class="image-grid__items-container">
+
+              {%- for item in image_grid -%}
+
+                <div class="image-grid__grid-item">
+                  <figure class="image-grid__figure caption-left ">
+                    <div
+                      class="image-grid__image-container scroll-trigger animate--slide-in"
+                      {% if settings.animations_reveal_on_scroll %}
+                      data-cascade
+                      {% endif %}>
+                      {{
+                         item.image
+                       | image_url: width: 1500
+                       | image_tag: class: '', loading: 'lazy', sizes: sizes, widths: widths }}
+                      {% comment %} <img
+                        srcset="{{ item.image | img_url: 'medium' }}"
+                        src="{{ item.image | img_url: 'medium' }}"
+                        alt="{{ item.caption }}"
+                        class="motion-reduce"
+                        {% unless lazy_load == false %}
+                        loading="lazy"
+                      {% endunless %}> {% endcomment %}
+                    </div>
+                    {%- if item.caption != blank -%}
+                      <figcaption>{{ item.caption | escape }}</figcaption>
+                    {%- endif -%}
+                  </figure>
+                </div>
+
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      {%- endunless -%}
+
+
+      {%- when 'blockquote' -%}
+      {% render 'blockquote' with blockquote: block.settings.blockquote %}
+      {%- when 'outro_section' -%}
+      {% render 'image-with-text' with 
+       image: block.settings.image,
+       desktop_image_width: block.settings.desktop_image_width,
+       layout: block.settings.layout,
+       color_scheme: block.settings.color_scheme,
+       desktop_content_position: block.settings.desktop_content_position,
+       desktop_content_alignment: block.settings.desktop_content_alignment,
+       image_behavior: block.settings.image_behavior,
+       section_id: block.id,
+       mobile_content_alignment: block.settings.mobile_content_alignment
+       blocks: false,
+       no_blocks: true,
+       text: block.settings.text %}
+    {%- endcase -%}
+  {%- endfor -%}
 </article>
 
 
@@ -346,11 +447,11 @@
 </article> {% endcomment %}<script type="application/ld+json">
   {
   "@context": "http://schema.org",
-                                                                    "@type": "Article",
-                                                                    "articleBody": {{ article.content | strip_html | json }},
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              "@type": "Article",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              "articleBody": {{ article.content | strip_html | json }},
   "mainEntityOfPage": {
-                                                                      "@type": "WebPage",
-                                                                      "@id": {{ request.origin | append: page.url | json }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "@type": "WebPage",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "@id": {{ request.origin | append: page.url | json }}
   },
   "headline": {{ article.title | json }},
   {% if article.excerpt != blank %}
@@ -364,12 +465,12 @@
   "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
   "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
   "author": {
-                                                                      "@type": "Person",
-                                                                      "name": {{ article.author | json }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "@type": "Person",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "name": {{ article.author | json }}
   },
   "publisher": {
-                                                                      "@type": "Organization",
-                                                                      "name": {{ shop.name | json }}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "@type": "Organization",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "name": {{ shop.name | json }}
   }
   }
 </script>
@@ -390,75 +491,284 @@
         "type": "@app"
       },
       {
-        "type": "featured_image",
-        "name": "t:sections.main-article.blocks.featured_image.name",
+        "type": "intro_section",
+        "name": "Intro Section",
         "limit": 1,
         "settings": [
+          {
+            "type": "header",
+            "content": "Intro Section"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
           {
             "type": "select",
-            "id": "image_height",
+            "id": "desktop_image_width",
             "options": [
               {
-                "value": "adapt",
-                "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
-              }, {
                 "value": "small",
-                "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+                "label": "t:sections.image-with-text.settings.desktop_image_width.options__1.label"
               }, {
                 "value": "medium",
-                "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+                "label": "t:sections.image-with-text.settings.desktop_image_width.options__2.label"
               }, {
                 "value": "large",
-                "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+                "label": "t:sections.image-with-text.settings.desktop_image_width.options__3.label"
               }
             ],
-            "default": "adapt",
-            "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
-            "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+            "default": "medium",
+            "label": "t:sections.image-with-text.settings.desktop_image_width.label",
+            "info": "t:sections.image-with-text.settings.desktop_image_width.info"
+          }, {
+            "type": "select",
+            "id": "layout",
+            "options": [
+              {
+                "value": "image_first",
+                "label": "t:sections.image-with-text.settings.layout.options__1.label"
+              }, {
+                "value": "text_first",
+                "label": "t:sections.image-with-text.settings.layout.options__2.label"
+              }
+            ],
+            "default": "image_first",
+            "label": "t:sections.image-with-text.settings.layout.label",
+            "info": "t:sections.image-with-text.settings.layout.info"
+          }, {
+            "type": "select",
+            "id": "desktop_content_position",
+            "options": [
+              {
+                "value": "top",
+                "label": "t:sections.image-with-text.settings.desktop_content_position.options__1.label"
+              }, {
+                "value": "middle",
+                "label": "t:sections.image-with-text.settings.desktop_content_position.options__2.label"
+              }, {
+                "value": "bottom",
+                "label": "t:sections.image-with-text.settings.desktop_content_position.options__3.label"
+              }
+            ],
+            "default": "top",
+            "label": "t:sections.image-with-text.settings.desktop_content_position.label"
+          }, {
+            "type": "select",
+            "id": "text_style",
+            "options": [
+              {
+                "value": "body",
+                "label": "Unica 77"
+              }, {
+                "value": "subtitle",
+                "label": "Nitti"
+              }
+            ],
+            "default": "body",
+            "label": "t:sections.image-with-text.blocks.text.settings.text_style.label"
+          }, {
+            "type": "select",
+            "id": "desktop_content_alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Push Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Push Right"
+              }
+            ],
+            "default": "left",
+            "label": "t:sections.image-with-text.settings.desktop_content_alignment.label"
+          }, {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "default": "background-1"
+          }, {
+            "type": "header",
+            "content": "t:sections.all.padding.section_padding_heading"
+          }, {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_top",
+            "default": 36
+          }, {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_bottom",
+            "default": 36
           }
         ]
       },
       {
-        "type": "title",
-        "name": "t:sections.main-article.blocks.title.name",
+        "type": "description",
+        "name": "t:sections.main-product.blocks.description.name",
+        "limit": 1
+      },
+      {
+        "type": "imgs_with_captions",
+        "name": "Images with Captions",
+        "limit": 1
+      }, {
+        "type": "blockquote",
+        "name": "Blockquote",
         "limit": 1,
         "settings": [
           {
-            "type": "checkbox",
-            "id": "blog_show_date",
-            "default": true,
-            "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
-          }, {
-            "type": "checkbox",
-            "id": "blog_show_author",
-            "default": false,
-            "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+            "type": "richtext",
+            "id": "blockquote",
+            "label": "Blockquote"
           }
         ]
-      },
-      {
-        "type": "content",
-        "name": "t:sections.main-article.blocks.content.name",
-        "limit": 1
       }, {
-        "type": "share",
-        "name": "t:sections.main-article.blocks.share.name",
-        "limit": 2,
+        "type": "outro_section",
+        "name": "Outro Section",
+        "limit": 1,
         "settings": [
           {
-            "type": "text",
-            "id": "share_label",
-            "label": "t:sections.main-article.blocks.share.settings.text.label",
-            "default": "Share"
+            "type": "header",
+            "content": "Outro Section"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "text_style",
+            "options": [
+              {
+                "value": "body",
+                "label": "Unica 77"
+              }, {
+                "value": "subtitle",
+                "label": "Nitti"
+              }
+            ],
+            "default": "body",
+            "label": "t:sections.image-with-text.blocks.text.settings.text_style.label"
           }, {
-            "type": "paragraph",
-            "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+            "type": "select",
+            "id": "desktop_image_width",
+            "options": [
+              {
+                "value": "small",
+                "label": "t:sections.image-with-text.settings.desktop_image_width.options__1.label"
+              }, {
+                "value": "medium",
+                "label": "t:sections.image-with-text.settings.desktop_image_width.options__2.label"
+              }, {
+                "value": "large",
+                "label": "t:sections.image-with-text.settings.desktop_image_width.options__3.label"
+              }
+            ],
+            "default": "medium",
+            "label": "t:sections.image-with-text.settings.desktop_image_width.label",
+            "info": "t:sections.image-with-text.settings.desktop_image_width.info"
           }, {
-            "type": "paragraph",
-            "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+            "type": "select",
+            "id": "layout",
+            "options": [
+              {
+                "value": "image_first",
+                "label": "t:sections.image-with-text.settings.layout.options__1.label"
+              }, {
+                "value": "text_first",
+                "label": "t:sections.image-with-text.settings.layout.options__2.label"
+              }
+            ],
+            "default": "image_first",
+            "label": "t:sections.image-with-text.settings.layout.label",
+            "info": "t:sections.image-with-text.settings.layout.info"
+          }, {
+            "type": "select",
+            "id": "desktop_content_position",
+            "options": [
+              {
+                "value": "top",
+                "label": "t:sections.image-with-text.settings.desktop_content_position.options__1.label"
+              }, {
+                "value": "middle",
+                "label": "t:sections.image-with-text.settings.desktop_content_position.options__2.label"
+              }, {
+                "value": "bottom",
+                "label": "t:sections.image-with-text.settings.desktop_content_position.options__3.label"
+              }
+            ],
+            "default": "top",
+            "label": "t:sections.image-with-text.settings.desktop_content_position.label"
+          }, {
+            "type": "select",
+            "id": "desktop_content_alignment",
+            "options": [
+              {
+                "value": "left",
+                "label": "Push Left"
+              }, {
+                "value": "center",
+                "label": "Center"
+              }, {
+                "value": "right",
+                "label": "Push Right"
+              }
+            ],
+            "default": "left",
+            "label": "t:sections.image-with-text.settings.desktop_content_alignment.label"
+          }, {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:sections.all.colors.label",
+            "default": "background-1"
+          }, {
+            "type": "header",
+            "content": "t:sections.all.padding.section_padding_heading"
+          }, {
+            "type": "range",
+            "id": "padding_top",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_top",
+            "default": 36
+          }, {
+            "type": "range",
+            "id": "padding_bottom",
+            "min": 0,
+            "max": 100,
+            "step": 4,
+            "unit": "px",
+            "label": "t:sections.all.padding.padding_bottom",
+            "default": 36
           }
         ]
       }
+
     ]
   }
 {% endschema %}

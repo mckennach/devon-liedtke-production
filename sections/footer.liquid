@@ -18,8 +18,7 @@
               {%- endfor -%}
             </ul>
         </nav>
-        <div class="footer__newsletter">
-
+        <div class="footer__newsletter" data-append-to-mobile=".footer__submark-container" data-append-to-desktop=".footer__navigation" clone >
             {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
               <input
                 type="hidden"
@@ -88,6 +87,7 @@
           </a>
         </div>
       </div>
+    
     </div>
   </div>
 </footer>

@@ -5,23 +5,15 @@
     assign posts_exceed_limit = true
     assign posts_displayed = section.settings.post_limit
   endif
+  
 
-  if template == 'article'
-    assign blogs = section.settings.blogs
-    assign blog_count = blogs | size
-    assign article_objects = ''
-    if blog_count
-      for link in blogs.links
-        assign blog = link.object
-        for article in blog.articles
-          assign article_obj = article.published_at | append: '&article_handle=' | append: article.handle | append: '&blog_handle=' | append: blog.handle  
-          assign article_objects = article_objects | append: article_obj | append: ','
-        endfor
-      endfor
-    endif
-    assign article_objects = article_objects | split: ',' | sort | reverse
-  endif
+  assign block_size = section.blocks | size
+  assign blog_link = section.settings.block | default: false
+  
+
 -%}
+
+
 <div class="featured-blog {% if section.settings.heading == blank %} no-heading{% endif %}" data-scheme="{{ section.settings.color_scheme }}">
   <div class="featured-blog__container">
 
@@ -58,8 +50,35 @@
     <div class="featured-blog__article-container" container>
 
       <ul class="featured-blog__posts " role="list">
-        {%- if section.settings.blog != blank and section.settings.blog.articles_count > 0 -%}
-          {%- for article in section.settings.blog.articles limit: section.settings.post_limit -%}
+
+
+        {% if block_size > 0 %}
+          {%- for block in section.blocks -%}
+            {% liquid
+                assign article_item = articles[block.settings.featured_article]
+                assign split_1 = article_item.url | split: '/blogs/'
+                assign split_2 = split_1[1] | split: '/'
+                assign blog_handle = split_2[0] | strip
+                assign article_blog = blogs[blog_handle]
+            %}
+            <li
+              class="featured-blog__post {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+              style="--animation-order: {{ forloop.index }};"
+              {% endif %}>
+              {% render 'card-article'
+               , blog_handle: blog_handle,
+               article: article_item,
+               media_aspect_ratio: 1.66,
+               show_image: true,
+               show_date: true,
+               show_author: false,
+               show_excerpt: false %}
+            </li>
+          {%- endfor -%}
+        {% elsif section.settings.blog.articles_count > 0 %}
+          {%- for article_item in section.settings.blog.articles limit: section.settings.post_limit -%}
             <li
               class="featured-blog__post {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
               {% if settings.animations_reveal_on_scroll %}
@@ -67,47 +86,69 @@
               style="--animation-order: {{ forloop.index }};"
               {% endif %}>
 
-              {%- if template == 'article' -%}
-                {% if blog_count %}
-                  {% for obj in article_objects %}
-                    {% assign new_objects = obj | split: '&' %}
-                    {% for new_obj in new_objects %}
-                      {% assign keyValues = new_obj | split: '=' %}
-                      {% assign key = keyValues | first %}
-                      {% assign value = keyValues | last %}
-                      {% if key == 'article_handle' %}
-                        {% assign article = articles[value] %}
-                      {% elsif key == 'blog_handle' %}
-                        {% assign blog_handle = value %}
-                      {% endif %}
-                    {% endfor %}
 
-                    {% render 'card-article'
-                     , blog_handle: blog_handle,
-                     article: article,
-                     media_aspect_ratio: 1.66,
-                     show_image: true,
-                     show_date: true,
-                     show_author: false,
-                     show_excerpt: true %}
-
-                  {% endfor %}
-                {% endif %}
-              {%- else -%}
-                {% render 'card-article'
-                 , blog_handle: section.settings.blog,
-                 article: article,
-                 media_aspect_ratio: 1.66,
-                 show_image: true,
-                 show_date: section.settings.show_date,
-                 show_author: section.settings.show_author,
-                 show_excerpt: false %}
-              {%- endif -%}
+              {% render 'card-article'
+               , blog_handle: section.settings.blog,
+               article: article_item,
+               media_aspect_ratio: 1.66,
+               show_image: true,
+               show_date: section.settings.show_date,
+               show_author: section.settings.show_author,
+               show_excerpt: false %}
 
 
             </li>
           {%- endfor -%}
-        {%- endif -%}
+        {% elsif section.settings.blogs != empty %}
+          {% liquid
+              assign blogs = section.settings.blogs
+              assign blog_count = blogs | size
+              assign article_objects = ''
+              if blog_count
+                for link in blogs.links
+                  assign blog = link.object
+                  for article in blog.articles
+                    assign article_obj = article.published_at | append: '&article_handle=' | append: article.handle | append: '&blog_handle=' | append: blog.handle  
+                    assign article_objects = article_objects | append: article_obj | append: ','
+                  endfor
+                endfor
+              endif
+              assign article_objects = article_objects | split: ',' | sort | reverse
+          %}
+          {% if blog_count %}
+            {% for obj in article_objects limit: section.settings.post_limit %}
+              {% assign new_objects = obj | split: '&' %}
+              {% for new_obj in new_objects %}
+                {% assign keyValues = new_obj | split: '=' %}
+                {% assign key = keyValues | first %}
+                {% assign value = keyValues | last %}
+                {% if key == 'article_handle' %}
+                  {% assign article_item = articles[value] %}
+                {% elsif key == 'blog_handle' %}
+                  {% assign blog_handle = value %}
+                {% endif %}
+              {% endfor %}
+
+
+              <li
+                class="featured-blog__post {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+                {% endif %}>
+
+                {% render 'card-article'
+                 , blog_handle: blog_handle,
+                 article: article_item,
+                 media_aspect_ratio: 1.66,
+                 show_image: true,
+                 show_date: true,
+                 show_author: false,
+                 show_excerpt: true %}
+              </li>
+            {% endfor %}
+          {% endif %}
+        {% endif %}
       </ul>
 
     </div>
@@ -187,7 +228,7 @@
       {
         "type": "featured_article",
         "name": "Featured Article",
-        "limit": 4,
+        "limit": 3,
         "settings": [
           {
             "type": "article",

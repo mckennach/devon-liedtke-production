@@ -23,7 +23,7 @@
     }
 
     &__txt-inner-container {
-        @include flexbox($justifyContent: space-between);
+        @include flexbox($justifyContent: space-between, $wrap: wrap);
     }
 
     &:hover &__txt-container {

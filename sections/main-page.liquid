@@ -1,33 +1,16 @@
-{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+<div class="page">
+  {% render 'heading' 
+   with title: page.title,
+   title_tag: 'h1',
+   class: 'default',
+   animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
 
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}
-    px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}
-    px;
-  }
-
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}
-      px;
-      padding-bottom: {{ section.settings.padding_bottom }}
-      px;
-    }
-  }
-{%- endstyle -%}
-
-<div
-  class="page-width--narrow section-{{ section.id }}-padding">
-  <h1
-    class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
-    {{ page.title | escape }}
-  </h1>
-  <div
-    class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-    {{ page.content }}
+  <div class="page__container" container-md>
+    <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      {{ page.content }}
+    </div>
   </div>
+
 </div>
 
 {% schema %}

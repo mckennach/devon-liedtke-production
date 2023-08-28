@@ -1,11 +1,17 @@
 .contact {
     padding: rem(100) 0;
+    @include breakpoint(tablet) {
+        padding: 0 0 rem(100);
+    }
     &__container {
         @include flexbox($justifyContent: space-between, $wrap: wrap);
     }
 
     &__heading-container {
         max-width: rem(560);
+        @include breakpoint(tablet) {
+            margin-bottom: rem(50);
+        }
         h2 {
             @include type-style(secondary);
             // font-size: rem(16);
@@ -41,7 +47,7 @@
                 border: none;
                 box-shadow: none;
                 outline: none;
-                padding: rem(15) 0;
+                padding: rem(15);
     
                 @include input-placeholder {
                     color: var(--color-text-primary);

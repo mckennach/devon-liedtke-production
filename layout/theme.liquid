@@ -77,7 +77,6 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-    <script src="{{ 'main.js' | asset_url }}" defer></script>
     <script src="{{ 'details-disclosure.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
@@ -89,7 +88,7 @@
   <body
     id="theme-{{ template | replace: '.', '-' }}"
     class="{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} "
-    data-theme=color-background-1>
+    data-theme="{% if theme == 'cart' %}color-converse{% else %}color-background-1{% endif  %}">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>
@@ -99,18 +98,24 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
+    {% if template == 'index' %}
+      {% render 'landing' %}
+    {% endif %}
+    <div class="site-wrapper">
+      {% render 'scroll-overlay' %}
+      {% sections 'header-group' %}
 
-    {% sections 'header-group' %}
 
-    <main
-      id="MainContent"
-      class="content-for-layout focus-none"
-      role="main"
-      tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+      <main
+        id="MainContent"
+        class="content-for-layout focus-none"
+        role="main"
+        tabindex="-1">
+        {{ content_for_layout }}
+      </main>
 
-    {% sections 'footer-group' %}
+      {% sections 'footer-group' %}
+    </div>
 
 
     <ul hidden>
@@ -119,6 +124,7 @@
     </ul>
 
     <script>
+      window.template = '{{ template }}';
       window.shopUrl = '{{ request.origin }}';
       window.routes = {
         cart_add_url: '{{ routes.cart_add_url }}',
@@ -154,5 +160,7 @@
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
     <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'main.js' | asset_url }}" defer></script>
+
   </body>
 </html>

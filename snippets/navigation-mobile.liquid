@@ -1,0 +1,154 @@
+<div class="mobile-navigation ">
+  {% render 'menu-bar' %}
+  <mobile-navigation id="MobileNavigation" class="mobile-navigation__container color-inverse">
+    {%- assign title = 'Cart (' | append: cart.item_count | append: ' )' -%}
+    {%- assign search_active = false -%}
+    <nav class="mobile-navigation__navigation" role="navigation">
+      <ul class="mobile-navigation__menu list-menu" role="menu">
+        {% comment %} <li class="mobile-navigation__menu-list-item has-submenu ">
+          <a
+          id="HeaderDrawer-home-mobile"
+          href="/"
+          class="mobile-navigation__menu-item header-drawer-home list-menu__item link link--text focus-inset{% if template == 'index' %} mobile-navigation__menu-item--active{% endif %}"
+          {% if template == 'index' %}
+          aria-current="page"
+          {% endif %}>
+          <span>
+          Home
+          </span>
+          </a>
+        </li> {% endcomment %}
+        {%- for link in links -%}
+          {% liquid
+
+              if link.handle == 'the-edit' and template == 'article' or template == 'blog'
+                assign open = true
+              
+              elsif link.handle == 'shop' and template == 'collection'
+                assign open = true
+              else 
+                assign open = fasle
+              endif 
+             
+            %}
+
+
+          <li class="mobile-navigation__menu-list-item has-submenu ">
+            {%- if link.links != blank -%}
+              <details id="Details-mobile-navigation-menu-item-{{ forloop.index }}" {% if open %}open{% endif %}>
+                <summary id="HeaderDrawer-{{ link.handle }}" class="mobile-navigation__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} mobile-navigation__menu-item--active{% endif %} toggle-plus-container submenu-toggle">
+                  {{ link.title | escape }}
+                  <div
+                    class="mobile-navigation__submenu-toggle toggle-plus "
+                    role="menuitem"
+                    tabindex="-1">
+                    <span></span>
+                    <span></span>
+                  </div>
+                </summary>
+                <div
+                  id="link-{{ link.handle | escape }}"
+                  class="mobile-navigation__submenu has-submenu gradient motion-reduce"
+                  tabindex="-1">
+                  <div
+                    class="mobile-navigation__inner-submenu">
+                    <ul
+                      class="mobile-navigation__menu list-menu"
+                      role="list"
+                      tabindex="-1">
+                      {%- for childlink in link.links -%}
+                        <li class="mobile-navigation__submenu-list-item">
+                          {%- if childlink.links == blank -%}
+                            <a
+                              id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}"
+                              href="{{ childlink.url }}"
+                              class="mobile-navigation__menu-item link link--text list-menu__item focus-inset{% if childlink.current %} mobile-navigation__menu-item--active{% endif %}"
+                              {% if childlink.current %}
+                              aria-current="page"
+                              {% endif %}>
+                              {{ childlink.title | escape }}
+                            </a>
+                          {%- else -%}
+                            <details id="Details-mobile-navigation-{{ link.handle }}-{{ childlink.handle }}">
+                              <summary id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}" class="mobile-navigation__menu-item link link--text list-menu__item focus-inset">
+                                {{ childlink.title | escape }}
+
+                              </summary>
+                              <div id="childlink-{{ childlink.handle | escape }}" class="mobile-navigation__submenu has-submenu gradient motion-reduce">
+                                <button class="mobile-navigation__close-button link link--text focus-inset" aria-expanded="true">
+                                  {% render 'icon-arrow' %}
+                                  {{ childlink.title | escape }}
+                                </button>
+                                <ul
+                                  class="mobile-navigation__menu list-menu"
+                                  role="list"
+                                  tabindex="-1">
+                                  {%- for grandchildlink in childlink.links -%}
+                                    <li>
+                                      <a
+                                        id="HeaderDrawer-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}"
+                                        href="{{ grandchildlink.url }}"
+                                        class="mobile-navigation__menu-item link link--text list-menu__item focus-inset{% if grandchildlink.current %} mobile-navigation__menu-item--active{% endif %}"
+                                        {% if grandchildlink.current %}
+                                        aria-current="page"
+                                        {% endif %}>
+                                        {{ grandchildlink.title | escape }}
+                                      </a>
+                                    </li>
+                                  {%- endfor -%}
+                                </ul>
+                              </div>
+                            </details>
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                  </div>
+                </div>
+              </details>
+            {%- else -%}
+
+
+              <a
+                id="HeaderDrawer-{{ link.handle }}-mobile"
+                href="{{ link.url }}"
+                class="mobile-navigation__menu-item header-drawer-{{ link.handle }} list-menu__item link link--text focus-inset{% if link.current %} mobile-navigation__menu-item--active{% endif %}"
+                {% if link.current %}
+                aria-current="page"
+                {% endif %}>
+                <span>
+                  {{ link.title | escape }}
+                  {%- if link.handle == 'cart' and cart != empty -%}
+                    {%- if cart.item_count < 100 -%}
+                      <div
+                        id="cart-count"
+                        class="cart-count"
+                        style="display: inline-block">
+                        <span aria-hidden="true">( {{ cart.item_count }} )</span>
+                      </div>
+                    {%- endif -%}
+                    <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+                  {%- endif -%}
+                </span>
+              </a>
+              {%- if link.handle == 'search' -%}
+                {% assign search_active = true %}
+              {%- endif -%}
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+    <div>
+      {%- if search_active -%}
+        {% render 'search-form', input_id: 'Search-In-Modal-Mobile' %}
+      {%- endif -%}
+
+      <div class="mobile-navigation__submark">
+        {% render 'icon-logo-submark' with id: 'submark-dropdown' %}
+      </div>
+    </div>
+
+
+  </mobile-navigation>
+</div>
