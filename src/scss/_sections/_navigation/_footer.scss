@@ -18,6 +18,11 @@
     &__submark-container {
         @include flexbox($justifyContent: flex-end, $alignItems: flex-end);
         margin-top: rem(100);
+        svg {
+            max-width: 10rem;
+            height: 100%;
+        }
+
     }
 
     &__details-content {
@@ -26,6 +31,8 @@
             @include make-col(4);
             margin-bottom: rem(6);
         }
+
+        
     }
 
     &__content-container {

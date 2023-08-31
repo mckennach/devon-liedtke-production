@@ -1,0 +1,18 @@
+{%- comment -%}
+  Renders Placeholder Image (filtering and sorting)
+  Accepts:
+  - class: {String} Title
+  - height: {Number} Title
+  - width: {Number} Title
+
+
+  Usage:
+  In your liquid template file, copy the following line
+  {% render 'placeholder-image' with id: '', class: '', width: 0, height: 0 %}
+{%- endcomment -%}
+
+
+<div
+  class="placeholder-image__image-container {{ class }}__placeholder-image-container">
+  {% render 'icon-logo-submark' with id: id %}
+</div>

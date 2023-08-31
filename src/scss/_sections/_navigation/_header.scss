@@ -40,10 +40,10 @@
 
         svg {
             height: 100%;
-            @include max-width(300);
+            @include max-width(250);
             @include breakpoint(desktop) {
                 height: 100%;
-                @include max-width(230);
+                @include max-width(200);
             }
             @include breakpoint(tablet) {
                 height: 100%;
@@ -56,6 +56,13 @@
         }
     }
 }
+
+.landing-active {
+    .header__heading-logo-wrapper {
+        opacity: 0;
+    }
+}
+
 
 #theme-index {
     .header {

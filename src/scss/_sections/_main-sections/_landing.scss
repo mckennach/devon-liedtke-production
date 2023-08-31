@@ -1,6 +1,6 @@
 landing {
     @include breakpoint(tabletup) {
-        background-color: var(--color-text-primary);
+        background-color: var(--color-canvas-primary);
         background-attachment: fixed;
     }
     // background: var(--color-text-primary);
@@ -8,12 +8,12 @@ landing {
     background-repeat: no-repeat;
     // background-color: var(--color-text-primary);
     background-size: cover;
-    height: 100%;
+    height: 100dvh;
     width: 100%;
     min-height: 100px;
     display: block;
     position: relative;
-    z-index: 3;
+    // z-index: 3;
     -webkit-transition: background 300ms ease-in 200ms;
     -moz-transition: background 300ms ease-in 200ms;
     -o-transition: background 300ms ease-in 200ms;
@@ -23,14 +23,16 @@ landing {
     /* Chrome, Safari, Opera */
     animation: fade-in-bg .3s;
     position: fixed;
-    overflow: scroll;
+    left: 0;
+    top: 0;
+
 }
 
 .landing {
-    height: 300dvh;
+    height: 100dvh;
     width: 100%;
     max-width: 100%;
-    position: relative;
+    // position: fixed;
     
     &__content-area {
         position: sticky;
@@ -41,27 +43,7 @@ landing {
         min-height: 100px;
     }
 
-    
-//     &__image-container {
-//         @include aspect-ratio(16,9);
-//         height: 100%;
-//         position: absolute;
-//         width: 100%;
-//         top: 0;
-//         left: 0;
-       
-//         @include breakpoint(tablet) {
-//             @include aspect-ratio(9,16);
-//             height: 100%;
-//             position: absolute;
-//             width: 100%;
-//             top: 0;
-//             left: 0;
-//         }
-
-        
-// }
-    
+ 
 
     &__container {
         position: relative;
@@ -75,12 +57,14 @@ landing {
 
     &__inner-container {
         height: 100%;
-        position: relative
+        width: 100%;
+        position: relative;
+        top: 0;
     }
 
     &__title {
         @include landing-title;
-        color: var(--color-canvas-primary);
+        color: var(--color-text-primary);
         max-width: 92%;
         margin-left: 0;
         margin-right: auto;
@@ -93,13 +77,17 @@ landing {
     }
     
     &__logo {
-        position: absolute;
-        bottom: -10%;
+        // position: absolute;
+        // bottom: -10%;
+        @include centerer;
         opacity: 0;
         width: 100%;
         max-width: 100%;
-        padding: 0;
-        left: 0;
+
+        // left: 0;
+        // right: 0;
+        @include max-width(350);
+
         svg {
             height: 100%;
             width: 100%;

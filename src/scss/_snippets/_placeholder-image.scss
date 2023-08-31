@@ -1,0 +1,11 @@
+.placeholder-image {
+    &__image-container {
+        position: relative;
+        background-color: #d5d3c6;
+        svg {
+            @include centerer;
+                max-width: 60%;
+                margin: auto;
+        }
+    }
+}

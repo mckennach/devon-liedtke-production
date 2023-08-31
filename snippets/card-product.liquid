@@ -29,52 +29,68 @@
   class="{{ class }}__item card-product {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
   data-cascade
   style="--animation-order: {{ index }};">
-  <a href="{{ card_product.url }}" data-id="{{ card_product.id }}">
-    <div class="{{ class }}__img-container card-product__img-container {{ image_ratio }}">
-      {%- if image_ration == 'portrait' -%}
-        <img
-          srcset="{% if card_product.featured_image.width >= 288 %}
-          {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
-        {% if card_product.featured_image.width >= 576 %}
-          {{ card_product.featured_image | image_url: width: 576 }} 576w,{% endif %}
-        {% if card_product.featured_image.width >= 550 %}
-          {{ card_product.featured_image | image_url: width: 550 }} 550w,{% endif %}
-        {% if card_product.featured_image.width >= 1100 %}
-          {{ card_product.featured_image | image_url: width: 1100 }} 1100w,{% endif %}
-        {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
-        src="{{ card_product.featured_image | image_url: width: 715, height: 550 }}"
-        loading="lazy"
-        width="715"
-        height="{{ 645 | divided_by: card_product.featured_image.aspect_ratio }}"
-        alt="{{ card_product.featured_image.alt | escape }}"
-        class="{{ class }}__img card-product__img">
-      {%- else -%}
-        <img
-          srcset="{% if card_product.featured_image.width >= 288 %}
-          {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
-        {% if card_product.featured_image.width >= 576 %}
-          {{ card_product.featured_image | image_url: width: 576 }} 576w,{% endif %}
-        {% if card_product.featured_image.width >= 550 %}
-          {{ card_product.featured_image | image_url: width: 550 }} 550w,{% endif %}
-        {% if card_product.featured_image.width >= 1100 %}
-          {{ card_product.featured_image | image_url: width: 1100 }} 1100w,{% endif %}
-        {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
-        src="{{ card_product.featured_image | image_url: width: 1000, height: 801 }}"
-        loading="lazy"
-        width="1000"
-        height="{{ 801 | divided_by: card_product.featured_image.aspect_ratio }}"
-        alt="{{ card_product.featured_image.alt | escape }}"
-        class="{{ class }}__img card-product__img">
-      {%- endif -%}
+  <a
+    href="{{ card_product.url }}"
+    data-id="{{ card_product.id }}">
 
-    </div>
+
+    {%- if card_product.featured_image != blank -%}
+      <div
+        class="{{ class }}__img-container card-product__img-container {{ image_ratio }}">
+        {%- if image_ration == 'portrait' -%}
+          <img
+            srcset="{% if card_product.featured_image.width >= 288 %}
+            {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
+          {% if card_product.featured_image.width >= 576 %}
+            {{ card_product.featured_image | image_url: width: 576 }} 576w,{% endif %}
+          {% if card_product.featured_image.width >= 550 %}
+            {{ card_product.featured_image | image_url: width: 550 }} 550w,{% endif %}
+          {% if card_product.featured_image.width >= 1100 %}
+            {{ card_product.featured_image | image_url: width: 1100 }} 1100w,{% endif %}
+          {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
+          src="{{ card_product.featured_image | image_url: width: 715, height: 550 }}"
+          loading="lazy"
+          width="715"
+          height="{{ 645 | divided_by: card_product.featured_image.aspect_ratio }}"
+          alt="{{ card_product.featured_image.alt | escape }}"
+          class="{{ class }}__img card-product__img">
+        {%- else -%}
+          <img
+            srcset="{% if card_product.featured_image.width >= 288 %}
+            {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
+          {% if card_product.featured_image.width >= 576 %}
+            {{ card_product.featured_image | image_url: width: 576 }} 576w,{% endif %}
+          {% if card_product.featured_image.width >= 550 %}
+            {{ card_product.featured_image | image_url: width: 550 }} 550w,{% endif %}
+          {% if card_product.featured_image.width >= 1100 %}
+            {{ card_product.featured_image | image_url: width: 1100 }} 1100w,{% endif %}
+          {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
+          src="{{ card_product.featured_image | image_url: width: 1000, height: 801 }}"
+          loading="lazy"
+          width="1000"
+          height="{{ 801 | divided_by: card_product.featured_image.aspect_ratio }}"
+          alt="{{ card_product.featured_image.alt | escape }}"
+          class="{{ class }}__img card-product__img">
+        {%- endif -%}
+      </div>
+
+    {%- else -%}
+      {% render 'placeholder-image' with id: card_product.id, class: 'portrait card-product', width: 715, height: 550 %}
+
+
+    {%- endif -%}
+
     {% comment %} {% render 'responsive-image' with image: card_product.featured_image, image_class: "{{ class }}__img card-product__img", wrapper_class: "{{ class }}__img-container card-product__img-container", max_width: 715, max_height: 550 %} {% endcomment %}
-    <div class="{{ class }}__txt-container card-product__txt-container">
-      <div class="{{ class }}__txt-inner-container card-product__txt-inner-container">
-        <div class="{{ class }}__product-title card-product__product-title">
+    <div
+      class="{{ class }}__txt-container card-product__txt-container">
+      <div
+        class="{{ class }}__txt-inner-container card-product__txt-inner-container">
+        <div
+          class="{{ class }}__product-title card-product__product-title">
           {{ card_product.title }}
         </div>
-        <div class="{{ class }}__price-container card-product__price-container">
+        <div
+          class="{{ class }}__price-container card-product__price-container">
           {% render 'price', product: card_product, price_class: '' %}
         </div>
       </div>

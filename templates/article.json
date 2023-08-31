@@ -63,8 +63,6 @@
     "4bb22905-46bd-4056-83e4-1bea3b4761f2": {
       "type": "featured-collection-blog",
       "settings": {
-        "title": "Featured collection",
-        "description": "",
         "collection": "{{ article.metafields.custom.featured_collection.value }}",
         "products_to_show": 4,
         "color_scheme": ""

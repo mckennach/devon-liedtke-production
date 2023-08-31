@@ -19,7 +19,7 @@
           "type": "look",
           "settings": {
             "title": "SHOP         THE                         LOOK",
-            "collection": "look-1"
+            "collection": "shop-the-look"
           }
         },
         "e569505e-e020-451b-ba96-3322f68d0ac6": {
@@ -32,7 +32,6 @@
             "enable_video_looping": true,
             "enable_video_autoplay": true,
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
-            "cover_image": "shopify:\/\/shop_images\/Rectangle_177.jpg",
             "description": ""
           }
         },
@@ -40,7 +39,7 @@
           "type": "look",
           "settings": {
             "title": "Shop      the             look",
-            "collection": "look-1"
+            "collection": "shop-the-look"
           }
         },
         "f5e1ace4-1650-4229-9a0a-30309313a16b": {

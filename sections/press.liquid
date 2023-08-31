@@ -1,8 +1,6 @@
-<div
-  class="press">
+<div id="press" class="press">
   {%- if section.settings.title -%}
-    <div
-      class="press__heading">
+    <div class="press__heading">
       {% render 'heading' 
        with title: section.settings.title,
        title_tag: 'h2',
@@ -10,11 +8,8 @@
        animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
     </div>
   {%- endif -%}
-  <div
-    class="press__container">
-    <div
-      class="press__entry-container"
-      container-sm>
+  <div class="press__container">
+    <div class="press__entry-container" container-sm>
       <div>
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -48,11 +43,8 @@
         {%- endfor -%}
       </div>
     </div>
-    <div
-      class="press__image-background">
-      <div
-        class="press__image-background-container"
-        container>
+    <div class="press__image-background">
+      <div class="press__image-background-container" container>
         {%- for block in section.blocks limit: 3 -%}
           {%- case block.type -%}
             {%- when 'press_entry' -%}
@@ -64,33 +56,35 @@
                   assign aspect = 'portrait'
                 endif
               %}
-            <div
-              class="press__image-outter-container">
-              <div
-                class="press__image-container"
-                data-id="{{ block.id }}"
-                data-aspect="{{ aspect | escape }}">
+            {% if image != blank %}
+              <div class="press__image-outter-container">
+                <div
+                  class="press__image-container"
+                  data-id="{{ block.id }}"
+                  data-aspect="{{ aspect | escape }}">
 
-                <img
-                  srcset="{% if image.width >= 288 %}
-                  {{ image | image_url: width: 288 }} 288w,{% endif %}
-                {% if image.width >= 576 %}
-                  {{ image | image_url: width: 576 }} 576w,{% endif %}
-                {% if image.width >= 550 %}
-                  {{ image | image_url: width: 550 }} 550w,{% endif %}
-                {% if image.width >= 1100 %}
-                  {{ image | image_url: width: 1100 }} 1100w,{% endif %}
-                {{ image | image_url }} {{ image.width }}w"
-                src="{{ image | image_url: width: 715, height: 550 }}"
-                loading="lazy"
-                width="715"
-                height="{{ 645 | divided_by: image.aspect_ratio }}"
-                alt="{{ image.alt | escape }}"
-                class="press__image scroll-trigger animate--slide-in"
-                data-cascade
-                style="--animation-order: {{ forloop.index }};">
+                  <img
+                    srcset="{% if image.width >= 288 %}
+                    {{ image | image_url: width: 288 }} 288w,{% endif %}
+                  {% if image.width >= 576 %}
+                    {{ image | image_url: width: 576 }} 576w,{% endif %}
+                  {% if image.width >= 550 %}
+                    {{ image | image_url: width: 550 }} 550w,{% endif %}
+                  {% if image.width >= 1100 %}
+                    {{ image | image_url: width: 1100 }} 1100w,{% endif %}
+                  {{ image | image_url }} {{ image.width }}w"
+                  src="{{ image | image_url: width: 715, height: 550 }}"
+                  loading="lazy"
+                  width="715"
+                  height="{{ 645 | divided_by: image.aspect_ratio }}"
+                  alt="{{ image.alt | escape }}"
+                  class="press__image scroll-trigger animate--slide-in"
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};">
+                </div>
               </div>
-            </div>
+
+            {% endif %}
 
 
           {%- endcase -%}

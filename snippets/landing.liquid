@@ -23,38 +23,47 @@
 
 
   <landing
-  class="landing-bg-img"
-  data-src="{{ settings.image | img_url: '500x' }}"
-  data-days="{{ settings.days_to_hide }}"> <div class="landing">
-    <div class="landing__content-area">
-      <div class="landing__container" container>
-        <div class="landing__inner-container">
+  class="landing-bg-img">
+  <div
+    class="landing">
+    <div
+      class="landing__content-area">
+      <div
+        class="landing__container"
+        container>
+        <div
+          class="landing__inner-container">
           {%- if settings.title -%}
-            <h1 id="Landing-Title" class="landing__title">{{ settings.title }}</h1>
+            <h1
+              id="Landing-Title"
+              class="landing__title">{{ settings.title }}</h1>
           {%- endif -%}
-          <div id="Landing-Logo-Desktop" class="landing__logo tablet-hide">
-            {% render 'icon-logo-no-text' with id: 'landing', enable_white: settings.white_logo %}
+          <div
+            id="Landing-Logo-Desktop"
+            class="landing__logo tablet-hide">
+            {% render 'icon-logo-break' with id: 'landing', enable_white: false %}
           </div>
-          <div id="Landing-Logo-Mobile" class="landing__logo tabletup-hide">
-            {% render 'icon-logo-break' with id: 'landing-mobile', enable_white: settings.white_logo %}
+          <div
+            id="Landing-Logo-Mobile"
+            class="landing__logo tabletup-hide">
+            {% render 'icon-logo-break' with id: 'landing-mobile', enable_white: false %}
           </div>
         </div>
-
       </div>
     </div>
   </div>
-  <div>end</div>
+
 </landing>
 
 {% style %}
-  .landing-bg-img {
+  /* .landing-bg-img {
     background-image: url('{{ settings.image | img_url: '1920x' }}');
   }
   @media(max-width: 768px) {
     .landing-bg-img {
       background-image: url('{{ settings.mobile_image | img_url: '768x' }}');
     }
-  }
+  } */
 
   @media(max-width: 450px) {
     .landing-bg-img {

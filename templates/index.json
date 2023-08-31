@@ -1,16 +1,15 @@
 {
   "sections": {
-
     "031bb76c-fb5d-422f-a0e4-21199d80419c": {
       "type": "home-hero",
       "settings": {
-        "featured_collection": "frontpage",
+        "featured_collection": "homepage",
         "featured_img": "shopify:\/\/shop_images\/home.jpg",
-        "featured_img_caption": "Artisanal home objects,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;inspired&nbsp;&nbsp;&nbsp;&nbsp;by&nbsp;&nbsp;&nbsp;&nbsp;life in&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Barcelona.",
+        "featured_img_caption": "Artisanal home objects,     inspired    by    life in           Barcelona.",
         "color_scheme": ""
       }
     },
-    "89a89aff-387f-481a-88df-b9d4e059a70f": {
+    "441a1d18-cd1d-4cc4-806c-83f04c3234c1": {
       "type": "video",
       "settings": {
         "video_title": "",
@@ -19,8 +18,8 @@
         "link_label": "Shop the Collection",
         "enable_video_looping": true,
         "enable_video_autoplay": true,
-        "video": "shopify:\/\/files\/videos\/1087160192-preview.mp4",
-        "video_url": "https:\/\/youtu.be\/NpEaa2P7qZI",
+        "video": "shopify:\/\/files\/videos\/3c6dccf931fe47d3b484eebee6fa821b.mp4",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
         "cover_image": "shopify:\/\/shop_images\/Rectangle_218.png",
         "description": "",
         "section_size": "container-md",
@@ -32,7 +31,7 @@
       "settings": {
         "title": "Featured collection",
         "description": "",
-        "collection": "frontpage",
+        "collection": "homepage",
         "products_to_show": 4,
         "color_scheme": ""
       }
@@ -41,8 +40,8 @@
       "type": "featured-blog",
       "settings": {
         "heading": "THE       EDIT",
-        "heading_tag": "Inspired by       &   Living With     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Intentionally",
-        "blog": "living",
+        "heading_tag": "Inspired by       &   Living With                                  Intentionally",
+        "blog": "small-moment-series",
         "blogs": "",
         "post_limit": 3,
         "columns_desktop": 3,
@@ -54,7 +53,7 @@
   },
   "order": [
     "031bb76c-fb5d-422f-a0e4-21199d80419c",
-    "89a89aff-387f-481a-88df-b9d4e059a70f",
+    "441a1d18-cd1d-4cc4-806c-83f04c3234c1",
     "7d4e0139-da51-4404-b40d-dd4e182e3b00",
     "beb178d4-0523-42fa-aa4b-bf29c02c2a05"
   ]

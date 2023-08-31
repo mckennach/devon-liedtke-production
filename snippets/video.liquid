@@ -17,6 +17,7 @@
 
 {% liquid
     assign video_id = video.id | default: video_url.id
+    assign image_id = 'video-overlay-' | append: video_id 
     assign video_alt = video.alt | default: description
     assign alt = 'sections.video.load_video' | t: description: video_alt | escape
     assign poster = video.preview_image | default: cover_image
@@ -78,7 +79,7 @@
        | image_url: width: 3840
        | image_tag: loading: 'lazy', sizes: sizes, widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840', alt: alt }}
     {%- else -%}
-      {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+      {% render 'placeholder-image' with id: image_id, class: 'video video', width: 16, height: 9 %}
     {%- endif -%}
     <span
       class="deferred-media__poster-button motion-reduce">

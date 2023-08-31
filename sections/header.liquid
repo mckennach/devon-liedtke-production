@@ -1,22 +1,18 @@
 <header role="banner" class="header {% if template == 'blog' or template == 'article' %} secondary {% else %} main {% endif %}">
   <div class="header__container container">
     <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
-      {%- if settings.logo != blank -%}
-        <div class="header__heading-logo-wrapper ">
-          {%- if template == 'blog' or template == 'article' -%}
-            {% render 'icon-logo-submark' with id: 'header' %}
-          {%- else -%}
-            <div class="tablet-hide">
-              {% render 'icon-logo' with id: 'header' %}
-            </div>
-            <div class="tabletup-hide">
-              {% render 'icon-logo-mobile' with id: 'header' %}
-            </div>
-          {%- endif -%}
-        </div>
-      {%- else -%}
-        <span class="h2">{{ shop.name }}</span>
-      {%- endif -%}
+      <div class="header__heading-logo-wrapper ">
+        {%- if template == 'blog' or template == 'article' -%}
+          {% render 'icon-logo-submark' with id: 'header' %}
+        {%- else -%}
+          <div class="tablet-hide">
+            {% render 'icon-logo' with id: 'header' %}
+          </div>
+          <div class="tabletup-hide">
+            {% render 'icon-logo-mobile' with id: 'header' %}
+          </div>
+        {%- endif -%}
+      </div>
     </a>
   </div>
 </header>

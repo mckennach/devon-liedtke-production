@@ -69,7 +69,9 @@ html:not(.shopify-design-mode) .disable-scroll {
 
 
 
-
+html:not(.shopify-design-mode) .landing-active .site-wrapper {
+	opacity: 0;
+}
 
 html:not(.shopify-design-mode) .landing-active .scroll-overlay {
 

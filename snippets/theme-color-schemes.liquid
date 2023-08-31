@@ -1,27 +1,24 @@
 <script>
 
-  var obj = {};
-  {% for scheme in settings.color_schemes -%}
-    
-    obj['{{ scheme.id }}'] = {
+  var obj = {};{% for scheme in settings.color_schemes -%}obj['{{ scheme.id }}'] = {
       id: '{{ scheme.id }}',
-      colorBackground: "{{ scheme.settings.background.red }} ,     {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }}",
+      colorBackground: "{{ scheme.settings.background.red }} ,        {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }}",
       {% if scheme.settings.background_gradient != empty %}
         gradientBackground : "{{ scheme.settings.background_gradient }}",
       {% else %}
         gradientBackground : "{{ scheme.settings.background }}",
       {% endif %}
-      colorForeground: "{{ scheme.settings.text.red }} ,     {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}",
-      colorShadow: "{{ scheme.settings.shadow.red }} ,     {{ scheme.settings.shadow.green }}, {{ scheme.settings.shadow.blue }}",
-      colorButton: "{{ scheme.settings.button.red }} ,     {{ scheme.settings.button.green }}, {{ scheme.settings.button.blue }}",
-      colorButtonText: "{{ scheme.settings.button_label.red }} ,     {{ scheme.settings.button_label.green }}, {{ scheme.settings.button_label.blue }}",
-      colorSecondaryButton: "{{ scheme.settings.background.red }} ,     {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }}",
-      colorSecondaryButtonText: "{{ scheme.settings.secondary_button_label.red }} ,     {{ scheme.settings.secondary_button_label.green }}, {{ scheme.settings.secondary_button_label.blue }}",
-      colorLink: "{{ scheme.settings.secondary_button_label.red }} ,     {{ scheme.settings.secondary_button_label.green }}, {{ scheme.settings.secondary_button_label.blue }}",
-      colorBadgeForeground: "{{ scheme.settings.text.red }} ,     {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}",
+      colorForeground: "{{ scheme.settings.text.red }} ,        {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}",
+      colorShadow: "{{ scheme.settings.shadow.red }} ,        {{ scheme.settings.shadow.green }}, {{ scheme.settings.shadow.blue }}",
+      colorButton: "{{ scheme.settings.button.red }} ,        {{ scheme.settings.button.green }}, {{ scheme.settings.button.blue }}",
+      colorButtonText: "{{ scheme.settings.button_label.red }} ,        {{ scheme.settings.button_label.green }}, {{ scheme.settings.button_label.blue }}",
+      colorSecondaryButton: "{{ scheme.settings.background.red }} ,        {{ scheme.settings.background.green }}, {{ scheme.settings.background.blue }}",
+      colorSecondaryButtonText: "{{ scheme.settings.secondary_button_label.red }} ,        {{ scheme.settings.secondary_button_label.green }}, {{ scheme.settings.secondary_button_label.blue }}",
+      colorLink: "{{ scheme.settings.secondary_button_label.red }} ,        {{ scheme.settings.secondary_button_label.green }}, {{ scheme.settings.secondary_button_label.blue }}",
+      colorBadgeForeground: "{{ scheme.settings.text.red }} ,        {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}",
       colorBadgeBackground: "{{ scheme.settings.background.red }} , {{ scheme.settings.background.blue }}",
-      colorBadgeBorder: "{{ scheme.settings.text.red }} ,     {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}",
-      paymentTermsBackgroundColor: "rgb(    {{ scheme.settings.background.rgb }} )"
+      colorBadgeBorder: "{{ scheme.settings.text.red }} ,        {{ scheme.settings.text.green }}, {{ scheme.settings.text.blue }}",
+      paymentTermsBackgroundColor: "rgb(       {{ scheme.settings.background.rgb }} )"
     }
   {% endfor %}
   window.themes = obj;
@@ -98,6 +95,6 @@
     /* color: var(--color-foreground); */
     background-color: rgb(var(--color-background));
     /* background-color: var(--color-background); */
-    transition: all .5s ease-in-out;
+    transition: all 0.1s ease-in-out;
   }
 {% endstyle %}

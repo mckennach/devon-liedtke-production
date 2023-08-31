@@ -13,6 +13,22 @@
         }
     }
 
+    &__placeholder-image-container {
+        margin-bottom: rem(15);
+        opacity: 1;
+        transition: all .45s ease-in-out;
+        
+        &.portrait {
+            @include aspect-ratio-container(550, 710);
+        
+        }
+
+        &.landscape {
+            @include aspect-ratio-container(550, 441);
+        }
+
+    }
+
     &:hover &__img-container {
         opacity: .75;
         transition: all .45s ease-in-out;
