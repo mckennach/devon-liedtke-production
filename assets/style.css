@@ -5916,6 +5916,20 @@ slider-component.slider-component-full-width {
   margin-bottom: 0.9375rem;
   opacity: 1;
   transition: all 0.45s ease-in-out;
+  position: relative;
+}
+.card-product__img-container:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 5;
+}
+.card-product__img-container:hover:before {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 .card-product__img-container.portrait {
   display: block;
@@ -6682,7 +6696,6 @@ landing {
   }
 }
 .video-section__media {
-  --ratio-percent: 56.25% !important;
   position: relative;
   padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
 }
@@ -7951,14 +7964,7 @@ landing {
   position: relative;
 }
 .look__img-container:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgba(0, 0, 0, 0.05);
-  z-index: 5;
 }
 .look__img-container.portrait {
   display: block;

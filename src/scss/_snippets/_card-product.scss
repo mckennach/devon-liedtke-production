@@ -5,6 +5,23 @@
         margin-bottom: rem(15);
         opacity: 1;
         transition: all .45s  ease-in-out;
+        position: relative;
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            z-index: 5;
+        }
+        &:hover:before {
+            background-color: rgba(0, 0, 0, .05);
+        }
+
+        
+
         &.portrait {
             @include aspect-ratio(550, 710);
         }
@@ -24,8 +41,9 @@
         opacity: 1;
         transform: scale(1.05);
         transition: all .3s ease-out;
-      
     }
+
+  
 
     &__placeholder-image-container {
         margin-bottom: rem(15);

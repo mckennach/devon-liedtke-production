@@ -25,9 +25,15 @@
     if video != null
         assign ratio_diff = video.aspect_ratio | minus: poster.aspect_ratio | abs
         if ratio_diff < 0.01 and ratio_diff > 0
-        assign fix_ratio = true
+          assign fix_ratio = true
         endif
+      assign ratio_percent = 1 | divided_by: video.aspect_ratio | times: 100
+
+    else
+      assign ratio_percent = 56.25
     endif
+
+   
 %}
 
 
@@ -35,10 +41,12 @@
   <div
     class="video-section__media"
     {% if poster != null %}
-    style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+    style="--ratio-percent: {{ ratio_percent }}%;"
     {% endif %}>
     {%- if video == null and video_url != null -%}
-      <a href="{{ video_url }}" class="video-section__poster media media--transparent{% if poster == null %} video-section__placeholder{% endif %}">
+      <a
+        href="{{ video_url }}"
+        class="video-section__poster media media--transparent{% if poster == null %} video-section__placeholder{% endif %}">
         {%- if poster != null -%}
           {{
              poster
@@ -64,7 +72,7 @@
   data-media-id="{{ video_id }}"
   {{ poster }}
   {% if poster != null %}
-  style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
+  style="--ratio-percent: {{ ratio_percent }}%;"
   {% endif %}>
   <button
     id="Deferred-Poster-Modal-{{ video_id }}"
@@ -81,7 +89,8 @@
     {%- else -%}
       {% render 'placeholder-image' with id: image_id, class: 'video video', width: 16, height: 9 %}
     {%- endif -%}
-    <span class="deferred-media__poster-button motion-reduce">
+    <span
+      class="deferred-media__poster-button motion-reduce">
       {%- render 'icon-play' -%}
     </span>
   </button>
@@ -100,7 +109,7 @@
               -%}
       {%- if video_url.type == 'youtube' -%}
         <iframe
-          src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&{{ autoplay }}{{ loop }}"
+          src="https://www.youtube.com/embed/{{ video_id }}?enablejsapi=1&{{ autoplay }}&mute=1{{ loop }}"
           class="js-youtube"
           allow="autoplay; encrypted-media"
           allowfullscreen
@@ -110,7 +119,7 @@
           title="{{ description | escape }}"></iframe>
       {%- else -%}
         <iframe
-          src="https://player.vimeo.com/video/{{ video_id }}?{{ autoplay }}{{ loop }}"
+          src="https://player.vimeo.com/video/{{ video_id }}?{{ autoplay }}&mute=1{{ loop }}"
           class="js-vimeo"
           allow="autoplay; encrypted-media"
           allowfullscreen
@@ -134,14 +143,17 @@
   </template>
 </deferred-media>
 {%- if video_label or link -%}
-  <div class="video-section__txt-container">
+  <div
+    class="video-section__txt-container">
     {%- if video_label -%}
-      <div class="video-section__label {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div
+        class="video-section__label {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ video_label }}
       </div>
     {%- endif -%}
     {% if link %}
-      <div class="video-section__link {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div
+        class="video-section__link {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <a
           href="{{ link }}"
           class="underlined-link"
