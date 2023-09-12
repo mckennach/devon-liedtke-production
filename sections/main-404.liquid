@@ -1,13 +1,19 @@
-<div class="page">
+<div
+  class="page color-{{ section.settings.color_scheme }}">
   {% render 'heading' 
    with title: 'Page Not Found (404)',
    title_tag: 'h1',
    class: 'default',
    animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
-  <div class="page__container" container-md>
-    <div style="text-align:center;">
+  <div
+    class="page__container"
+    container-md>
+    <div
+      style="text-align:center;">
 
-      <a href="{{ routes.all_products_collection_url }}" class="button">
+      <a
+        href="{{ routes.all_products_collection_url }}"
+        class="button">
         {{ 'general.continue_shopping' | t }}
       </a>
     </div>

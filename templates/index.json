@@ -4,7 +4,7 @@
       "type": "home-hero",
       "settings": {
         "featured_collection": "homepage",
-        "featured_img": "shopify:\/\/shop_images\/home.jpg",
+        "featured_img": "shopify:\/\/shop_images\/home3.jpg",
         "featured_img_caption": "Artisanal home objects,     inspired    by    life in           Barcelona.",
         "color_scheme": ""
       }
@@ -13,12 +13,12 @@
       "type": "video",
       "settings": {
         "video_title": "",
-        "video_label": "<p>Artisanal home objects       <strong> <\/strong>thoughtfully designed       by Devon Liedtke     to         move  within your space,      and along with               you.<\/p><p><em>Our story here ipsum dolor amet set dolor lorem ipsum amen Title lorem ipsum dolor amet set dolor lorem ipsum amen.<\/em><\/p><p><em>Our story here ipsum dolor amet set dolor lorem ipsum amen Title lorem ipsum dolor amet set dolor lorem ipsum amen.<\/em><\/p>",
+        "video_label": "<p>Thoughtfully designed    to         move  within your space,      and along with               you.<\/p><p><\/p>",
         "link": "shopify:\/\/collections\/frontpage",
         "link_label": "Shop the Collection",
         "enable_video_looping": true,
         "enable_video_autoplay": true,
-        "video": "shopify:\/\/files\/videos\/3c6dccf931fe47d3b484eebee6fa821b.mp4",
+        "video": "shopify:\/\/files\/videos\/TEST4_A2.mp4",
         "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
         "cover_image": "shopify:\/\/shop_images\/Rectangle_218.png",
         "description": "",
@@ -49,12 +49,58 @@
         "show_date": true,
         "show_author": false
       }
+    },
+    "7b89250b-45a2-4573-a920-2ef2071fa522": {
+      "type": "image-banner",
+      "disabled": true,
+      "settings": {
+        "image": "shopify:\/\/shop_images\/Rectangle_218.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "image_behavior": "ambient",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "color_scheme": ""
+      }
+    },
+    "d0666b37-a30e-453f-b970-bb767c7c1427": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured collection",
+        "description": "",
+        "collection": "homepage",
+        "products_to_show": 4,
+        "color_scheme": ""
+      }
+    },
+    "23a9f003-5033-423f-994d-43ee4328ba47": {
+      "type": "image-banner",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/home-full-width.jpg",
+        "image_overlay_opacity": 0,
+        "image_height": "small",
+        "desktop_content_position": "middle-center",
+        "show_text_box": true,
+        "desktop_content_alignment": "center",
+        "image_behavior": "ambient",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": true,
+        "show_text_below": true,
+        "color_scheme": ""
+      }
     }
   },
   "order": [
     "031bb76c-fb5d-422f-a0e4-21199d80419c",
     "441a1d18-cd1d-4cc4-806c-83f04c3234c1",
     "7d4e0139-da51-4404-b40d-dd4e182e3b00",
-    "beb178d4-0523-42fa-aa4b-bf29c02c2a05"
+    "beb178d4-0523-42fa-aa4b-bf29c02c2a05",
+    "7b89250b-45a2-4573-a920-2ef2071fa522",
+    "d0666b37-a30e-453f-b970-bb767c7c1427",
+    "23a9f003-5033-423f-994d-43ee4328ba47"
   ]
 }

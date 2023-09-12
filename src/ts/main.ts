@@ -2,8 +2,8 @@
 import '../scss/style.scss';
 
 // Import Common Libraries
-import { template } from './constant/global';
-import { schemeAnimations, landingAnimation } from './lib/scrollAnimations';
+// import { template } from './constant/global';
+import { schemeAnimations } from './lib/scrollAnimations';
 import './lib/smoothScroll';
 import './lib/swiper';
 
@@ -20,7 +20,7 @@ import { responsiveActions } from './util/responsiveActions';
 // Import SVG Sprite Images
 import './sprite-image/bag.svg';
 
-const designMode = document.querySelector('.shopify-design-mode');
+// const designMode = document.querySelector('.shopify-design-mode');
 
 const links = Array.from(document.querySelectorAll('a'));
 
@@ -36,13 +36,14 @@ if(links.length > 0 ) {
 }
 
 
-if(template == 'index' && designMode == null) {
-    landingAnimation();
-} else {
-    schemeAnimations();
-}
+// if(template == 'index' && designMode == null) {
+//     landingAnimation();
+// } else {
+//     schemeAnimations();
+// }
 
 
+schemeAnimations();
 
 
 mobileNav();

@@ -7,13 +7,19 @@
 %}
 
 {%- unless collection_length == 0 -%}
-  <div class="featured-blog-collection" data-scheme="{{ section.settings.color_scheme }}">
-    <div class="featured-blog-collection__container" container>
-      <div class="featured-blog-collection__grid">
+  <div
+    class="featured-blog-collection color-{{ section.settings.color_scheme }}"
+    data-scheme="{{ section.settings.color_scheme }}">
+    <div
+      class="featured-blog-collection__container"
+      container>
+      <div
+        class="featured-blog-collection__grid">
         {% render 'heading' with title: featured_collection.title, title_tag: 'h2'
          , class: 'featured-blog-collection',
          animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
-        <div class="featured-blog-collection__products">
+        <div
+          class="featured-blog-collection__products">
           {%- for product in products -%}
 
             {% render 'card-product'

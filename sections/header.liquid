@@ -6,10 +6,34 @@
           {% render 'icon-logo-submark' with id: 'header' %}
         {%- else -%}
           <div class="tablet-hide">
-            {% render 'icon-logo' with id: 'header' %}
+
+            {%- if section.settings.logo != blank -%}
+              <img
+                srcset="{{ section.settings.logo.src | image_url: width: 1500 }}"
+                src="{{ section.settings.logo.src | image_url: width: 533 }}"
+                alt="{{ section.settings.logo.src.alt | escape }}"
+                class="motion-reduce"
+                loading="lazy"
+                width="{{ section.settings.logo.width }}"
+                height="{{ section.settings.logo.height }}">
+            {%- else -%}
+              {% render 'icon-logo' with id: 'header', hide_tagline: section.settings.hide_tagline %}
+            {%- endif -%}
           </div>
+
           <div class="tabletup-hide">
-            {% render 'icon-logo-mobile' with id: 'header' %}
+            {%- if section.settings.mobile_logo != blank -%}
+              <img
+                srcset="{{ section.settings.mobile_logo.src | image_url: width: 1500 }}"
+                src="{{ section.settings.mobile_logo.src | image_url: width: 533 }}"
+                alt="{{ section.settings.mobile_logo.src.alt | escape }}"
+                class="motion-reduce"
+                loading="lazy"
+                width="{{ section.settings.mobile_logo.width }}"
+                height="{{ section.settings.mobile_logo.height }}">
+            {%- else -%}
+              {% render 'icon-logo-mobile' with id: 'mobile-header', hide_tagline: section.settings.hide_tagline %}
+            {%- endif -%}
           </div>
         {%- endif -%}
       </div>
@@ -33,16 +57,25 @@
       },
       {
         "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_logo",
+        "label": "Mobile Logo"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_tagline",
+        "label": "Hide tagline",
+        "info": "This only applies if the logo isn't uploaded above. If it's not uploaded above, the logo will be hardcoded in as an SVG. "
+      }, {
+        "type": "image_picker",
         "id": "secondary_logo",
-        "label": "Secondary Logo",
+        "label": "The Edit Logo",
         "info": "Will replace logo on Edit (Blog) Pages"
-      },
-      {
-        "type": "text",
-        "id": "test",
-        "label": "Test"
-      },
-      {
+      }, {
         "type": "select",
         "id": "sticky_header_type",
         "options": [

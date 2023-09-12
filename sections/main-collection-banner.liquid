@@ -1,11 +1,16 @@
 {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
 {% liquid
-  assign title = collection.title | escape
+  if collection.handle == 'all'
+    assign title = 'ALL' | escape
+  else
+    assign title = collection.title | escape
+  endif
   assign shop_title = title | prepend: 'Shop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-  assign filters = section.settings.filters
+  assign filters1 = section.settings.filters
+  assign filters = section.settings.product-colletion-filter
   
 %}
-
+{% comment %} test {% endcomment %}
 
 <div
   class="collection-page__header-container">
@@ -38,6 +43,10 @@
         "label": "Collection Filters"
       },
       {
+        "type": "link_list",
+        "id": "product-colletion-filter",
+        "label": "Filter"
+      }, {
         "type": "checkbox",
         "id": "enable_filter",
         "label": "Enable Filter"

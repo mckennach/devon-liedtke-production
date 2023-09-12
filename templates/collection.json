@@ -4,10 +4,11 @@
       "type": "main-collection-banner",
       "settings": {
         "filters": [
+          "all-products",
           "vessels",
-          "tabletop",
-          "candle-holders"
+          "tabletops"
         ],
+        "product-colletion-filter": "product-colletion-filter",
         "enable_filter": true,
         "color_scheme": "background-1"
       }
@@ -31,15 +32,17 @@
             "link_label": "Shop Vessels",
             "enable_video_looping": true,
             "enable_video_autoplay": true,
+            "video": "shopify:\/\/files\/videos\/TEST5_A2.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "cover_image": "shopify:\/\/shop_images\/choose137.jpg",
             "description": ""
           }
         },
         "2d5b2f72-3b0b-4b4e-9678-f5039d1324b1": {
           "type": "look",
           "settings": {
-            "title": "Shop      the             look",
-            "collection": "shop-the-look"
+            "title": "Shop      the                  look",
+            "collection": "shop-the-look-2"
           }
         },
         "f5e1ace4-1650-4229-9a0a-30309313a16b": {

@@ -29,6 +29,7 @@
       "type": "header",
       "settings": {
         "menu": "main-menu",
+        "hide_tagline": false,
         "test": "",
         "sticky_header_type": "on-scroll-up",
         "margin_bottom": 0

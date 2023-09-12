@@ -678,16 +678,18 @@ class DeferredMedia extends HTMLElement {
     const poster = this.querySelector('[id^="Deferred-Poster-"]');
     if (!poster) return;
     const { autoplay } = poster.dataset;
-    
+
     poster.addEventListener('click', this.loadContent.bind(this));
-    // if(autoplay == 'true') {
-    //   setTimeout(() => {
-    //     poster.click();
-    //   }, 500);
-    // } 
+    // this.loadContent.bind(this)
+    this.loadContent();
+   
+
+    // this.setAutoPlay();
+    
   }
 
   loadContent(focus = true) {
+    
     window.pauseAllMedia();
 
     if (!this.getAttribute('loaded')) {
@@ -703,14 +705,20 @@ class DeferredMedia extends HTMLElement {
         content.querySelector('video, model-viewer, iframe'),
       );
       if (focus) deferredElement.focus();
- 
+        
+      
       if (
         deferredElement.nodeName == 'VIDEO' &&
         deferredElement.getAttribute('autoplay')
       ) {
+        setTimeout(() => {
+          deferredElement.muted = true;
 
+          deferredElement.play();
+          
+        }, 1000);
+        // console.log('here');
         // force autoplay for safari
-        deferredElement.play();
       }
     }
   }

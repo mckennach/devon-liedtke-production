@@ -6,15 +6,20 @@
 
 
 {%- if collection_length > 0 -%}
-  <div class="featured-collection gradient{% if section.settings.heading == blank %} no-heading{% endif %}" data-scheme="{{ section.settings.color_scheme }}">
+  <div
+    class="featured-collection gradient{% if section.settings.heading == blank %} no-heading{% endif %} color-{{ section.settings.color_scheme }}"
+    data-scheme="{{ section.settings.color_scheme }}">
     {%- if title -%}
       {% render 'heading' with title: title, title_tag: 'h2'
        , class: 'featured-collection',
        animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
     {%- endif -%}
-    <div class="featured-collection__container container">
-      <div class="featured-collection__collection">
-        <div class="featured-collection__collection-list">
+    <div
+      class="featured-collection__container container">
+      <div
+        class="featured-collection__collection">
+        <div
+          class="featured-collection__collection-list">
           {%- for product in products limit: section.settings.products_to_show -%}
             {% liquid
               if section.settings.products_to_show == 4 
@@ -26,7 +31,8 @@
               {%- unless forloop.index == 1 -%}
               </group>
             {%- endunless -%}
-            <group class="featured-collection__product-group">
+            <group
+              class="featured-collection__product-group">
             {%- endif -%}
             {% render 'card-product'
              , card_product: product,

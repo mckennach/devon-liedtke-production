@@ -127,9 +127,9 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% if template == 'index' %}
+    {% comment %} {% if template == 'index' %}
       {% render 'landing' %}
-    {% endif %}
+    {% endif %} {% endcomment %}
     <div class="site-wrapper">
       {% comment %} {% render 'scroll-overlay' %} {% endcomment %}
       {% sections 'header-group' %}

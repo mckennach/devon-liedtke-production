@@ -1,14 +1,20 @@
-<div class="home-hero">
-  <div class="home-hero__container container" data-scheme="{{ section.settings.color_scheme }}">
-    <div class="home-hero__grid">
+<div
+  class="home-hero color-{{ section.settings.color_scheme }}">
+  <div
+    class="home-hero__container container"
+    data-scheme="{{ section.settings.color_scheme }}">
+    <div
+      class="home-hero__grid">
       {%- if section.settings.featured_collection -%}
         {% liquid
           assign collection = section.settings.featured_collection
           assign collection_img = collection.image
         %}
-        <div class="home-hero__grid-item home-hero__left-item">
+        <div
+          class="home-hero__grid-item home-hero__left-item">
 
-          <figure class="home-hero__featured-collection">
+          <figure
+            class="home-hero__featured-collection">
             <div
               class="home-hero__collection-img-container scroll-trigger animate--slide-in"
               data-cascade
@@ -26,16 +32,21 @@
               class="scroll-trigger animate--slide-in"
               data-cascade
               style="--animation-order: 2;">
-              <a href="{{ collection.url }}" class="underlined-link">Shop the Collection</a>
+              <a
+                href="{{ collection.url }}"
+                class="underlined-link">Shop the Collection</a>
             </figcaption>
           </figure>
 
         </div>
       {%- endif -%}
       {%- if section.settings.featured_img -%}
-        <div class="home-hero__grid-item home-hero__right-item">
-          <figure class="home-hero__featured-figure">
-            <div class="home-hero__featured-img-container">
+        <div
+          class="home-hero__grid-item home-hero__right-item">
+          <figure
+            class="home-hero__featured-figure">
+            <div
+              class="home-hero__featured-img-container">
               <div
                 class="home-hero__img-container scroll-trigger animate--slide-in"
                 data-cascade

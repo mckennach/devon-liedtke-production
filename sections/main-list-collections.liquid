@@ -5,151 +5,231 @@
     <div
     class="collection-page__header-container">
     {% render 'heading' 
-    with title: 'Collections',
+    with title: 'Shop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ALL',
     title_tag: 'h1',
     class: 'collection-page',
     animations_reveal_on_scroll: section.settings.animations_reveal_on_scroll,
     enable_filter: section.settings.enable_filter,
     filters: filters %}
   </div>
-  <div class="collection-page__container" container-md>
-    {%- liquid
-    case section.settings.sort
-      when 'products_high', 'products_low'
-        assign collections = collections | sort: 'all_products_count'
-      when 'date', 'date_reversed'
-        assign collections = collections | sort: 'published_at'
-    endcase
+ <div
+  class="collection-page">
+  <div
+    class="collection-page__container container">
 
-    if section.settings.sort == 'products_high' or section.settings.sort == 'date_reversed' or section.settings.sort == 'alphabetical_reversed'
-      assign collections = collections | reverse
-    endif
+    {% liquid
+      assign count = 0
+      assign look_to_skip = 0
+      assign video_to_skip = 0
+      assign order = 'even'
 
-    assign moduloResult = 28 | modulo: section.settings.columns_desktop
-    assign paginate_by = 30
-    if moduloResult == 0
-      assign paginate_by = 28
-    endif
-  -%}
-  {%- paginate collections by paginate_by -%}
-    <ul
-      class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
-      role="list"
-    >
-      {%- for collection in collections -%}
-        <li
-          class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-            style="--animation-order: {{ forloop.index }};"
-          {% endif %}
-        >
-          {% render 'card-collection',
-            card_collection: collection,
-            media_aspect_ratio: section.settings.image_ratio,
-            columns: 3
-          %}
-        </li>
-      {%- endfor -%}
-    </ul>
-    {% render 'pagination', paginate: paginate %}
-  {%- endpaginate -%}
+    %}
+
+
+    <div
+      class="collection-page__collection">
+      <div
+        class="collection-page__collection-list">
+
+        {%- for product in collections["all-products"].products -%}
+          {% liquid
+              assign group_size = 2
+              if section.settings.products_to_show == 4 
+                assign group_size = 2
+              endif 
+              assign is_group = forloop.index | modulo: group_size
+              assign break_video = false
+              assign break_look = false
+            %}
+
+
+          {%- if is_group == 1 -%}
+            {%- unless forloop.index == 1 -%}
+            </group>
+            {%- if collection.handle == 'all' or request.design_mode -%}
+              {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                  {%- when 'look' -%}
+                  {%- unless forloop.index == look_to_skip -%}
+                    {% unless look_to_skip > forloop.index %}
+                      {%- unless break_look -%}
+                        {%- assign look_to_skip = forloop.index -%}
+                        {%- assign break_look = true -%}
+                        {% render 'shop-the-look' with data: block.settings, order: order %}
+                      {%- endunless -%}
+                    {%- endunless -%}
+                  {%- endunless -%}
+                  {%- when 'video' -%}
+                  {%- unless forloop.index == video_to_skip -%}
+                    {% unless video_to_skip > forloop.index %}
+                      {%- unless break_video -%}
+                        {%- assign video_to_skip = forloop.index -%}
+                        {%- assign break_video = true -%}
+                        <div
+                          class="collection-page__video {{ order }}">
+                          {% render 'video' with 
+                           video: block.settings.video,
+                           video_url: block.settings.video_url,
+                           video_label: block.settings.video_label,
+                           link: block.settings.link,
+                           link_label: block.settings.link_label,
+                           animations_reveal_on_scroll: true,
+                           enable_video_autoplay: block.settings.enable_video_autoplay,
+                           enable_video_looping: block.settings.enable_video_looping,
+                           cover_image: block.settings.cover_image %}
+                        </div>
+                      {%- endunless -%}
+                    {%- endunless -%}
+                  {%- endunless -%}
+                {%- endcase -%}
+              {%- endfor -%}
+              {% liquid
+              if order == 'even'
+                assign order = 'odd'
+              else
+                assign order = 'even'
+              endif
+            %}
+            {%- endif -%}
+          {%- endunless -%}
+          <group
+            class="featured-collection__product-group">
+          {%- endif -%}
+          {% render 'card-product'
+           , card_product: product,
+           media_aspect_ratio: section.settings.image_ratio,
+           image_shape: section.settings.image_shape,
+           show_secondary_image: section.settings.show_secondary_image,
+           show_vendor: section.settings.show_vendor,
+           show_rating: section.settings.show_rating,
+           show_quick_add: section.settings.enable_quick_add,
+           section_id: section.id,
+           index: forloop.index,
+           class: 'featured-collection'
+           animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+
+
+        {%- endfor -%}
+
+
+      </div>
+    </div>
+  </div>
+
 </div>
+
   </div>
 </div>
 {% schema %}
-{
-  "name": "t:sections.main-list-collections.name",
-  "class": "section",
-  "settings": [
-    {
-      "type": "inline_richtext",
-      "id": "title",
-      "label": "t:sections.main-list-collections.settings.title.label",
-      "default": "Collections"
-    },
-    {
-      "type": "select",
-      "id": "sort",
-      "options": [
-        {
-          "value": "alphabetical",
-          "label": "t:sections.main-list-collections.settings.sort.options__1.label"
-        },
-        {
-          "value": "alphabetical_reversed",
-          "label": "t:sections.main-list-collections.settings.sort.options__2.label"
-        },
-        {
-          "value": "date_reversed",
-          "label": "t:sections.main-list-collections.settings.sort.options__3.label"
-        },
-        {
-          "value": "date",
-          "label": "t:sections.main-list-collections.settings.sort.options__4.label"
-        },
-        {
-          "value": "products_high",
-          "label": "t:sections.main-list-collections.settings.sort.options__5.label"
-        },
-        {
-          "value": "products_low",
-          "label": "t:sections.main-list-collections.settings.sort.options__6.label"
-        }
-      ],
-      "default": "alphabetical",
-      "label": "t:sections.main-list-collections.settings.sort.label"
-    },
-    {
-      "type": "select",
-      "id": "image_ratio",
-      "options": [
-        {
-          "value": "adapt",
-          "label": "t:sections.main-list-collections.settings.image_ratio.options__1.label"
-        },
-        {
-          "value": "portrait",
-          "label": "t:sections.main-list-collections.settings.image_ratio.options__2.label"
-        },
-        {
-          "value": "square",
-          "label": "t:sections.main-list-collections.settings.image_ratio.options__3.label"
-        }
-      ],
-      "default": "adapt",
-      "label": "t:sections.main-list-collections.settings.image_ratio.label",
-      "info": "t:sections.main-list-collections.settings.image_ratio.info"
-    },
-    {
-      "type": "range",
-      "id": "columns_desktop",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "default": 3,
-      "label": "t:sections.main-list-collections.settings.columns_desktop.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.main-list-collections.settings.header_mobile.content"
-    },
-    {
-      "type": "select",
-      "id": "columns_mobile",
-      "options": [
-        {
-          "value": "1",
-          "label": "t:sections.main-list-collections.settings.columns_mobile.options__1.label"
-        },
-        {
-          "value": "2",
-          "label": "t:sections.main-list-collections.settings.columns_mobile.options__2.label"
-        }
-      ],
-      "default": "2",
-      "label": "t:sections.main-list-collections.settings.columns_mobile.label"
-    }
-  ]
-}
+  {
+    "name": "t:sections.main-collection-product-grid.name",
+    "class": "section",
+    "settings": [
+      {
+        "type": "inline_richtext",
+        "id": "custom_title_all",
+        "label": "Custom Title for All Products",
+        "info": "This will replace the default title for when on all products"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "look",
+        "name": "Shop the look",
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "Add Shop the look collections to display on the main shop page"
+          }, {
+            "type": "inline_richtext",
+            "id": "title",
+            "label": "Title",
+            "default": "Shop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;look",
+            "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+          }, {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          }
+        ]
+      }, {
+        "type": "video",
+        "name": "Video",
+        "settings": [
+          {
+            "type": "paragraph",
+            "content": "Add videos to display on the main shop page"
+          },
+          {
+            "type": "header",
+            "content": "Text"
+          },
+          {
+            "type": "inline_richtext",
+            "id": "video_title",
+            "label": "Video Title",
+            "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+          },
+          {
+            "type": "richtext",
+            "id": "video_label",
+            "label": "Video Label",
+            "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+          }, {
+            "type": "url",
+            "id": "link",
+            "label": "Call to action link"
+          }, {
+            "type": "text",
+            "id": "link_label",
+            "label": "Call to action label"
+          }, {
+            "type": "header",
+            "content": "Video"
+          }, {
+            "type": "checkbox",
+            "id": "enable_video_looping",
+            "label": "t:sections.video.settings.enable_video_looping.label",
+            "default": false
+          }, {
+            "type": "checkbox",
+            "id": "enable_video_autoplay",
+            "label": "Autoplay Video",
+            "default": true
+          }, {
+            "type": "header",
+            "content": "t:sections.video.settings.header__1.content"
+          }, {
+            "type": "video",
+            "id": "video",
+            "label": "t:sections.video.settings.video.label"
+          }, {
+            "type": "header",
+            "content": "t:sections.video.settings.header__2.content"
+          }, {
+            "type": "paragraph",
+            "content": "t:sections.video.settings.paragraph.content"
+          }, {
+            "type": "video_url",
+            "id": "video_url",
+            "accept": [
+              "youtube", "vimeo"
+            ],
+            "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "label": "t:sections.video.settings.video_url.label",
+            "info": "t:sections.video.settings.video_url.info"
+          }, {
+            "type": "image_picker",
+            "id": "cover_image",
+            "label": "Cover Image"
+          }, {
+            "type": "text",
+            "id": "description",
+            "label": "t:sections.video.settings.description.label",
+            "info": "t:sections.video.settings.description.info"
+          }
+        ]
+      }
+    ]
+  }
 {% endschema %}

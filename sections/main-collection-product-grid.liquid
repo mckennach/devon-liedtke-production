@@ -10,6 +10,8 @@
       assign order = 'even'
 
     %}
+
+
     <div
       class="collection-page__collection">
       <div
@@ -30,7 +32,7 @@
           {%- if is_group == 1 -%}
             {%- unless forloop.index == 1 -%}
             </group>
-            {%- if collection.handle == 'all' -%}
+            {%- if collection.handle == 'all' or request.design_mode -%}
               {%- for block in section.blocks -%}
                 {%- case block.type -%}
                   {%- when 'look' -%}

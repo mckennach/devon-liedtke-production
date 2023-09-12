@@ -20,7 +20,7 @@
     assign image_id = 'video-overlay-' | append: video_id 
     assign video_alt = video.alt | default: description
     assign alt = 'sections.video.load_video' | t: description: video_alt | escape
-    assign poster = video.preview_image | default: cover_image
+    assign poster = cover_image | default: video.preview_image
 
     if video != null
         assign ratio_diff = video.aspect_ratio | minus: poster.aspect_ratio | abs
@@ -30,6 +30,7 @@
     endif
 %}
 
+
 <noscript>
   <div
     class="video-section__media"
@@ -37,9 +38,7 @@
     style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
     {% endif %}>
     {%- if video == null and video_url != null -%}
-      <a
-        href="{{ video_url }}"
-        class="video-section__poster media media--transparent{% if poster == null %} video-section__placeholder{% endif %}">
+      <a href="{{ video_url }}" class="video-section__poster media media--transparent{% if poster == null %} video-section__placeholder{% endif %}">
         {%- if poster != null -%}
           {{
              poster
@@ -63,6 +62,7 @@
 <deferred-media
   class="video-section__media deferred-media no-js-hidden gradient global-media-settings global-media-settings--full-width {% if fix_ratio %} media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
   data-media-id="{{ video_id }}"
+  {{ poster }}
   {% if poster != null %}
   style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
   {% endif %}>
@@ -73,7 +73,7 @@
     data-autoplay="{{ enable_video_autoplay }}"
     aria-label="{{ alt }}"
     tabindex="-1">
-    {%- if poster != null -%}
+    {%- if poster != empty -%}
       {{
          poster
        | image_url: width: 3840
@@ -81,8 +81,7 @@
     {%- else -%}
       {% render 'placeholder-image' with id: image_id, class: 'video video', width: 16, height: 9 %}
     {%- endif -%}
-    <span
-      class="deferred-media__poster-button motion-reduce">
+    <span class="deferred-media__poster-button motion-reduce">
       {%- render 'icon-play' -%}
     </span>
   </button>
@@ -121,29 +120,28 @@
           title="{{ description | escape }}"></iframe>
       {%- endif -%}
     {%- else -%}
+
+
       {{
          video
        | video_tag:
        image_size: '1100x',
-       autoplay: enable_video_autoplay,
+       autoplay: true,
        loop: enable_video_looping,
-       controls: true,
-       muted: false }}
+       controls: false,
+       muted: true }}
     {%- endif -%}
   </template>
 </deferred-media>
 {%- if video_label or link -%}
-  <div
-    class="video-section__txt-container">
+  <div class="video-section__txt-container">
     {%- if video_label -%}
-      <div
-        class="video-section__label {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="video-section__label {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ video_label }}
       </div>
     {%- endif -%}
     {% if link %}
-      <div
-        class="video-section__link {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="video-section__link {% if animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <a
           href="{{ link }}"
           class="underlined-link"

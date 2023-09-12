@@ -13,6 +13,20 @@
         }
     }
 
+    &__img-container &__hover-img {
+        opacity: 0;
+        transform: scale(1);
+        transition: all .3s ease-out;
+        // transition: transform .8s ease-out;
+    }
+
+    &__img-container:hover &__hover-img {
+        opacity: 1;
+        transform: scale(1.05);
+        transition: all .3s ease-out;
+      
+    }
+
     &__placeholder-image-container {
         margin-bottom: rem(15);
         opacity: 1;

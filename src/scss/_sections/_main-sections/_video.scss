@@ -10,7 +10,7 @@
     }
 
     &__media {
-        --ratio-percent: 56.25%;
+        --ratio-percent: 56.25% !important;
         @include breakpoint(tablet) {
             --ratio-percent: 135% !important;
         }

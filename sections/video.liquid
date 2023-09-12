@@ -21,7 +21,9 @@
   100vw
 {%- endcapture -%}
 
-<div class="video-section isolate " data-scheme="{{ section.settings.color_scheme }}">
+<div
+  class="video-section isolate color-{{ section.settings.color_scheme }}"
+  data-scheme="{{ section.settings.color_scheme }}">
 
   {%- if title != blank -%}
     {% render 'heading' 
@@ -30,7 +32,8 @@
      class: 'video',
      animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
   {%- endif -%}
-  <div class="video-section__container {{ section.settings.section_size }}">
+  <div
+    class="video-section__container {{ section.settings.section_size }}">
 
 
     {% render 'video' with 
@@ -43,7 +46,6 @@
      enable_video_autoplay: section.settings.enable_video_autoplay,
      enable_video_looping: section.settings.enable_video_looping,
      cover_image: section.settings.cover_image %}
-
   </div>
 </div>
 

@@ -5957,6 +5957,16 @@ slider-component.slider-component-full-width {
   top: 0;
   width: 100%;
 }
+.card-product__img-container .card-product__hover-img {
+  opacity: 0;
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+}
+.card-product__img-container:hover .card-product__hover-img {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: all 0.3s ease-out;
+}
 .card-product__placeholder-image-container {
   margin-bottom: 0.9375rem;
   opacity: 1;
@@ -6117,7 +6127,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-.landing-active .header__heading-logo-wrapper {
+html:not(.shopify-design-mode) .landing-active .header__heading-logo-wrapper {
   opacity: 0;
 }
 
@@ -6672,7 +6682,7 @@ landing {
   }
 }
 .video-section__media {
-  --ratio-percent: 56.25%;
+  --ratio-percent: 56.25% !important;
   position: relative;
   padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
 }
@@ -7058,6 +7068,11 @@ landing {
   width: 1px;
   background-color: rgb(var(--color-foreground));
 }
+@media only screen and (min-width: 768px) and (max-width: 930px) {
+  .featured-blog__article-container::after {
+    content: unset;
+  }
+}
 .featured-blog__posts {
   list-style-type: none;
   margin: 0;
@@ -7071,9 +7086,30 @@ landing {
   justify-content: flex-end;
   margin-right: 15%;
 }
+@media screen and (max-width: 930px) {
+  .featured-blog__posts {
+    margin-right: 1.25rem;
+  }
+}
+@media (max-width: 768px) {
+  .featured-blog__posts {
+    margin: 0;
+    padding: 0 6.25rem 0 0.9375rem;
+  }
+}
 .featured-blog__post {
   width: 100%;
   max-width: 17.5rem;
+}
+@media screen and (max-width: 1150px) {
+  .featured-blog__post {
+    max-width: 13.4375rem;
+  }
+}
+@media (max-width: 768px) {
+  .featured-blog__post {
+    max-width: 100%;
+  }
 }
 
 .contact {
@@ -7890,8 +7926,39 @@ landing {
     max-width: 70%;
   }
 }
+.look__collection-image-container {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 78.6585365854%;
+  position: relative;
+}
+.look__collection-image-container img {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 50%;
+     object-position: 50% 50%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
 .look__img-container {
   margin-bottom: 0.5rem;
+  position: relative;
+}
+.look__img-container:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.05);
+  z-index: 5;
 }
 .look__img-container.portrait {
   display: block;

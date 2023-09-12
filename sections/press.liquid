@@ -1,6 +1,9 @@
-<div id="press" class="press">
+<div
+  id="press"
+  class="press color-{{ section.settings.color_scheme }}">
   {%- if section.settings.title -%}
-    <div class="press__heading">
+    <div
+      class="press__heading">
       {% render 'heading' 
        with title: section.settings.title,
        title_tag: 'h2',
@@ -8,8 +11,11 @@
        animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
     </div>
   {%- endif -%}
-  <div class="press__container">
-    <div class="press__entry-container" container-sm>
+  <div
+    class="press__container">
+    <div
+      class="press__entry-container"
+      container-sm>
       <div>
         {%- for block in section.blocks -%}
           {%- case block.type -%}
@@ -43,8 +49,11 @@
         {%- endfor -%}
       </div>
     </div>
-    <div class="press__image-background">
-      <div class="press__image-background-container" container>
+    <div
+      class="press__image-background">
+      <div
+        class="press__image-background-container"
+        container>
         {%- for block in section.blocks limit: 3 -%}
           {%- case block.type -%}
             {%- when 'press_entry' -%}
@@ -57,7 +66,8 @@
                 endif
               %}
             {% if image != blank %}
-              <div class="press__image-outter-container">
+              <div
+                class="press__image-outter-container">
                 <div
                   class="press__image-container"
                   data-id="{{ block.id }}"

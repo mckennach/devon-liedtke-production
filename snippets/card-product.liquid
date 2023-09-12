@@ -15,7 +15,7 @@
   - horizontal_class: {Boolean} Add a card--horizontal class if set to true. Default: false (optional)
   - horizontal_quick_add: {Boolean} Changes the quick add button styles when set to true. Default: false (optional)
   - placeholder_image: {String} The placeholder image to use when no product exists. Default: 'product-apparel-2' (optional)
-
+  - is_look: { Boolean } 
   Usage:
   {% render 'card-product', show_vendor: section.settings.show_vendor %}
 {% endcomment %}
@@ -37,7 +37,9 @@
     {%- if card_product.featured_image != blank -%}
       <div
         class="{{ class }}__img-container card-product__img-container {{ image_ratio }}">
-        {%- if image_ration == 'portrait' -%}
+
+
+        {%- if image_ratio == 'portrait' -%}
           <img
             srcset="{% if card_product.featured_image.width >= 288 %}
             {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
@@ -54,6 +56,24 @@
           height="{{ 645 | divided_by: card_product.featured_image.aspect_ratio }}"
           alt="{{ card_product.featured_image.alt | escape }}"
           class="{{ class }}__img card-product__img">
+          {%- if card_product.images[1] != blank -%}
+            <img
+              srcset="{% if card_product.images[1].width >= 288 %}
+              {{ card_product.images[1] | image_url: width: 288 }} 288w,{% endif %}
+            {% if card_product.images[1].width >= 576 %}
+              {{ card_product.images[1] | image_url: width: 576 }} 576w,{% endif %}
+            {% if card_product.images[1].width >= 550 %}
+              {{ card_product.images[1] | image_url: width: 550 }} 550w,{% endif %}
+            {% if card_product.images[1].width >= 1100 %}
+              {{ card_product.images[1] | image_url: width: 1100 }} 1100w,{% endif %}
+            {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
+            src="{{ card_product.images[1] | image_url: width: 715, height: 550 }}"
+            loading="lazy"
+            width="715"
+            height="{{ 645 | divided_by: card_product.images[1].aspect_ratio }}"
+            alt="{{ card_product.images[1].alt | escape }}"
+            class="{{ class }}__img card-product__hover-img">
+          {%- endif -%}
         {%- else -%}
           <img
             srcset="{% if card_product.featured_image.width >= 288 %}
@@ -71,6 +91,24 @@
           height="{{ 801 | divided_by: card_product.featured_image.aspect_ratio }}"
           alt="{{ card_product.featured_image.alt | escape }}"
           class="{{ class }}__img card-product__img">
+          {%- if card_product.images[1] != blank -%}
+            <img
+              srcset="{% if card_product.images[1].width >= 288 %}
+              {{ card_product.images[1] | image_url: width: 288 }} 288w,{% endif %}
+            {% if card_product.images[1].width >= 576 %}
+              {{ card_product.images[1] | image_url: width: 576 }} 576w,{% endif %}
+            {% if card_product.images[1].width >= 550 %}
+              {{ card_product.images[1] | image_url: width: 550 }} 550w,{% endif %}
+            {% if card_product.images[1].width >= 1100 %}
+              {{ card_product.images[1] | image_url: width: 1100 }} 1100w,{% endif %}
+            {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
+            src="{{ card_product.images[1] | image_url: width: 715, height: 550 }}"
+            loading="lazy"
+            width="715"
+            height="{{ 645 | divided_by: card_product.images[1].aspect_ratio }}"
+            alt="{{ card_product.images[1].alt | escape }}"
+            class="{{ class }}__img card-product__hover-img">
+          {%- endif -%}
         {%- endif -%}
       </div>
 

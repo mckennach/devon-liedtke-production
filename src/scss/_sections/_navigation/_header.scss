@@ -57,7 +57,7 @@
     }
 }
 
-.landing-active {
+html:not(.shopify-design-mode) .landing-active {
     .header__heading-logo-wrapper {
         opacity: 0;
     }

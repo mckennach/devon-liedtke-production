@@ -16,23 +16,17 @@
 %}
 
 {%- if products_count -%}
-  <div
-    class="look {{ order | escape }}">
-    <div
-      class="look__container">
-      <div
-        class="look__grid">
-        <div
-          class="look__grid-item look__products-container">
-          <div
-            class="look__heading">
+  <div class="look {{ order | escape }}">
+    <div class="look__container">
+      <div class="look__grid">
+        <div class="look__grid-item look__products-container">
+          <div class="look__heading">
             {%- if title != blank -%}
               <h2
                 class="look__heading-title">{{ title }}</h2>
             {%- endif -%}
           </div>
-          <div
-            class="look__products">
+          <div class="look__products">
             {%- for product in products limit: 2 -%}
               {% liquid
                     if forloop.index == 1
@@ -55,13 +49,10 @@
                animations_reveal_on_scroll: true %}
             {%- endfor -%}
           </div>
-          <div
-            class="look__book-end"></div>
+          <div class="look__book-end"></div>
         </div>
-        <div
-          class="look__grid-item">
-          <div
-            class="look__collection-img_container">
+        <div class="look__grid-item">
+          <div class="look__collection-img_container">
             <img
               srcset="{% if collection.featured_image.width >= 288 %}
               {{ collection.featured_image | image_url: width: 288 }} 288w,{% endif %}

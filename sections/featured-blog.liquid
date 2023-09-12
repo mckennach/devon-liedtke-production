@@ -14,13 +14,19 @@
 -%}
 
 
-<div class="featured-blog {% if section.settings.heading == blank %} no-heading{% endif %}" data-scheme="{{ section.settings.color_scheme }}">
-  <div class="featured-blog__container">
+<div
+  class="featured-blog {% if section.settings.heading == blank %} no-heading{% endif %} color-{{ section.settings.color_scheme }}"
+  data-scheme="{{ section.settings.color_scheme }}">
+  <div
+    class="featured-blog__container">
 
     {%- unless section.settings.heading == blank -%}
-      <div class="featured-blog__heading">
-        <div class="featured-blog__title-container">
-          <div container-md>
+      <div
+        class="featured-blog__heading">
+        <div
+          class="featured-blog__title-container">
+          <div
+            container-md>
             <h2
               id="SectionHeading-{{ section.id }}"
               class="featured-blog__title inline-richtext {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -31,8 +37,11 @@
             </h2>
           </div>
           {%- unless section.settings.heading_tag == blank -%}
-            <div class="featured-blog__tag">
-              <div class="featured-blog__tag-container" container>
+            <div
+              class="featured-blog__tag">
+              <div
+                class="featured-blog__tag-container"
+                container>
                 <h3
                   id="SectionTag-{{section.id }}"
                   class="featured-blog__tag {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -47,9 +56,13 @@
       </div>
     {%- endunless -%}
 
-    <div class="featured-blog__article-container" container>
+    <div
+      class="featured-blog__article-container"
+      container>
 
-      <ul class="featured-blog__posts " role="list">
+      <ul
+        class="featured-blog__posts "
+        role="list">
 
 
         {% if block_size > 0 %}
