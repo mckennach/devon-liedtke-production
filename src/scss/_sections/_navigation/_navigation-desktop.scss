@@ -18,6 +18,7 @@
     }
 
     &__menu-item {
+        color: rgb(var(--color-foreground));
         @include pseudo-underline($color: rgb(var(--color-foreground)), $width: 0%, $display: inline, $speed: .2s, $bottom: -1px);
         &:hover {
             @include pseudo-underline($color: rgb(var(--color-foreground)), $width: 100%, $display: inline, $speed: .2s, $bottom: -1px);

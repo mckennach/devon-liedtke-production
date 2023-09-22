@@ -3,4 +3,33 @@
     &__container {
         padding-top: rem(50);
     }
+    
+.rte {
+    div[data-mce-fragment='1'] {
+        margin-bottom: rem(30);
+    }
+        h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                text-transform: uppercase;
+            }
+
+        h1,h2,h3,h4,h5,h6,p{
+            margin-bottom: rem(15);
+        }
+        blockquote {
+            max-width: rem(700);
+            @include type-style(blockquote);
+        }
+
+        em {
+            @include type-style(secondary);
+            font-style: normal;
+        }
+
+
+    }
 }

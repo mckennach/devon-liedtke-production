@@ -29,7 +29,7 @@ export const schemeAnimations = () => {
                     scrub: true,
                     // markers: true
                 }
-            }).to("html, body", {
+            }).to(".side-navigation", {
                 "--color-background": theme.colorBackground,
                 "--gradient-background": theme.gradientBackground,
                 "--color-foreground" : theme.colorForeground,

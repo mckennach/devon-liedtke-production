@@ -19,6 +19,7 @@
     &__video {
         @include breakpoint(tablet) {
             padding-bottom: rem(50);
+            margin-bottom: rem(50);
         }
         @include breakpoint(tabletup) {
             max-width: 55%;

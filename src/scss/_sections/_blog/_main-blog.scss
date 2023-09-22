@@ -21,7 +21,7 @@
     }
 
     &__grid {
-        @include flexbox($wrap: wrap, $justifyContent: flex-end);
+        @include flexbox($wrap: wrap);
         @include breakpoint(tablet) {
             @include flexbox($justifyContent: flex-start, $direction: column);
         }
@@ -42,20 +42,37 @@
             }
         }
 
-      
         &:first-child {
-            margin-top: rem(0);
+            margin-top: rem(10);
             @include breakpoint(tablet) {
-                max-width: 90%;
-                width: 90%;
-            }
-
-            .article-card {
-                @include breakpoint(tabletup) {
-                    @include max-width(547);
-                    padding-right: rem(20);
+                    max-width: 90%;
+                    width: 90%;
                 }
-            }
+            
+                .article-card {
+                    @include breakpoint(tabletup) {
+                        @include max-width(547);
+                        padding-right: rem(20);
+                    }
+                }
+        }
+        &:nth-child(4n) { 
+            margin-top: rem(50);
+            @include breakpoint(tablet) {
+                    max-width: 90%;
+                    width: 90%;
+                }
+            
+                .article-card {
+                    @include breakpoint(tabletup) {
+                        @include max-width(547);
+                        padding-right: rem(20);
+                    }
+                }
+        }
+        
+        &:first-child, &:nth-child(4n) {
+            
         }
 
      
@@ -69,7 +86,7 @@
 
         &:nth-child(3) {
             @include breakpoint(tabletup) {
-                flex: 0 0 75%;
+                flex: 0 0 100%;
                 .article-card {
                     margin-top: rem(50);
                     @include max-width(322);
@@ -81,6 +98,17 @@
             @include breakpoint(tabletup) {
                 display: none;
             }
+        }
+    }
+
+    &__read-more-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: rem(200);    
+
+        button {
+            width: rem(345);
         }
     }
 }

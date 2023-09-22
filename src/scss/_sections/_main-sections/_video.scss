@@ -12,7 +12,7 @@
     &__media {
         // --ratio-percent: 56.25% !important;
         @include breakpoint(tablet) {
-            --ratio-percent: 135% !important;
+            --ratio-percent: 130% !important;
         }
         position: relative;
         padding-bottom: calc(var(--ratio-percent) - var(--media-border-width));
@@ -47,6 +47,9 @@
         position: absolute;
         width: 100%;
         height: 100%;
+        @include breakpoint(tablet) {
+                transform: scale(2.3);
+        }
     }
 
     &__media video {
@@ -103,7 +106,7 @@
 }
 
 .deferred-media {
-    overflow: hidden;
+    overflow: hidden !important;
     margin-bottom: rem(15);
     &__poster {
         display: block;

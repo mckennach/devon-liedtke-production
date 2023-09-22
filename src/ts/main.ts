@@ -13,6 +13,7 @@ import { accordion } from './util/faqs';
 
 
 import { responsiveActions } from './util/responsiveActions';
+import { blogActions } from './util/blog';
 // import { productForm } from './shop/productForm';
 // import { cart } from './util/cart';
 // import { cartDrawer } from './util/cartDrawer';
@@ -49,3 +50,4 @@ schemeAnimations();
 mobileNav();
 accordion();
 responsiveActions();
+blogActions();

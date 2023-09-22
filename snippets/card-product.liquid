@@ -21,8 +21,39 @@
 {% endcomment %}
 
 {% liquid
-  assign image_ratio = media_aspect_ratio | default: 'portrait' 
+  assign image_ratio = media_aspect_ratio | default: 'portrait'
+  if is_look 
+    if image_ratio == 'portrait'
+      assign width = 1000
+      assign height = 1320
+      if card_product.metafields.custom.shop_the_look_portrait.value != blank
+        assign image = card_product.metafields.custom.shop_the_look_portrait 
+        assign test = 'portrait custom'
+      else 
+        assign image = card_product.images[1]
+        assign test = 'product 1'
+
+      endif
+    else 
+      assign width = 1000
+      assign height = 668
+      if card_product.metafields.custom.shop_the_look_landscape.value != blank
+        assign image = card_product.metafields.custom.shop_the_look_landscape 
+        assign test = 'landscape custom'
+      else 
+        assign image = card_product.images[1]
+        assign test = 'landscape 1'
+      endif
+    endif
+   
+  else
+    assign width = 1000
+    assign height = 1295
+    assign image = card_product.featured_image 
+  endif 
 %}
+
+
 
 <card-product
   id="product-{{ section_id }}-{{ index }}"
@@ -34,66 +65,24 @@
     data-id="{{ card_product.id }}">
 
 
-    {%- if card_product.featured_image != blank -%}
-      <div
-        class="{{ class }}__img-container card-product__img-container {{ image_ratio }}">
-
-
-        {%- if is_look -%}
-
-          {%- if image_ratio == 'portrait' -%}
+    {%- if image != blank -%}
+          <div class="{{ class }}__img-container card-product__img-container  {{ image_ratio }}">
+            {%- if image_ratio == 'portrait' -%}
             <img
-              srcset="{% if card_product.images[1].width >= 288 %}
-              {{ card_product.images[1] | image_url: width: 288 }} 288w,{% endif %}
-            {% if card_product.images[1].width >= 576 %}
-              {{ card_product.images[1] | image_url: width: 576 }} 576w,{% endif %}
-            {% if card_product.images[1].width >= 550 %}
-              {{ card_product.images[1] | image_url: width: 550 }} 550w,{% endif %}
-            {% if card_product.images[1].width >= 1100 %}
-              {{ card_product.images[1] | image_url: width: 1100 }} 1100w,{% endif %}
-            {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
-            src="{{ card_product.images[1] | image_url: width: 715, height: 550 }}"
+              srcset="{% if image.width >= 288 %}
+              {{ image | image_url: width: 288 }} 288w,{% endif %}
+            {% if image.width >= 576 %}
+              {{ image | image_url: width: 576 }} 576w,{% endif %}
+            {% if image.width >= 550 %}
+              {{ image | image_url: width: 550 }} 550w,{% endif %}
+            {% if image.width >= 1100 %}
+              {{ image | image_url: width: 1100 }} 1100w,{% endif %}
+            {{ image | image_url }} {{ image.width }}w"
+            src="{{ image | image_url: width: width, height: height }}"
             loading="lazy"
-            width="715"
-            height="{{ 645 | divided_by: card_product.images[1].aspect_ratio }}"
-            alt="{{ card_product.images[1].alt | escape }}"
-            class="{{ class }}__img card-product__img">
-          {%- else -%}
-            <img
-              srcset="{% if card_product.images[1].width >= 288 %}
-              {{ card_product.images[1] | image_url: width: 288 }} 288w,{% endif %}
-            {% if card_product.images[1].width >= 576 %}
-              {{ card_product.images[1] | image_url: width: 576 }} 576w,{% endif %}
-            {% if card_product.images[1].width >= 550 %}
-              {{ card_product.images[1] | image_url: width: 550 }} 550w,{% endif %}
-            {% if card_product.images[1].width >= 1100 %}
-              {{ card_product.images[1] | image_url: width: 1100 }} 1100w,{% endif %}
-            {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
-            src="{{ card_product.images[1] | image_url: width: 715, height: 550 }}"
-            loading="lazy"
-            width="715"
-            height="{{ 645 | divided_by: card_product.images[1].aspect_ratio }}"
-            alt="{{ card_product.images[1].alt | escape }}"
-            class="{{ class }}__img card-product__img">
-          {%- endif -%}
-        {%- else -%}
-
-          {%- if image_ratio == 'portrait' -%}
-            <img
-              srcset="{% if card_product.featured_image.width >= 288 %}
-              {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
-            {% if card_product.featured_image.width >= 576 %}
-              {{ card_product.featured_image | image_url: width: 576 }} 576w,{% endif %}
-            {% if card_product.featured_image.width >= 550 %}
-              {{ card_product.featured_image | image_url: width: 550 }} 550w,{% endif %}
-            {% if card_product.featured_image.width >= 1100 %}
-              {{ card_product.featured_image | image_url: width: 1100 }} 1100w,{% endif %}
-            {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
-            src="{{ card_product.featured_image | image_url: width: 715, height: 550 }}"
-            loading="lazy"
-            width="715"
-            height="{{ 645 | divided_by: card_product.featured_image.aspect_ratio }}"
-            alt="{{ card_product.featured_image.alt | escape }}"
+            width="{{ width }}"
+            height="{{ height }}"
+            alt="{{ image.alt | escape }}"
             class="{{ class }}__img card-product__img">
             {%- if card_product.images[1] != blank -%}
               <img
@@ -106,29 +95,29 @@
               {% if card_product.images[1].width >= 1100 %}
                 {{ card_product.images[1] | image_url: width: 1100 }} 1100w,{% endif %}
               {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
-              src="{{ card_product.images[1] | image_url: width: 715, height: 550 }}"
+              src="{{ card_product.images[1] | image_url: width: width, height: height }}"
               loading="lazy"
-              width="715"
-              height="{{ 645 | divided_by: card_product.images[1].aspect_ratio }}"
+              width="{{ width }}"
+              height="{{ height }}"
               alt="{{ card_product.images[1].alt | escape }}"
               class="{{ class }}__img card-product__hover-img">
             {%- endif -%}
           {%- else -%}
             <img
-              srcset="{% if card_product.featured_image.width >= 288 %}
-              {{ card_product.featured_image | image_url: width: 288 }} 288w,{% endif %}
-            {% if card_product.featured_image.width >= 576 %}
-              {{ card_product.featured_image | image_url: width: 576 }} 576w,{% endif %}
-            {% if card_product.featured_image.width >= 550 %}
-              {{ card_product.featured_image | image_url: width: 550 }} 550w,{% endif %}
-            {% if card_product.featured_image.width >= 1100 %}
-              {{ card_product.featured_image | image_url: width: 1100 }} 1100w,{% endif %}
-            {{ card_product.featured_image | image_url }} {{ card_product.featured_image.width }}w"
-            src="{{ card_product.featured_image | image_url: width: 1000, height: 801 }}"
+              srcset="{% if image.width >= 288 %}
+              {{ image | image_url: width: 288 }} 288w,{% endif %}
+            {% if image.width >= 576 %}
+              {{ image | image_url: width: 576 }} 576w,{% endif %}
+            {% if image.width >= 550 %}
+              {{ image | image_url: width: 550 }} 550w,{% endif %}
+            {% if image.width >= 1100 %}
+              {{ image | image_url: width: 1100 }} 1100w,{% endif %}
+            {{ image | image_url }} {{ image.width }}w"
+            src="{{ image | image_url: width: 1000, height: 801 }}"
             loading="lazy"
-            width="1000"
-            height="{{ 801 | divided_by: card_product.featured_image.aspect_ratio }}"
-            alt="{{ card_product.featured_image.alt | escape }}"
+              width="{{ width }}"
+              height="{{ height }}"}"
+            alt="{{ image.alt | escape }}"
             class="{{ class }}__img card-product__img">
             {%- if card_product.images[1] != blank -%}
               <img
@@ -141,19 +130,19 @@
               {% if card_product.images[1].width >= 1100 %}
                 {{ card_product.images[1] | image_url: width: 1100 }} 1100w,{% endif %}
               {{ card_product.images[1] | image_url }} {{ card_product.images[1].width }}w"
-              src="{{ card_product.images[1] | image_url: width: 715, height: 550 }}"
+              src="{{ card_product.images[1] | image_url: width: width, height: height }}"
               loading="lazy"
-              width="715"
-              height="{{ 645 | divided_by: card_product.images[1].aspect_ratio }}"
+              width="{{ width }}"
+              height="{{ height }}"
               alt="{{ card_product.images[1].alt | escape }}"
               class="{{ class }}__img card-product__hover-img">
             {%- endif -%}
           {%- endif -%}
-
-        {%- endif -%}
-
-
       </div>
+
+        
+
+
 
     {%- else -%}
       {% render 'placeholder-image' with id: card_product.id, class: 'portrait card-product', width: 715, height: 550 %}

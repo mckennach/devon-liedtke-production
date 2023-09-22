@@ -20,7 +20,7 @@
           "type": "look",
           "settings": {
             "title": "SHOP         THE                         LOOK",
-            "collection": "shop-the-look"
+            "collection": "shop-the-look-1"
           }
         },
         "e569505e-e020-451b-ba96-3322f68d0ac6": {
@@ -54,9 +54,17 @@
             "link_label": "Shop Vessels",
             "enable_video_looping": true,
             "enable_video_autoplay": true,
+            "video": "shopify:\/\/files\/videos\/TEST6_A2.mp4",
             "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
             "cover_image": "shopify:\/\/shop_images\/Rectangle_218.png",
             "description": ""
+          }
+        },
+        "9e2e17ee-82aa-4af8-aff5-93d5bb9aeacd": {
+          "type": "look",
+          "settings": {
+            "title": "Shop      the             look",
+            "collection": "shop-the-look-2"
           }
         }
       },
@@ -64,7 +72,8 @@
         "e533dac9-14fc-48cb-9df1-19e5a97f6afa",
         "e569505e-e020-451b-ba96-3322f68d0ac6",
         "2d5b2f72-3b0b-4b4e-9678-f5039d1324b1",
-        "f5e1ace4-1650-4229-9a0a-30309313a16b"
+        "f5e1ace4-1650-4229-9a0a-30309313a16b",
+        "9e2e17ee-82aa-4af8-aff5-93d5bb9aeacd"
       ],
       "settings": {
         "custom_title_all": ""

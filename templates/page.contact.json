@@ -2,6 +2,7 @@
   "sections": {
     "bc97ee24-bcd0-4981-9301-fb0ba0827e2c": {
       "type": "video",
+      "disabled": true,
       "settings": {
         "video_title": "CONTACT    US",
         "video_label": "",
@@ -13,6 +14,13 @@
         "cover_image": "shopify:\/\/shop_images\/contact-vid.jpg",
         "description": "",
         "section_size": "container-sm",
+        "color_scheme": ""
+      }
+    },
+    "b7add193-1cb5-4714-ae8d-0d3a4cc5be20": {
+      "type": "heading",
+      "settings": {
+        "title": "CONTACT    US",
         "color_scheme": ""
       }
     },
@@ -37,6 +45,7 @@
   },
   "order": [
     "bc97ee24-bcd0-4981-9301-fb0ba0827e2c",
+    "b7add193-1cb5-4714-ae8d-0d3a4cc5be20",
     "form",
     "a003b700-f171-4efa-8f8f-fc09d0ddb755"
   ]

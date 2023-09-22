@@ -1,5 +1,4 @@
-<div
-  class="image-grid color-{{ section.settings.color_scheme }}">
+<div class="image-grid color-{{ section.settings.color_scheme }}">
   {%- if section.settings.title -%}
     {% render 'heading' 
      with title: section.settings.title,
@@ -7,27 +6,24 @@
      class: 'image-grid',
      animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
   {%- endif -%}
-  <div
-    class="image-grid__container"
-    container-sm>
-    <div
-      class="image-grid__items-container">
+  <div class="image-grid__container" container-sm>
+    <div class="image-grid__items-container">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'image' -%}
-          <div
-            class="image-grid__grid-item">
-            <figure
-              class="image-grid__figure caption-{{ block.settings.caption_position }} {% if settings.animations_reveal_on_scroll %} {% endif %}">
+          <div class="image-grid__grid-item">
+            <figure class="image-grid__figure caption-{{ block.settings.caption_position }} {% if settings.animations_reveal_on_scroll %} {% endif %}">
               <div
                 class="image-grid__image-container scroll-trigger animate--slide-in"
                 {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 {% endif %}>
-                {{
-                   block.settings.image
-                 | image_url: width: 1500
-                 | image_tag: class: '', loading: 'lazy', sizes: sizes, widths: widths }}
+                <div class="image-grid__image-inner-container ">
+                  {{
+                     block.settings.image
+                   | image_url: width: 1500
+                   | image_tag: class: '', loading: 'lazy', sizes: sizes, widths: widths }}
+                </div>
               </div>
               {%- if block.settings.caption != blank -%}
                 <figcaption>{{ block.settings.caption | escape }}</figcaption>

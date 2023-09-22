@@ -1,5 +1,5 @@
 .contact {
-    padding: rem(100) 0;
+    padding: rem(30) 0 rem(100);
     @include breakpoint(tablet) {
         padding: 0 0 rem(100);
     }

@@ -13,8 +13,19 @@
         }
     }
 
-    &__img-container {
+    &__image-inner-container {
         @include aspect-ratio(463, 560);
+        width: 20rem;
+        @include breakpoint(desktop) {
+            width: 18rem;
+        }
+        @include breakpoint(tablet) {
+            width: 12rem;
+        }
+
+        @include breakpoint(phone) {
+            width: 9rem;
+        }
     }
 
     &__figure {
@@ -47,7 +58,7 @@
         &.caption-right figcaption {
             @include breakpoint(tabletup) {
                 position: absolute;
-                transform: translate(90px, 70px) rotate(-270deg);
+                transform: translate(105px, 84px) rotate(-270deg);
                 top: 0;
                 right: 0;
                 margin-top: 0;

@@ -21,9 +21,7 @@
   100vw
 {%- endcapture -%}
 
-<div
-  class="video-section isolate color-{{ section.settings.color_scheme }}"
-  data-scheme="{{ section.settings.color_scheme }}">
+<div class="video-section isolate color-{{ section.settings.color_scheme }}">
 
   {%- if title != blank -%}
     {% render 'heading' 
@@ -32,8 +30,7 @@
      class: 'video',
      animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
   {%- endif -%}
-  <div
-    class="video-section__container {{ section.settings.section_size }}">
+  <div class="video-section__container {{ section.settings.section_size }}">
 
 
     {% render 'video' with 

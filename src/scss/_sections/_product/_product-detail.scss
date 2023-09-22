@@ -114,6 +114,19 @@
         }
     }
 
+    .swiper-button-disabled {
+        display: none;
+    }
+
+    .swiper-button-prev, .swiper-button-next {
+        &:after {
+            color: rgb(213 , 211 , 198);
+        }
+        @include breakpoint(tablet) {
+            display: none;
+        }
+    }
+
     &__media-wrapper {
         @include breakpoint(tablet) {
             margin-bottom: rem(15);

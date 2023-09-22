@@ -12,17 +12,13 @@
     endfor
   endif
   assign article_objects = article_objects | split: ',' | sort | reverse
+  assign articles_size = article_objects | size
 %}
-<h1
-  class="main-blog__edit-title">THE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDIT</h1>
+<h1 class="main-blog__edit-title">THE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EDIT</h1>
 
-<div
-  class="main-blog">
-  <div
-    class="main-blog__container"
-    container-md>
-    <div
-      class="main-blog__grid">
+<div class="main-blog">
+  <div class="main-blog__container" container-md>
+    <div class="main-blog__grid">
       {% if blog_count %}
         {% for obj in article_objects %}
           {% assign new_objects = obj | split: '&' %}
@@ -37,9 +33,7 @@
             {% endif %}
           {% endfor %}
           {% assign group = forloop.index | modulo: 3 %}
-          <div
-            class="main-blog__article-item {% if forloop.index > 3 %}group-hide{% endif %}"
-            data-group="{{ group}}">
+          <div class="main-blog__article-item {% if forloop.index > 3 %}group-hide{% endif %}" data-group="{{ group}}">
             {% render 'card-article'
              , blog_handle: blog_handle,
              article: article,
@@ -50,9 +44,21 @@
              show_excerpt: true %}
           </div>
         {% endfor %}
-      {% endif %}
-    </div>
 
+
+      {% endif %}
+
+    </div>
+    {%- if articles_size -%}
+      <div class="main-blog__read-more-container">
+        <button
+          id="read-more-articles"
+          data-count="{{ articles_size }}"
+          class="button">
+          Read More >
+        </button>
+      </div>
+    {%- endif -%}
   </div>
 </div>
 

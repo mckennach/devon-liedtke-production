@@ -18,7 +18,7 @@
         "link_label": "Shop the Collection",
         "enable_video_looping": true,
         "enable_video_autoplay": true,
-        "video": "shopify:\/\/files\/videos\/TEST4_A2.mp4",
+        "video": "shopify:\/\/files\/videos\/TEST_1_WEBSITE.mp4",
         "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
         "cover_image": "shopify:\/\/shop_images\/Rectangle_218.png",
         "description": "",
@@ -52,6 +52,18 @@
     },
     "7b89250b-45a2-4573-a920-2ef2071fa522": {
       "type": "image-banner",
+      "blocks": {
+        "f7fd7426-6019-486e-ab65-c6ea3e7b5f48": {
+          "type": "heading",
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "f7fd7426-6019-486e-ab65-c6ea3e7b5f48"
+      ],
       "disabled": true,
       "settings": {
         "image": "shopify:\/\/shop_images\/Rectangle_218.jpg",
@@ -60,7 +72,7 @@
         "desktop_content_position": "middle-center",
         "show_text_box": true,
         "desktop_content_alignment": "center",
-        "image_behavior": "ambient",
+        "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
         "show_text_below": true,
@@ -79,14 +91,26 @@
     },
     "23a9f003-5033-423f-994d-43ee4328ba47": {
       "type": "image-banner",
+      "blocks": {
+        "d8fe3ce8-43c5-4460-a18c-4ee814ddc43a": {
+          "type": "heading",
+          "settings": {
+            "heading": "TITLE",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "d8fe3ce8-43c5-4460-a18c-4ee814ddc43a"
+      ],
       "settings": {
-        "image": "shopify:\/\/shop_images\/home-full-width.jpg",
+        "image": "shopify:\/\/shop_images\/home53.jpg",
         "image_overlay_opacity": 0,
         "image_height": "small",
         "desktop_content_position": "middle-center",
         "show_text_box": true,
         "desktop_content_alignment": "center",
-        "image_behavior": "ambient",
+        "image_behavior": "none",
         "mobile_content_alignment": "center",
         "stack_images_on_mobile": true,
         "show_text_below": true,

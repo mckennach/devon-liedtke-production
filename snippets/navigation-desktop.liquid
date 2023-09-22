@@ -95,7 +95,8 @@
           {%- else -%}
 
 
-            {%- if link.handle == 'search' -%}
+            {%- if link.handle == 'search' and template != 'search' -%}
+        
               {% render 'search-form', input_id: 'Search-In-Modal' %}
             {%- else -%}
               <a

@@ -48,3 +48,20 @@
     }
     
 }
+
+.full-bleed__heading {
+    padding-top: rem(50);
+    width: 100%;
+    border-top: unset;
+    border-bottom: 1px solid var(--color-text-secondary);
+    color: var(--color-text-secondary);
+   
+}
+
+ .full-bleed__heading-container {
+     padding: 0 rem(200);
+     @include breakpoint(tablet) {
+        padding: 0 rem(50);
+     }
+
+ }

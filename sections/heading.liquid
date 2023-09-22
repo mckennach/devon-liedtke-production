@@ -1,0 +1,43 @@
+<div class="isolate color-{{ section.settings.color_scheme }}">
+  {%- if section.settings.title != blank -%}
+    {% render 'heading' 
+     with title: section.settings.title,
+     title_tag: 'h2',
+     class: 'video',
+     animations_reveal_on_scroll: settings.animations_reveal_on_scroll %}
+  {%- endif -%}
+</div>
+
+
+{% schema %}
+  {
+    "name": "Heading",
+    "tag": "section",
+    "class": "section",
+    "disabled_on": {
+      "groups": ["header", "footer"]
+    },
+    "settings": [
+      {
+        "type": "header",
+        "content": "Text"
+      }, {
+        "type": "inline_richtext",
+        "id": "title",
+        "label": "Title",
+        "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
+      }, {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "info": "t:sections.all.colors.has_cards_info",
+        "default": "background-1"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Heading"
+      }
+    ]
+  }
+{% endschema %}
