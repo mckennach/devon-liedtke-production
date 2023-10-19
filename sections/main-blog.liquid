@@ -20,6 +20,7 @@
   <div class="main-blog__container" container-md>
     <div class="main-blog__grid">
       {% if blog_count %}
+        {%- assign count = 0 -%}
         {% for obj in article_objects %}
           {% assign new_objects = obj | split: '&' %}
           {% for new_obj in new_objects %}
@@ -33,7 +34,18 @@
             {% endif %}
           {% endfor %}
           {% assign group = forloop.index | modulo: 3 %}
-          <div class="main-blog__article-item {% if forloop.index > 3 %}group-hide{% endif %}" data-group="{{ group}}">
+
+          {% if group == 1 %}
+
+            {% unless forloop.first %}
+            </group>
+          {% endunless %}
+          <group class="main-blog__article-group {% if forloop.index > 3 %}group-hide{% endif %}" data-article-group="{{ count }}">
+            {% assign count = count | plus: 1 %}
+          {% endif %}
+
+          <div class="main-blog__article-item ">
+            {% comment %} <div class="main-blog__article-item {% if forloop.index > 3 %}group-hide{% endif %}" data-group="{{ group}}"> {% endcomment %}
             {% render 'card-article'
              , blog_handle: blog_handle,
              article: article,
@@ -54,6 +66,7 @@
         <button
           id="read-more-articles"
           data-count="{{ articles_size }}"
+          data-current-count="1"
           class="button">
           Read More >
         </button>

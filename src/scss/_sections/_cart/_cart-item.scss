@@ -47,6 +47,16 @@
         @include type-style(secondary);
     }
 
+    &__discount {
+        display: flex;
+        margin-bottom: rem(15);
+        @include type-style(secondary);
+        .icon {
+            width: rem(8);
+            margin-right: rem(10);
+        }
+    }
+
     &__remove-button {
         @include type-style(secondary);
         @include pseudo-underline($width: 100%, $display: inline);

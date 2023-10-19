@@ -72,7 +72,7 @@
       "type": "featured-blog",
       "settings": {
         "heading": "THE       EDIT",
-        "heading_tag": "Inspired by       &   Living With     Intentionally",
+        "heading_tag": "Inspired by       &   Living With   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Intentionally",
         "blog": "",
         "blogs": "blogs",
         "post_limit": 3,

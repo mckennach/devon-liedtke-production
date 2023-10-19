@@ -1,4 +1,9 @@
 .featured-blog-collection {
+    padding-bottom: rem(100);
+    
+        @include breakpoint(tablet) {
+            padding-bottom: rem(50);
+        }
     &__container {
         @include flexbox;
     }

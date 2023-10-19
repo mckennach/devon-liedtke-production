@@ -1,3 +1,5 @@
+
+
 .look {
     width: rem(1465);
     padding: rem(100) 0;
@@ -12,15 +14,15 @@
         }
     }
 
-    &.even {
-        margin-right: 0;
-        margin-left: auto;
-    }
+    // &.even {
+    //     margin-right: 0;
+    //     margin-left: auto;
+    // }
 
-    &.odd {
-        margin-left: 0;
-        margin-right: auto;
-    }
+    // &.odd {
+    //     margin-left: 0;
+    //     margin-right: auto;
+    // }
 
     &:nth-of-type(even) {
         // background-color: red;
@@ -33,11 +35,11 @@
     }
 
     &.odd &__grid {
-        @include flexbox($wrap: wrap, $justifyContent: space-between, $direction: row-reverse);
+        // @include flexbox($wrap: wrap, $justifyContent: space-between, $direction: row-reverse);
     
-        @include breakpoint(tablet) {
-            @include flexbox($wrap: nowrap, $justifyContent: space-between, $direction: column-reverse);
-        }
+        // @include breakpoint(tablet) {
+        //     @include flexbox($wrap: nowrap, $justifyContent: space-between, $direction: column-reverse);
+        // }
     }
 
     &__grid-item {
@@ -59,10 +61,10 @@
     }
 
     &.odd &__products-container {
-        @include breakpoint(tabletup) {
-            padding-right: 0;
-            padding-left: rem(20);
-        }
+        // @include breakpoint(tabletup) {
+        //     padding-right: 0;
+        //     padding-left: rem(20);
+        // }
     }
 
     &__heading {
@@ -97,13 +99,13 @@
     }
 
     &.odd &__products {
-        @include flexbox($gap: rem(30), $wrap: wrap, $direction: row-reverse);
+        // @include flexbox($gap: rem(30), $wrap: wrap, $direction: row-reverse);
     
-        @include breakpoint(tablet) {
-            @include flexbox($direction: column-reverse, $shrink: unset, $grow: unset);
-            flex-basis: 65%;
-            padding-left: 2.5%;
-        }
+        // @include breakpoint(tablet) {
+        //     @include flexbox($direction: column-reverse, $shrink: unset, $grow: unset);
+        //     flex-basis: 65%;
+        //     padding-left: 2.5%;
+        // }
     }
 
     &__item {

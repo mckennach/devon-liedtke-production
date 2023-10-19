@@ -17,6 +17,10 @@
 
 }
 
-.template-search--empty {
+.template-search--empty, .search-results-container {
     padding-bottom: rem(150);
+    @include breakpoint(tablet) {
+        padding-bottom: rem(100);
+    }
 }
+

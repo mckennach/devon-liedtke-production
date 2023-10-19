@@ -2,7 +2,7 @@
   "current": {
     "logo": "shopify:\/\/shop_images\/logo.svg",
     "logo_width": 850,
-    "favicon": "shopify:\/\/shop_images\/Screenshot_2023-08-31_at_3.58.22_PM_1.png",
+    "favicon": "shopify:\/\/shop_images\/favicon-1.png",
     "image": "shopify:\/\/shop_images\/landing.jpg",
     "mobile_image": "shopify:\/\/shop_images\/landing-mobile.jpg",
     "days_to_hide": 0,
@@ -21,6 +21,9 @@
     "currency_code_enabled": true,
     "cart_type": "drawer",
     "show_cart_note": false,
+    "checkout_logo_image": "shopify:\/\/shop_images\/Screenshot_2023-08-31_at_3.58.22_PM_1.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "large",
     "type_header_font": "assistant_n4",
     "heading_scale": 100,
     "type_body_font": "assistant_n4",

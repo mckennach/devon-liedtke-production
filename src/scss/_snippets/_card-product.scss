@@ -33,14 +33,14 @@
     &__img-container &__hover-img {
         opacity: 0;
         transform: scale(1);
-        transition: all .2s ;
+        transition: all .35s ;
         // transition: transform .8s ;
     }
 
     &__img-container:hover &__hover-img {
         opacity: 1;
-        transform: scale(1.05);
-        transition: all .2s ;
+        transform: scale(1.03);
+        transition: all .35s ;
     }
 
   

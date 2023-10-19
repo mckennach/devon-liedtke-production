@@ -21,7 +21,7 @@
           {%- case block.type -%}
             {%- when 'press_entry' -%}
             {% liquid
-                assign image = block.settings.featured_image
+                assign image = block.settings.image
                 if image.width > image.height
                   assign aspect = 'landscape'
                 else
@@ -31,6 +31,7 @@
             <p
               class="press__entry scroll-trigger animate--slide-in"
               data-cascade
+              data-id="{{ block.id }}"
               style="--animation-order: {{ forloop.index }};">
               <a
                 href="{{ block.settings.link }}"
@@ -38,6 +39,7 @@
                 rel="noopener noreferrer"
                 data-id="{{ block.id }}"
                 data-image-aspect="{{ aspect }}"
+                id="Press-{{ block.id }}"
                 data-image-url="{{ image }}">{{ block.settings.title }}</a>
               {%- unless forloop.last -%}
                 <span>
@@ -54,48 +56,125 @@
       <div
         class="press__image-background-container"
         container>
-        {%- for block in section.blocks limit: 3 -%}
+        {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'press_entry' -%}
-            {% liquid
-                assign image = block.settings.featured_image
+            <div
+              class="press__images-container"
+              id="Press-Images-{{ block.id }}"
+              data-images="{{ block.id }}">
+              {% liquid
+                assign image = block.settings.image
                 if image.width > image.height
                   assign aspect = 'landscape'
                 else
                   assign aspect = 'portrait'
                 endif
               %}
-            {% if image != blank %}
-              <div
-                class="press__image-outter-container">
+              {% if image != blank %}
                 <div
-                  class="press__image-container"
-                  data-id="{{ block.id }}"
-                  data-aspect="{{ aspect | escape }}">
-
-                  <img
-                    srcset="{% if image.width >= 288 %}
-                    {{ image | image_url: width: 288 }} 288w,{% endif %}
-                  {% if image.width >= 576 %}
-                    {{ image | image_url: width: 576 }} 576w,{% endif %}
-                  {% if image.width >= 550 %}
-                    {{ image | image_url: width: 550 }} 550w,{% endif %}
-                  {% if image.width >= 1100 %}
-                    {{ image | image_url: width: 1100 }} 1100w,{% endif %}
-                  {{ image | image_url }} {{ image.width }}w"
-                  src="{{ image | image_url: width: 715, height: 550 }}"
-                  loading="lazy"
-                  width="715"
-                  height="{{ 645 | divided_by: image.aspect_ratio }}"
-                  alt="{{ image.alt | escape }}"
-                  class="press__image scroll-trigger animate--slide-in"
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};">
+                  data-images="{{ block.id }}"
+                  class="press__image-outter-container">
+                  <div
+                    class="press__image-container"
+                    data-id="{{ block.id }}"
+                    data-aspect="{{ aspect | escape }}">
+                    <img
+                      srcset="{% if image.width >= 288 %}
+                      {{ image | image_url: width: 288 }} 288w,{% endif %}
+                    {% if image.width >= 576 %}
+                      {{ image | image_url: width: 576 }} 576w,{% endif %}
+                    {% if image.width >= 550 %}
+                      {{ image | image_url: width: 550 }} 550w,{% endif %}
+                    {% if image.width >= 1100 %}
+                      {{ image | image_url: width: 1100 }} 1100w,{% endif %}
+                    {{ image | image_url }} {{ image.width }}w"
+                    src="{{ image | image_url: width: 715, height: 550 }}"
+                    loading="lazy"
+                    width="715"
+                    height="{{ 645 | divided_by: image.aspect_ratio }}"
+                    alt="{{ image.alt | escape }}"
+                    class="press__image scroll-trigger animate--slide-in"
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};">
+                  </div>
                 </div>
-              </div>
-
-            {% endif %}
-
+              {% endif %}
+              {% liquid
+                assign image_2 = block.settings.image_2
+                if image_2.width > image_2.height
+                  assign aspect = 'landscape'
+                else
+                  assign aspect = 'portrait'
+                endif
+              %}
+              {% if image_2 != blank %}
+                <div
+                  data-images="{{ block.id }}"
+                  class="press__image-outter-container">
+                  <div
+                    class="press__image-container"
+                    data-id="{{ block.id }}"
+                    data-aspect="{{ aspect | escape }}">
+                    <img
+                      srcset="{% if image_2.width >= 288 %}
+                      {{ image_2 | image_url: width: 288 }} 288w,{% endif %}
+                    {% if image_2.width >= 576 %}
+                      {{ image_2 | image_url: width: 576 }} 576w,{% endif %}
+                    {% if image.width >= 550 %}
+                      {{ image_2 | image_url: width: 550 }} 550w,{% endif %}
+                    {% if image_2.width >= 1100 %}
+                      {{ image_2 | image_url: width: 1100 }} 1100w,{% endif %}
+                    {{ image_2 | image_url }} {{ image_2.width }}w"
+                    src="{{ image_2 | image_url: width: 715, height: 550 }}"
+                    loading="lazy"
+                    width="715"
+                    height="{{ 645 | divided_by: image_2.aspect_ratio }}"
+                    alt="{{ image_2.alt | escape }}"
+                    class="press__image scroll-trigger animate--slide-in"
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};">
+                  </div>
+                </div>
+              {% endif %}
+              {% liquid
+                assign image_3 = block.settings.image_3
+                if image_3.width > image_3.height
+                  assign aspect = 'landscape'
+                else
+                  assign aspect = 'portrait'
+                endif
+              %}
+              {% if image_3 != blank %}
+                <div
+                  data-images="{{ block.id }}"
+                  class="press__image-outter-container">
+                  <div
+                    class="press__image-container"
+                    data-id="{{ block.id }}"
+                    data-aspect="{{ aspect | escape }}">
+                    <img
+                      srcset="{% if image_3.width >= 288 %}
+                      {{ image_3 | image_url: width: 288 }} 288w,{% endif %}
+                    {% if image_3.width >= 576 %}
+                      {{ image_3 | image_url: width: 576 }} 576w,{% endif %}
+                    {% if image.width >= 550 %}
+                      {{ image_3 | image_url: width: 550 }} 550w,{% endif %}
+                    {% if image_3.width >= 1100 %}
+                      {{ image_3 | image_url: width: 1100 }} 1100w,{% endif %}
+                    {{ image_3 | image_url }} {{ image_3.width }}w"
+                    src="{{ image_3 | image_url: width: 715, height: 550 }}"
+                    loading="lazy"
+                    width="715"
+                    height="{{ 645 | divided_by: image_3.aspect_ratio }}"
+                    alt="{{ image_3.alt | escape }}"
+                    class="press__image scroll-trigger animate--slide-in"
+                    data-cascade
+                    style="--animation-order: {{ forloop.index }};">
+                  </div>
+                </div>
+              {% endif %}
+            </div>
 
           {%- endcase -%}
         {%- endfor -%}
@@ -138,14 +217,27 @@
             "type": "inline_richtext",
             "id": "title",
             "label": "Title"
-          }, {
+          },
+          {
             "type": "url",
             "id": "link",
             "label": "Link"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "This will display on hover"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image 2",
+            "info": "This will display on hover"
           }, {
             "type": "image_picker",
-            "id": "featured_image",
-            "label": "Featured Image",
+            "id": "image_3",
+            "label": "Image 3",
             "info": "This will display on hover"
           }
         ]

@@ -11,10 +11,10 @@ const productSwiper = new Swiper('.product__swiper', {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
     },
-    // autoplay: {
-    //     delay: 2500,
-    //     disableOnInteraction: false,
-    // },
+    autoplay: {
+        delay: 3500,
+        disableOnInteraction: true,
+    },
   
     speed: 400,
     a11y: {

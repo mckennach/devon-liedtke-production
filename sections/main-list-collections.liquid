@@ -55,7 +55,10 @@
                       {%- unless break_look -%}
                         {%- assign look_to_skip = forloop.index -%}
                         {%- assign break_look = true -%}
+                        <div class=" collection-list-container look-group">
                         {% render 'shop-the-look' with data: block.settings, order: order %}
+
+                        </div>
                       {%- endunless -%}
                     {%- endunless -%}
                   {%- endunless -%}
@@ -66,7 +69,7 @@
                         {%- assign video_to_skip = forloop.index -%}
                         {%- assign break_video = true -%}
                         <div
-                          class="collection-page__video {{ order }}">
+                          class="collection-page__video {{ order }}  collection-list-container video">
                           {% render 'video' with 
                            video: block.settings.video,
                            video_url: block.settings.video_url,
@@ -93,7 +96,7 @@
             {%- endif -%}
           {%- endunless -%}
           <group
-            class="featured-collection__product-group">
+            class="featured-collection__product-group  collection-list-container group">
           {%- endif -%}
           {% render 'card-product'
            , card_product: product,

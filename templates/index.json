@@ -56,7 +56,7 @@
         "f7fd7426-6019-486e-ab65-c6ea3e7b5f48": {
           "type": "heading",
           "settings": {
-            "heading": "Image banner",
+            "heading": "<a href=\"\/blogs\/the-edit\" title=\"The Edit\">READ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THE&nbsp;&nbsp;EDIT ><\/a>",
             "heading_size": "h1"
           }
         }
@@ -91,18 +91,6 @@
     },
     "23a9f003-5033-423f-994d-43ee4328ba47": {
       "type": "image-banner",
-      "blocks": {
-        "d8fe3ce8-43c5-4460-a18c-4ee814ddc43a": {
-          "type": "heading",
-          "settings": {
-            "heading": "TITLE",
-            "heading_size": "h1"
-          }
-        }
-      },
-      "block_order": [
-        "d8fe3ce8-43c5-4460-a18c-4ee814ddc43a"
-      ],
       "settings": {
         "image": "shopify:\/\/shop_images\/home53.jpg",
         "image_overlay_opacity": 0,

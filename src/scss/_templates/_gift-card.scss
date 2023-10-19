@@ -1,0 +1,63 @@
+.gift-card {
+    padding: rem(50) 0;
+    @include flexbox($direction: column, $shrink: unset, $grow: unset, $alignItems: center, $justifyContent: center);
+    text-align: center;
+    gap: rem(20);
+
+    h1 {
+        @include type-style(primary);
+        font-size: rem(25);
+    }
+
+    &__main {
+        @include flexbox($direction: column, $shrink: unset, $grow: unset, $alignItems: center, $justifyContent: center);
+        text-align: center;
+        gap: rem(20);
+        @include type-style(primary);
+    }
+
+    img {
+        margin: 0 auto;
+    }
+
+    &__logo {
+        margin: rem(20) auto;
+        svg {
+            max-width: rem(500);
+            height: 100%;
+        }
+    }
+
+    &__number {
+        @include type-style(secondary);
+    }
+
+    &__buttons {
+        // @include flexbox($direction: column, $alignItems: center, $justifyContent: center);
+    }
+
+        .form__message {
+            align-items: center;
+            display: flex;
+            font-size: 1.2rem;
+            line-height: 1.5rem;
+            justify-content: center;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+            @include type-style(secondary);
+        }
+    
+        .form__message .icon {
+            flex-shrink: 0;
+            height: 1.3rem;
+            margin-right: 0.5rem;
+            width: 1.3rem;
+        }
+    
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+}
+

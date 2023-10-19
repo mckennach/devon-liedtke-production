@@ -3,40 +3,96 @@
     "65e14797-2452-4faa-aca1-f998d54a7e7a": {
       "type": "faqs",
       "blocks": {
-        "f86553de-788b-4038-960a-7cca9f7fa96f": {
-          "type": "faq",
-          "settings": {
-            "title": "WHY IS MY MEMBER DISCOUNT NOT APPEARING AT CHECKOUT?",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex"
-          }
-        },
         "b510e85f-384d-4c6f-93dc-a20ee86a1cff": {
           "type": "faq",
           "settings": {
-            "title": "WHY IS MY MEMBER DISCOUNT NOT APPEARING AT CHECKOUT?",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex"
+            "title": "Shipping",
+            "content": "Please note, we are a small business and we try our best to get your orders out as quickly as possible. Orders for in-stock items are shipped within 3-5 days of being placed unless otherwise noted. Standard and express shipping rate options are provided at checkout and calculated based on weight."
           }
         },
         "8aa7e638-e240-48aa-b39d-4519dcadd83e": {
           "type": "faq",
           "settings": {
-            "title": "HOW DO I RETURN OR EXCHANGE AN ITEM?",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu"
+            "title": "order status",
+            "content": "To check the status of your order, email our team at info@devonliedtke.com."
           }
         },
         "b6ccb70b-3e48-44a1-8e92-f126de74fe18": {
           "type": "faq",
           "settings": {
-            "title": "HOW DO I RETURN OR EXCHANGE AN ITEM?",
-            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu"
+            "title": "Returns",
+            "content": "Please email info@devonliedtke.com to initiate your return request. All returns or exchanges must be received within 14 days of receipt of the order. Refunds to the original card or store credit will be offered. Returned merchandise must be in new condition, in its original packaging, and include the original packing slip. Customers are responsible for any return shipping costs incurred.\n\nYou may modify or cancel your order within 24 hours at no charge in accordance with our cancelation policy, please contact info@devonliedtke.com."
+          }
+        },
+        "7ea18cb7-6410-4c3c-877c-642c16239f35": {
+          "type": "faq",
+          "settings": {
+            "title": "Order Issues",
+            "content": "We sell fragile items. Should an item arrive damaged or if there’s an issue with your order, please contact info@devonliedtke.com.\n\nDevon Liedtke is not responsible for lost or stolen packages. To report a missing package or file a claim, please contact UPS."
+          }
+        },
+        "cba34873-744b-49e1-b5c3-52464b5d78ec": {
+          "type": "faq",
+          "settings": {
+            "title": "Gift Messages",
+            "content": "If you’d like to include a gift message, please contact info@devonliedtke.com with your request within 24 hours of placing your order."
+          }
+        },
+        "c86d44a3-7a8e-4e6b-ae79-7c0d4e1ce51c": {
+          "type": "faq",
+          "settings": {
+            "title": "International orders",
+            "content": "At this time, we are not able to ship internationally. If you are interested in international shipping, please email info@devonliedtke.com for international stock lists."
+          }
+        },
+        "af4ca278-59d5-47c8-bae4-b0017f5246fc": {
+          "type": "faq",
+          "settings": {
+            "title": "Wholesale",
+            "content": "Have a wholesale inquiry? Please email info@devonliedtke.com. We are always looking for like-minded partners."
+          }
+        },
+        "41a85d55-a088-4cc2-a506-ab597a3482dd": {
+          "type": "faq",
+          "settings": {
+            "title": "Trade",
+            "content": "If you’re a member of the trade, please contact us for trade benefits: info@devonliedtke.com."
+          }
+        },
+        "b8316a61-6480-4566-8e5c-b59628d2f981": {
+          "type": "faq",
+          "settings": {
+            "title": "Trade",
+            "content": "We offer gift cards. To purchase a gift card, scroll to the bottom of the shop all page or click here. Please note that these are digital gift cards that will be sent via email."
+          }
+        },
+        "0ff81b30-5713-4f74-8145-194eb951ef4e": {
+          "type": "faq",
+          "settings": {
+            "title": "Employment",
+            "content": "Are you interested in working for us? Please email info@devonliedtke.com for employment opportunities."
+          }
+        },
+        "da64cda9-7eda-4b11-96bb-36667fe0e17c": {
+          "type": "faq",
+          "settings": {
+            "title": "Didn’t find an answer you’re looking for?",
+            "content": "Contact us at info@devonliedtke.com."
           }
         }
       },
       "block_order": [
-        "f86553de-788b-4038-960a-7cca9f7fa96f",
         "b510e85f-384d-4c6f-93dc-a20ee86a1cff",
         "8aa7e638-e240-48aa-b39d-4519dcadd83e",
-        "b6ccb70b-3e48-44a1-8e92-f126de74fe18"
+        "b6ccb70b-3e48-44a1-8e92-f126de74fe18",
+        "7ea18cb7-6410-4c3c-877c-642c16239f35",
+        "cba34873-744b-49e1-b5c3-52464b5d78ec",
+        "c86d44a3-7a8e-4e6b-ae79-7c0d4e1ce51c",
+        "af4ca278-59d5-47c8-bae4-b0017f5246fc",
+        "41a85d55-a088-4cc2-a506-ab597a3482dd",
+        "b8316a61-6480-4566-8e5c-b59628d2f981",
+        "0ff81b30-5713-4f74-8145-194eb951ef4e",
+        "da64cda9-7eda-4b11-96bb-36667fe0e17c"
       ],
       "settings": {
         "title": "Frequently     asked                     questions",
@@ -70,6 +126,7 @@
         "2ce8b791-c2bf-4e00-8cc8-b462c0277850",
         "4b127512-bf21-4188-973f-a598808c6fc5"
       ],
+      "disabled": true,
       "settings": {
         "title": ""
       }

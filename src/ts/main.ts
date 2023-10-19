@@ -9,6 +9,7 @@ import './lib/swiper';
 
 // import './util/cartDrawer';
 import { mobileNav } from './util/mobileNav';
+import { pressActions } from './util/press';
 import { accordion } from './util/faqs';
 
 
@@ -20,6 +21,7 @@ import { blogActions } from './util/blog';
 
 // Import SVG Sprite Images
 import './sprite-image/bag.svg';
+import { template } from './constant/global';
 
 // const designMode = document.querySelector('.shopify-design-mode');
 
@@ -37,6 +39,7 @@ if(links.length > 0 ) {
 }
 
 
+
 // if(template == 'index' && designMode == null) {
 //     landingAnimation();
 // } else {
@@ -45,9 +48,14 @@ if(links.length > 0 ) {
 
 
 schemeAnimations();
-
-
 mobileNav();
 accordion();
 responsiveActions();
+
+
+
 blogActions();
+
+if(template == 'page.about') { 
+    pressActions();
+}

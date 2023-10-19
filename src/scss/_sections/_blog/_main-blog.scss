@@ -20,12 +20,20 @@
         }
     }
 
-    &__grid {
+    &__article-group {
         @include flexbox($wrap: wrap);
         @include breakpoint(tablet) {
             @include flexbox($justifyContent: flex-start, $direction: column);
         }
+        margin-bottom: rem(50);
+                 &.group-hide {
+                     @include breakpoint(tabletup) {
+                         display: none;
+                     }
+                 }
     }
+
+
 
     &__article-item {
         @include make-col(2);
@@ -94,11 +102,7 @@
             }
         }
 
-        &.group-hide {
-            @include breakpoint(tabletup) {
-                display: none;
-            }
-        }
+       
     }
 
     &__read-more-container {

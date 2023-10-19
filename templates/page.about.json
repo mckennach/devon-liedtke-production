@@ -112,28 +112,38 @@
           "type": "press_entry",
           "settings": {
             "title": "PRESS ENTRY 01",
-            "link": "shopify:\/\/pages\/about"
+            "link": "shopify:\/\/pages\/about",
+            "image": "shopify:\/\/shop_images\/Image_40.jpg",
+            "image_2": "shopify:\/\/shop_images\/Rectangle_35.jpg",
+            "image_3": "shopify:\/\/shop_images\/Image_113_ac0d057b-207c-4d84-bbd9-b3d03fc2165b.jpg"
           }
         },
         "40fac9d1-a506-47c6-88f9-cca5a0bc5e65": {
           "type": "press_entry",
           "settings": {
             "title": "PRESS ENTRY 02",
-            "link": "shopify:\/\/pages\/about"
+            "link": "shopify:\/\/pages\/about",
+            "image": "shopify:\/\/shop_images\/Rectangle_208_3210e763-4e15-4a20-837f-4b507513496a.jpg",
+            "image_2": "shopify:\/\/shop_images\/Mask_Group_27_20b2b5c3-f447-4765-aedb-17f6ba854c33.jpg",
+            "image_3": "shopify:\/\/shop_images\/Image_15.jpg"
           }
         },
         "4f7db0c7-27d5-42bc-81be-fc832ecf0cd5": {
           "type": "press_entry",
           "settings": {
             "title": "PRESS ENTRY 03",
-            "link": "shopify:\/\/pages\/about"
+            "link": "shopify:\/\/pages\/about",
+            "image": "shopify:\/\/shop_images\/Image_113_86959a2c-0089-461b-857e-2462693b5862.jpg",
+            "image_2": "shopify:\/\/shop_images\/Mask_Group_27_946cf1aa-814e-4db7-8db3-365356004e2e.jpg"
           }
         },
         "1c838d1a-219e-4c28-bbc1-932e6dd8630d": {
           "type": "press_entry",
           "settings": {
             "title": "PRESS ENTRY 04",
-            "link": "#"
+            "link": "#",
+            "image": "shopify:\/\/shop_images\/Rectangle_208_23f4e8ce-be29-412e-bfbb-12cb9e001bf3.jpg",
+            "image_2": "shopify:\/\/shop_images\/Image_15_4c4abb04-0d01-4a26-8233-3e53adfdbcc6.jpg"
           }
         }
       },

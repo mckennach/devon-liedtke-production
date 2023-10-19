@@ -3,11 +3,6 @@
     "banner": {
       "type": "main-collection-banner",
       "settings": {
-        "filters": [
-          "all-products",
-          "vessels",
-          "tabletops"
-        ],
         "product-colletion-filter": "product-colletion-filter",
         "enable_filter": true,
         "color_scheme": "background-1"
@@ -19,7 +14,6 @@
         "e533dac9-14fc-48cb-9df1-19e5a97f6afa": {
           "type": "look",
           "settings": {
-            "title": "SHOP         THE                         LOOK",
             "collection": "shop-the-look-1"
           }
         },
@@ -41,7 +35,6 @@
         "2d5b2f72-3b0b-4b4e-9678-f5039d1324b1": {
           "type": "look",
           "settings": {
-            "title": "Shop      the                  look",
             "collection": "shop-the-look-2"
           }
         },
@@ -60,11 +53,10 @@
             "description": ""
           }
         },
-        "9e2e17ee-82aa-4af8-aff5-93d5bb9aeacd": {
+        "5a14ff86-d164-4547-a20c-987ec2366889": {
           "type": "look",
           "settings": {
-            "title": "Shop      the             look",
-            "collection": "shop-the-look-2"
+            "collection": "shop-the-look-3"
           }
         }
       },
@@ -73,7 +65,7 @@
         "e569505e-e020-451b-ba96-3322f68d0ac6",
         "2d5b2f72-3b0b-4b4e-9678-f5039d1324b1",
         "f5e1ace4-1650-4229-9a0a-30309313a16b",
-        "9e2e17ee-82aa-4af8-aff5-93d5bb9aeacd"
+        "5a14ff86-d164-4547-a20c-987ec2366889"
       ],
       "settings": {
         "custom_title_all": ""

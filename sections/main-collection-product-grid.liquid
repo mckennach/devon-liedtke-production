@@ -7,7 +7,7 @@
       assign count = 0
       assign look_to_skip = 0
       assign video_to_skip = 0
-      assign order = 'even'
+      assign order = 'odd'
 
     %}
 
@@ -16,70 +16,97 @@
       class="collection-page__collection">
       <div
         class="collection-page__collection-list">
-
-        {%- for product in collection.products -%}
+        {%- assign group_count = 0 -%}
+        {%- assign product_count = 1 -%}
+          {%- for product in collection.products -%}
           {% liquid
               assign group_size = 2
               if section.settings.products_to_show == 4 
                 assign group_size = 2
               endif 
+              assign group_to_modify = group_count | modulo: 2
               assign is_group = forloop.index | modulo: group_size
+              if group_to_modify == 1
+                assign main_group = product_count | modulo: 5
+              else
+                assign main_group = product_count | modulo: 4
+              endif
               assign break_video = false
               assign break_look = false
-            %}
+          %}
+          {% comment %} {%- if group_to_modify == 1 -%}
+            {%- assign main_group = forloop.index | modulo: 6 -%}
+            {%- else -%}
+            {%- assign main_group = forloop.index | modulo: 4 -%}
+          {%- endif -%} {% endcomment %}
+
+
+          {%- assign product_count = product_count | plus: 1 -%}
 
 
           {%- if is_group == 1 -%}
             {%- unless forloop.index == 1 -%}
             </group>
-            {%- if collection.handle == 'all' or request.design_mode -%}
-              {%- for block in section.blocks -%}
-                {%- case block.type -%}
-                  {%- when 'look' -%}
-                  {%- unless forloop.index == look_to_skip -%}
-                    {% unless look_to_skip > forloop.index %}
-                      {%- unless break_look -%}
-                        {%- assign look_to_skip = forloop.index -%}
-                        {%- assign break_look = true -%}
-                        {% render 'shop-the-look' with data: block.settings, order: order %}
+            {%- if main_group == 1 -%}
+              {%- if group_to_modify == 1 -%}
+                {%- assign product_count = 2 -%}
+              {%- else -%}
+                {%- assign product_count = 6 -%}
+              {%- endif -%}
+              {%- assign group_count = group_count | plus: 1 -%}
+              {%- if collection.handle == 'all' or request.design_mode -%}
+                {%- for block in section.blocks -%}
+                  {%- case block.type -%}
+                    {%- when 'look' -%}
+                    {%- unless forloop.index == look_to_skip -%}
+                      {% unless look_to_skip > forloop.index %}
+                        {%- unless break_look -%}
+                          {%- assign look_to_skip = forloop.index -%}
+                          {%- assign break_look = true -%}
+                          <div
+                            class="collection-list-container look-group">
+                            {% render 'shop-the-look' with data: block.settings, order: order %}
+                          </div>
+                        {%- endunless -%}
                       {%- endunless -%}
                     {%- endunless -%}
-                  {%- endunless -%}
-                  {%- when 'video' -%}
-                  {%- unless forloop.index == video_to_skip -%}
-                    {% unless video_to_skip > forloop.index %}
-                      {%- unless break_video -%}
-                        {%- assign video_to_skip = forloop.index -%}
-                        {%- assign break_video = true -%}
-                        <div
-                          class="collection-page__video {{ order }}">
-                          {% render 'video' with 
-                           video: block.settings.video,
-                           video_url: block.settings.video_url,
-                           video_label: block.settings.video_label,
-                           link: block.settings.link,
-                           link_label: block.settings.link_label,
-                           animations_reveal_on_scroll: true,
-                           enable_video_autoplay: block.settings.enable_video_autoplay,
-                           enable_video_looping: block.settings.enable_video_looping,
-                           cover_image: block.settings.cover_image %}
-                        </div>
+                    {%- when 'video' -%}
+                    {%- unless forloop.index == video_to_skip -%}
+                      {% unless video_to_skip > forloop.index %}
+                        {%- unless break_video -%}
+                          {%- assign video_to_skip = forloop.index -%}
+                          {%- assign break_video = true -%}
+                          <div
+                            class="collection-page__video {{ order }} collection-list-container video">
+                            {% render 'video' with 
+                             video: block.settings.video,
+                             video_url: block.settings.video_url,
+                             video_label: block.settings.video_label,
+                             link: block.settings.link,
+                             link_label: block.settings.link_label,
+                             animations_reveal_on_scroll: true,
+                             enable_video_autoplay: block.settings.enable_video_autoplay,
+                             enable_video_looping: block.settings.enable_video_looping,
+                             cover_image: block.settings.cover_image %}
+                          </div>
+                        {%- endunless -%}
                       {%- endunless -%}
                     {%- endunless -%}
-                  {%- endunless -%}
-                {%- endcase -%}
-              {%- endfor -%}
-              {% liquid
+                  {%- endcase -%}
+                {%- endfor -%}
+                {% liquid
               if order == 'even'
                 assign order = 'odd'
               else
                 assign order = 'even'
               endif
             %}
+              {%- endif -%}
             {%- endif -%}
+
           {%- endunless -%}
           <group
-            class="featured-collection__product-group">
+            class="featured-collection__product-group collection-list-container group">
           {%- endif -%}
           {% render 'card-product'
            , card_product: product,
@@ -124,12 +151,6 @@
           {
             "type": "paragraph",
             "content": "Add Shop the look collections to display on the main shop page"
-          }, {
-            "type": "inline_richtext",
-            "id": "title",
-            "label": "Title",
-            "default": "Shop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;the&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;look",
-            "info": "Use &nbsp; for spaces. Use italics for Nitti Font"
           }, {
             "type": "collection",
             "id": "collection",

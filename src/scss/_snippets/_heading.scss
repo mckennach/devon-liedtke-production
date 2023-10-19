@@ -55,6 +55,12 @@
     border-top: unset;
     border-bottom: 1px solid var(--color-text-secondary);
     color: var(--color-text-secondary);
+    position: relative;
+    z-index: 10;
+
+    a:hover {
+        color: var(--color-text-primary);
+    }
    
 }
 

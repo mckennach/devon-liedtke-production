@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="">
+    <meta name="p:domain_verify" content="0256b29107e664e97c0c973ec55305eb" />
     <link rel="canonical" href="{{ canonical_url }}">
 
     {%- if settings.favicon != blank -%}
@@ -44,6 +45,8 @@
     {%- if settings.animations_reveal_on_scroll -%}
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    <script src="https://www.dwin1.com/65168.js" type="text/javascript" defer="defer"></script>
+
 
     {{ content_for_header }}
 
@@ -162,6 +165,11 @@
         recipientFormCollapsed: `{{ 'recipient.form.collapsed' | t }}`
       };
     </script>
+
+    {% comment %} <script
+      async
+      type="text/javascript"
+    src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=TYCiZC"></script> {% endcomment %}
 
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>

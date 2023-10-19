@@ -18,8 +18,105 @@
               {%- endfor -%}
             </ul>
         </nav>
+
+        
         <div class="footer__newsletter" data-append-to-mobile=".footer__submark-container" data-append-to-desktop=".footer__navigation" clone >
-            {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+
+
+
+        {% comment %} <div id="mc_embed_shell">
+  
+<div id="mc_embed_signup">
+    <form action="https://devonliedtke.us5.list-manage.com/subscribe/post?u=afe2b587b561ae8e0b2bcf0ba&amp;id=92267f4858&amp;f_id=0022f2ebf0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate="">
+        <div id="mc_embed_signup_scroll">
+            <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+            <div class="mc-field-group"><label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
+        <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display: none;"></div>
+            <div class="response" id="mce-success-response" style="display: none;"></div>
+        </div><div aria-hidden="true" style="position: absolute; left: -5000px;"><input type="text" name="b_afe2b587b561ae8e0b2bcf0ba_92267f4858" tabindex="-1" value=""></div><div class="clear"><input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"></div>
+    </div>
+</form>
+</div>
+</div> {% endcomment %}
+
+  {% comment %} <div class="klaviyo-form-R9ssxw"></div> {% endcomment %}
+
+<form id="email_signup" class="klaviyo_gdpr_embed_WHawq9 footer__newsletter newsletter-form" style="position: relative;" 
+  action="//manage.kmail-lists.com/subscriptions/subscribe" 
+  data-ajax-submit="//manage.kmail-lists.com/ajax/subscriptions/subscribe" method="GET" target="_blank" novalidate="novalidate">
+    <input type="hidden" name="g" value="WHawq9">
+
+    <input type="hidden" name="$fields" value="$consent">
+    <input type="hidden" name="$list_fields" value="$consent">
+    <input type="hidden" name="$consent" value="email">
+    <div class="klaviyo_field_group field">
+      <label for="k_id_email" class="label-hidden">Newsletter Sign Up</label>
+      <input class="field__input" type="email" value="" name="email" id="k_id_email" placeholder="Sign up for our newsletter" />
+    
+    </div>
+   
+    <div class="klaviyo_form_actions">
+      <button type="submit" class="klaviyo_submit_button newsletter-form__button field__button">Submit ></button> 
+    </div>
+
+    <div class="klaviyo_messages">
+      <div class="success_message" style="display:none;"></div>
+      <div class="error_message" style="display:none;"></div>
+    </div>
+  </form>
+
+  <script type="text/javascript" src="//www.klaviyo.com/media/js/public/klaviyo_subscribe.js"></script>
+  <script type="text/javascript">
+    KlaviyoSubscribe.attachToForms('#email_signup', {
+      hide_form_on_success: true,
+      success_message: 'Thank you for subscribing!',
+    });
+  </script>
+
+          {% comment %} <div class="klaviyo-form-R9ssxw"></div> {% endcomment %}
+
+          {% comment %} <div id="mc_embed_shell">
+
+            <div id="mc_embed_signup">
+              <form action="https://devonliedtke.us5.list-manage.com/subscribe/post?u=afe2b587b561ae8e0b2bcf0ba&id=92267f4858&f_id=0022f2ebf0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate footer__newsletter newsletter-form" target="_self" novalidate="">
+                <div id="mc_embed_signup_scroll" style="position: relative;">
+       
+                  <div class="mc-field-group field">
+                    <label class="label-hidden" for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                    <input 
+                      type="email" 
+                      name="EMAIL" 
+                      placeholder="Sign up for our newsletter"
+                      class="required email field__input" 
+                      id="mce-EMAIL" 
+                      required="" 
+                      value="">
+                  </div>
+                  <div id="mce-responses" class="clear">
+                    <div class="response" id="mce-error-response" style="display: none;"></div>
+                    <div class="response" id="mce-success-response" style="display: none;"></div>
+                  </div>
+                  <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                    <input type="text" name="b_afe2b587b561ae8e0b2bcf0ba_92267f4858" tabindex="-1" value="">
+                  </div> 
+
+                {% comment %} <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Subscribe"> {% endcomment %}
+                   <button
+                    type="submit"
+                    class="newsletter-form__button field__button"
+                    name="commit"
+                    id="mc-embedded-subscribe"
+                    aria-label="{{ 'newsletter.button_label' | t }}">
+                    Submit >
+                  </button>
+
+                </div>
+              </form>
+            </div>
+          </div>  {% endcomment %}
+
+            {% comment %} {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
               <input
                 type="hidden"
                 name="contact[tags]"
@@ -75,7 +172,7 @@
                   {{- 'newsletter.success' | t }}
                 </h3>
               {%- endif -%}
-            {%- endform -%}
+            {%- endform -%} {% endcomment %}
           </div>
         </div>
        
