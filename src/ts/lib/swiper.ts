@@ -1,8 +1,45 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+// import { checkDevice, debounce } from '../util/responsiveActions';
 
-// console.log(SwiperOptions);
-// const productSwiper = 'hi';
+
+
+// let isMobile = checkDevice();
+
+
+
+
+const filterSwiper = new Swiper('.heading__filter-swiper', {
+    modules: [Navigation, Pagination],
+    // Navigation arrows
+    slidesPerView: 'auto',
+    spaceBetween: 50,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    speed: 400,
+    a11y: {
+        prevSlideMessage: 'Previous slide',
+        nextSlideMessage: 'Next slide',
+    },
+    breakpoints: {
+        768: {
+            spaceBetween: 0,
+            slidesPerView: 'auto'
+        }
+    }
+});
+
+// window.addEventListener("resize", debounce(() => {
+//     isMobile = checkDevice();
+//     if(isMobile) {
+//         filterSwiper.init();
+//     } else {
+//         filterSwiper.destroy();
+//     }
+// }, 300));
+
 const productSwiper = new Swiper('.product__swiper', {
     modules: [Navigation, Pagination, Autoplay],
     // Navigation arrows
@@ -29,4 +66,4 @@ const productSwiper = new Swiper('.product__swiper', {
     }
 });
 
-export { productSwiper };
+export { productSwiper, filterSwiper };

@@ -34,17 +34,50 @@
         }
     }
 
+    &__filter-list-container {
+        position: relative;
+        @include breakpoint(tablet) {
+            width: 100%;
+            // margin-top: rem(40);
+            // padding: rem(15);
+        }
+    }
+
     &__filter-list {
         @include list-zero;
-        @include flexbox($gap: rem(20));
+        @include flexbox();
+        @include breakpoint(tabletup) {
+            @include flexbox($gap: rem(20));
+        }
+      
     }
 
     &__filter-item {
+        white-space: nowrap;
         cursor: pointer;
+        width: unset !important;
+
+        
         @include pseudo-underline($width: 0);
         &:hover, &:active, &:focus, &.active {
             @include pseudo-underline($width: 100%);
         }
+    }
+
+    &__filter-prev, &__filter-next {
+        transform: scale(.3);
+        color: var(--color-text-primary);
+        &[disabled] {
+            display: none;
+        }
+    }
+
+    &__filter-next {
+        right: var(--swiper-navigation-sides-offset, -15px);
+    }
+
+    &__filter-prev {
+        left: var(--swiper-navigation-sides-offset, -15px);
     }
     
 }

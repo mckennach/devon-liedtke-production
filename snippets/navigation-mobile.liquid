@@ -32,7 +32,9 @@
              
             %}
 
-
+          {%- if link.handle == 'search' -%}
+            {% assign search_active = true %}
+          {%- else -%}
           <li class="mobile-navigation__menu-list-item has-submenu ">
             {%- if link.links != blank -%}
               <details id="Details-mobile-navigation-menu-item-{{ forloop.index }}" {% if open %}open{% endif %}>
@@ -108,7 +110,7 @@
               </details>
             {%- else -%}
 
-
+              
               <a
                 id="HeaderDrawer-{{ link.handle }}-mobile"
                 href="{{ link.url }}"
@@ -131,11 +133,11 @@
                   {%- endif -%}
                 </span>
               </a>
-              {%- if link.handle == 'search' -%}
-                {% assign search_active = true %}
-              {%- endif -%}
+             
             {%- endif -%}
           </li>
+        {%- endif -%}
+
         {%- endfor -%}
       </ul>
     </nav>

@@ -35,7 +35,44 @@
     {%- if enable_filter -%}
       <div
         class="heading__filter-container {{ class | escape }}__filter-container">
-        <ul
+
+        <swiper-container
+          id="Filter-{{ class | escape }}"
+          role="region"
+          class="heading__filter-list-container {{ class | escape }}__filter-list-container"       
+        >
+          <div
+            id="FilterStatus-{{ class | escape }}"
+            class="visually-hidden"
+            role="status"></div>
+            <!-- Slider main container -->
+            <div class="swiper-filter heading__filter-swiper">
+              <!-- Additional required wrapper -->
+              <ul class="swiper-wrapper heading__filter-list {{ class | escape }}__filter-list">
+                {%- for filter in filters.links -%}
+
+                  {% liquid
+                    assign count = filter.object.products.count
+                  %}
+                  <li
+                    id="Filter-{{ filter.id }}-{{ forloop.index }}"
+                    class="heading__filter-item swiper-slide {{ class | escape }}__filter-item
+                                                                                                                                                                                                                                                                      {% if collection.url == filter.url %} active{% endif %}">
+                    <a
+                      href="{{ filter.url }}">
+                      {{ filter.title }} ( {{ count }} )
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+              <button class="swiper-button-prev heading__filter-prev"></button>
+              <button class="swiper-button-next heading__filter-next"></button>
+            </div>
+
+
+        </swiper-container>
+
+        {% comment %} <ul
           class="heading__filter-list {{ class | escape }}__filter-list">
           {%- for filter in filters.links -%}
 
@@ -52,7 +89,7 @@
               </a>
             </li>
           {%- endfor -%}
-        </ul>
+        </ul> {% endcomment %}
 
         {% comment %} {%- for filter in filters -%}
           <ul>
